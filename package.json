@@ -1,0 +1,11 @@
+{
+  "name": "@stkterry/cah",
+  "version": "0.1.0",
+  "description": "A CAH clone",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Steven K Terry",
+  "license": "ISC"
+}
