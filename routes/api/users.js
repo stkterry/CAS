@@ -8,6 +8,15 @@ const router = express.Router();
 const keys = require("../../config/keys");
 const User = require("../../models/User");
 
+const genToken = (user, res) => {
+  jwt.sign(
+    {id: user.id, handle: user.handle, email: user.email },
+    keys.secretOrKey,
+    { expiresIn: 3600 },
+    (err, token) => res.json({ success: true, token: "Bearer " + token })
+  )
+}
+
 // TEST
 router.get("/test", (req, res) => res.json({ msg: "The users route!!!"}));
 
@@ -31,17 +40,7 @@ router.post("/register", (req, res) => {
             if (err) throw err;
             newUser.password = hash;
             newUser.save()
-              .then(user => {
-                const payload = { id: user.id, handle: user.handle };
-
-                jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-                  res.json({
-                    success: true,
-                    token: "Bearer " + token
-                  });
-                });
-
-              })
+              .then(user => genToken(user, res))
               .catch(err => console.log(err));
           })
         })
@@ -62,21 +61,8 @@ router.post('/login', (req, res) => {
 
       bcrypt.compare(password, user.password)
         .then(isMatch => {
-          if (isMatch) {
-            const payload = { id: user.id, handle: user.handle };
-
-            jwt.sign(
-              payload,
-              keys.secretOrKey,
-              { expiresIn: 3600 },
-              (err, token) => {
-                res.json({
-                  success: true,
-                  token: 'Bearer ' + token
-                });
-              });
-
-          } else {
+          if (isMatch) genToken(user, res)
+          else {
             return res.status(400).json({ password: 'Incorrect password' });
           }
         })
