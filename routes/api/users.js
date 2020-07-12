@@ -5,9 +5,41 @@ const passport = require("passport");
 
 const router = express.Router();
 
+const { errRes } = require("../../utility/validation/validation-util");
+const validateRegisterInput = require("../../utility/validation/register");
+const validateLoginInput = require("../../utility/validation/login");
 const keys = require("../../config/keys");
 const User = require("../../models/User");
+const { create } = require("../../models/User");
 
+//User default errors
+const ERRORS = {
+  emailUnavailable: { email: "A user has already registered with that email" },
+  handleUnavailable: { handle: "A user has already registered with that handle" },
+  userNotFound: { email: "This user does not exist" },
+  incorrectPassword: { password: "Incorrect password" }
+};
+
+// User maker
+const createUser = (req, res) => {
+  const newUser = new User({
+    handle: req.body.handle,
+    email: req.body.email,
+    password: req.body.password
+  })
+
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err;
+      newUser.password = hash;
+      newUser.save()
+        .then(user => genToken(user, res))
+        .catch(err => console.log(err));
+    })
+  })
+}
+
+// Generate a jwt web token for tracking user login
 const genToken = (user, res) => {
   jwt.sign(
     {id: user.id, handle: user.handle, email: user.email },
@@ -24,27 +56,14 @@ router.get("/test", (req, res) => res.json({ msg: "The users route!!!"}));
 
 // register
 router.post("/register", (req, res) => {
+
+  const { errors, isValid } = validateRegisterInput(req.body);
+  if (!isValid) errRes(res, 400, errors);
+
   User.findOne({ email: req.body.email })
     .then(user => {
-      if (user) {
-        return res.status(400).json({ email: "A user has already registered with that email"})
-      } else {
-        const newUser = new User({
-          handle: req.body.handle,
-          email: req.body.email,
-          password: req.body.password
-        })
-
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser.save()
-              .then(user => genToken(user, res))
-              .catch(err => console.log(err));
-          })
-        })
-      }
+      if (user) errRes(res, 400, ERRORS.emailUnavailable)
+      else createUser(req, res);
     })
 })
 
