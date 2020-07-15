@@ -1,0 +1,167 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  background-color: gray; }
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Current Versions*/ }
+
+.default-btn {
+  font-size: 18px;
+  border: 0.5px solid #b50303;
+  border-radius: 7px;
+  background: #b50303;
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  width: 85px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px; }
+
+.default-btn:hover {
+  border: .5px solid white;
+  background: rgba(13, 13, 13, 0.75); }
+
+#splash-main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black; }
+
+#splash-hero-main {
+  border-radius: 24px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10%;
+  background-color: #e0e0e0; }
+
+#splash-hero-left {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+#splash-hero-tagline {
+  padding-top: 24px; }
+  #splash-hero-tagline h1 {
+    font-size: 36px;
+    font-family: 'Luckiest Guy', cursive; }
+  #splash-hero-tagline p {
+    font-size: 16px; }
+
+#splash-hero-log {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+  #splash-hero-log span {
+    margin-right: 8px; }
+  #splash-hero-log .default-btn {
+    margin-right: 8px; }
+
+#splash-hero-right {
+  padding: 20px; }
+
+.flip-card {
+  background-color: transparent;
+  width: 200px;
+  height: 280px;
+  perspective: 1000px; }
+
+.flip-card-inner {
+  border-radius: 16px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  background-color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); }
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg); }
+
+.flip-card-front, .flip-card-back {
+  border-radius: 16px;
+  box-sizing: border-box;
+  padding: 24px;
+  text-align: left;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+
+.flip-card-front {
+  font-family: "Luckiest Guy", cursive;
+  font-size: 36px;
+  background-color: black;
+  color: white; }
+
+.flip-card-back {
+  font-family: 'Monteserrat', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  transform: rotateY(180deg); }
+
+/*# sourceMappingURL=App.css.map */

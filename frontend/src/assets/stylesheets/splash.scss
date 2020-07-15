@@ -1,0 +1,52 @@
+#splash-main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+#splash-hero-main {
+  border-radius: 24px;
+  display: flex;
+  flex-direction: row;
+  // justify-content: center;
+  // align-items: center;
+  margin-top: 10%;
+  background-color: $default_bg_color;  
+}
+
+#splash-hero-left {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#splash-hero-tagline {
+  padding-top: 24px;
+  h1 {
+    font-size: 36px;
+    font-family: 'Luckiest Guy', cursive;
+  }
+  p {
+    font-size: 16px;
+  }  
+}
+
+#splash-hero-log {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  span {
+    margin-right: 8px;
+  }
+  .default-btn {
+    margin-right: 8px;
+  }
+}
+
+#splash-hero-right {
+  padding: 20px;
+}

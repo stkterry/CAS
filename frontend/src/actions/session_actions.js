@@ -1,14 +1,23 @@
 import jwt_decode from "jwt-decode";
+import axios from "axios";
 
-import * as APIUtil from "../util/session_api_util";
+import { setAuthToken } from "../util/session_api_util";
 
+// Axios ============================================================
+const axios_signup = userData =>
+  axios.post('/api/users/register', userData);
 
+const axios_login = userData =>
+  axios.post('/api/users/login', userData);
+
+// Dispatch Labels ===========================================================
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 
 
+// Dispatches ================================================================
 // Dispatched on user sign in
 export const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
@@ -31,20 +40,22 @@ export const logoutUser = () => ({
   type: RECEIVE_USER_LOGOUT
 });
 
+
+// Dispatch Functions ========================================================
 // Dispatched on user sign up
-export const signup = user => dispatch => APIUtil.signup(user)
+export const signup = user => dispatch => axios_signup(user)
     .then(
       () => dispatch(receiveUserSignIn()),
       err => dispatch(receiveErrors(err.response.data))
     )
 
 // Set session token and dispatch user on login
-export const login = user => dispatch => APIUtil.login(user)
+export const login = user => dispatch => axios_login(user)
     .then(
       res => {
         const { token } = res.data;
         localStorage.setItem('jwtToken', token);
-        APIUtil.setAuthToken(token);
+        setAuthToken(token);
         const decoded = jwt_decode(token);
         dispatch(receiveCurrentUser(decoded));
       }
@@ -54,7 +65,6 @@ export const login = user => dispatch => APIUtil.login(user)
 
 export const logout = () => dispatch => {
   localStorage.removeItem('jwtToken');
-  APIUtil.setAuthToken(false);
-
+  setAuthToken(false);
   dispatch(logoutUser());
 };

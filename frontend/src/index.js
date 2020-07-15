@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import jwt_decode from "jwt-decode";
 
-import './index.css';
-
 import Root from "./components/Root";
 import configureStore from "./store/store";
 import { setAuthToken } from "./util/session_api_util";
 import { logout } from "./actions/session_actions";
+
+import "./assets/stylesheets/App.css";
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
