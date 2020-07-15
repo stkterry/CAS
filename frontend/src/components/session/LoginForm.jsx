@@ -15,7 +15,7 @@ class LoginForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, nextProps) {
     if (prevProps.errors !== this.props.errors) {
       this.setState({ errors: this.props.errors })
     }
@@ -35,7 +35,7 @@ class LoginForm extends React.Component {
       password: this.state.password
     };
 
-    this.props.login(user);
+    this.props.login(user)
   }
 
   renderErrors() {

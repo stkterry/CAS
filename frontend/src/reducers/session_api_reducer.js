@@ -9,8 +9,8 @@ const initialState = {
   user: {}
 };
 
-export default function(state = initialState, action) {
-  switch(action.type) {
+export default (state = initialState, action) => {
+  switch (action.type) {
     case RECEIVE_CURRENT_USER:
       return {
         ...state,

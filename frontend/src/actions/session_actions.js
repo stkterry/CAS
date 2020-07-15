@@ -32,17 +32,14 @@ export const logoutUser = () => ({
 });
 
 // Dispatched on user sign up
-export const signup = user => dispatch => (
-  APIUtil.signup(user)
+export const signup = user => dispatch => APIUtil.signup(user)
     .then(
       () => dispatch(receiveUserSignIn()),
       err => dispatch(receiveErrors(err.response.data))
     )
-);
 
 // Set session token and dispatch user on login
-export const login = user => dispatch => (
-  APIUtil.login(user)
+export const login = user => dispatch => APIUtil.login(user)
     .then(
       res => {
         const { token } = res.data;
@@ -53,7 +50,6 @@ export const login = user => dispatch => (
       }
     )
     .catch(err => dispatch(receiveErrors(err.response.data)))
-);
 
 
 export const logout = () => dispatch => {
