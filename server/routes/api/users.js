@@ -5,7 +5,7 @@ const passport = require("passport");
 
 const router = express.Router();
 
-const { errRes } = require("../../validation/validation-util");
+const { eRes } = require("../../validation/validation-util");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 const keys = require("../../config/keys");
@@ -58,11 +58,11 @@ router.get("/test", (req, res) => res.json({ msg: "The users route!!!"}));
 router.post("/register", (req, res) => {
 
   const { errors, isValid } = validateRegisterInput(req.body);
-  if (!isValid) errRes(res, 400, errors);
+  if (!isValid) eRes(res, 400, errors);
 
   User.findOne({ email: req.body.email })
     .then(user => {
-      if (user) errRes(res, 400, ERRORS.emailUnavailable)
+      if (user) eRes(res, 400, ERRORS.emailUnavailable)
       else createUser(req, res);
     })
 })
@@ -74,16 +74,13 @@ router.post('/login', (req, res) => {
 
   User.findOne ({ email })
     .then(user => {
-      if (!user) {
-        return res.status(404).json({ email: "This user does not exist!" });
-      }
+      
+      if (!user) eRes(res, 404, { email: "This user does not exist!" });
 
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) genToken(user, res)
-          else {
-            return res.status(400).json({ password: 'Incorrect password' });
-          }
+          else eRes(res, 400, { password: 'Incorrect password' });
         })
     })
 
@@ -98,4 +95,5 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     email: req.user.email
   });
 })
+
 module.exports = router;
