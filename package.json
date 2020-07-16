@@ -7,10 +7,10 @@
     "start": "node app.js",
     "server": "nodemon app.js",
     "server:debug": "nodemon --inspect app.js",
-    "frontend-install": "npm install --prefix frontend",
-    "frontend": "npm start --prefix frontend",
-    "sass": "sass --watch frontend/src/assets/stylesheets/input.scss:frontend/src/assets/stylesheets/App.css",
-    "dev": "concurrently \"npm run server:debug\" \"npm run frontend\" \"npm run sass\""
+    "client-install": "npm install --prefix client",
+    "client": "npm start --prefix client",
+    "sass": "sass --watch client/src/assets/stylesheets/input.scss:client/src/assets/stylesheets/App.css",
+    "dev": "concurrently \"npm run server:debug\" \"npm run client\" \"npm run sass\""
   },
   "author": "Steven K Terry",
   "license": "ISC",
