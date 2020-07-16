@@ -9,11 +9,6 @@ const Game = require("../models/Game");
 require("../models/model_index");
 const db = require("../config/keys").mongoURI;
 
-const dropDB = async (db) => {
-  await db.connection.dropDatabase();
-  console.log("Dropping database")
-}
-
 const registerUser = async data => {
   try {
     const { handle, email, password } = data;
@@ -37,89 +32,107 @@ const registerGame = async data => {
     const { host, players } = data;
     const rules = data.rules ? data.rules : [];
     
-    const game = new Game({
-      host: host,
-      players: players,
-      rules: rules
-    },
-    err => {if (err) throw err});
+    const game = new Game(
+      {
+        host: host,
+        players: players,
+        rules: rules
+      },
+      err => {if (err) throw err}
+    );
     await game.save();
     return game;
-
   } catch (err) { throw err }
 }
 
 const seedUsers = async (amount) => {
-  let tuser;
+  let user;
+  let staticCount = 0;
+  let randomCount = 0;
   for (let user of STATIC_USERS) {
-    tuser = await registerUser(user)
+    user = await registerUser(user)
+      .then(user => {
+        staticCount++;
+        console.log(`Added static user ${user.handle} : ${user._id}`);
+      })
       .catch(err => `Couldn't add user because ${err}`);
-    console.log(`Successfully added user ${tuser._id}`);
   }
 
   for (let i = 0; i < amount; i++) {
-    tuser = await registerUser({
+    user = await registerUser({
       handle: chance.first() + " " + chance.last(),
       email: chance.email(),
       password: "password"
     })
+      .then(user => {
+        randomCount++;
+        console.log(`Added random user ${user.handle} : ${user._id}`);
+      })
     .catch(err => `Couldn't add user because ${err}`);
-    console.log(`Added user ${tuser._id}`);
   }
 
-  console.log(`Added ${STATIC_USERS.length} static and ${amount} random users`);
+  console.log(`Added ${staticCount} static and ${randomCount} random users`);
 };
 
 const seedGames = async (amount) => {
   const users = await User.find();
 
-  let host_player, numPlayers, players, player_ids, tempPlayer, game;
   for (let i = 0; i < amount; i++) {
-    host_player = chance.pickone(users);
-    players = [host_player];
-    player_ids = [host_player._id];
+    let host_player = chance.pickone(users);
+    let players = [host_player];
 
-    numPlayers = chance.integer({min: 2, max: 7}); // Range excludes host_player
-    while (players.length < numPlayers) {
-      tempPlayer = chance.pickone(users);
-      if (tempPlayer._id !== player_ids[0]) {
+    let numPlayers = chance.integer({min: 2, max: 7}); // Range excludes host_player
+    while (players.length <= numPlayers) {
+      let tempPlayer = chance.pickone(users);
+      if (String(tempPlayer._id) != String(host_player._id)) {
         players.push(tempPlayer);
-        player_ids.push(tempPlayer._id);
       }
     }
+    
+    // I really can't figure out why this is necessary... maybe it's just really tired...
+    players = [... new Set(players)];
 
     // Clear the previous game and await successful game creation...
-    game = undefined;
-    game = await registerGame({ 
-      host: host_player, 
-      players: player_ids 
-    })
-    .then(game => `Added game ${game._id}`)
-    .catch(err => `Couldn't add game because ${err}`);
-
-    // If the game was successfully added, update players
-    if (game._id) {
-      for (let player of players) {
-        player.game_ids.push(game._id);
-        await player.save();
-      }
-    }
+    await registerGame({ 
+        host: host_player, 
+        players: players.map(player => player._id)
+      })
+      .then(async game => {
+        console.log(`Added Game - Host : ${host_player.handle}, Players: ${game.players.length}`);
+        for (let player of players) {
+          player.game_ids.push(game._id);
+          await player.save();
+        }
+      })
+      .catch(err => console.log(`Couldn't add game because ${err}`));
   }
+
+
 };
 
-const dropDB = () => 
+const dropDataBase = async (db) => {
+  await db.connection.dropDatabase();
+}
+
+const dropDB = () =>
   mongoose
-    .connect(db, { useNewUrlParser: true })
-    .then(async db => 
-      await dropDB(db)
-        .catch(err => console.log(`Database could not be dropped because ${err}`))
-    )
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(async db => {
+      console.log("Dropping database...")
+      await dropDataBase(db)
+        .then(() => console.log("...dropped"))
+        .catch(err => console.log(err));
+
+      db.connection.close();
+    });
 
 const seedDB = () => 
   mongoose
-    .connect(db, { useNewUrlParser: true })
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true  })
     .then(async db => {
-      await dropDB(db)
+      console.log("Dropping database...");
+      await dropDataBase(db)
+        .then(() => console.log("...dropped"))
         .catch(err => console.log(`Database could not be dropped because ${err}`));
       await seedUsers(20)
         .catch(err => console.log(`Couldn't seed users because ${err}`));
