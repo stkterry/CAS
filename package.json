@@ -11,7 +11,8 @@
     "client": "npm start --prefix client",
     "sass": "sass --watch client/src/assets/stylesheets/input.scss:client/src/assets/stylesheets/App.css",
     "dev": "concurrently \"npm run server:debug\" \"npm run client\" \"npm run sass\"",
-    "dropDB": "node -e 'require(\"/seed/seeder.js\").dropDB"
+    "dropDB": "node -e 'require(\"./server/seed/seeder.js\").dropDB()'",
+    "seedDB": "node -e 'require(\"./server/seed/seeder.js\").seedDB()'"
   },
   "author": "Steven K Terry",
   "license": "ISC",
