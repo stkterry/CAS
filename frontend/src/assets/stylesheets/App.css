@@ -45,9 +45,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-body {
-  background-color: gray; }
-
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -61,6 +58,18 @@ body {
   /* Internet Explorer/Edge */
   user-select: none;
   /* Current Versions*/ }
+
+body {
+  background-color: gray; }
+
+#footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #ebc340;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%; }
 
 .default-btn {
   font-size: 18px;
@@ -163,5 +172,23 @@ body {
   background-color: black;
   color: white;
   transform: rotateY(180deg); }
+
+#nav_bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; }
+
+body {
+  background-color: black; }
+
+#landing_games {
+  margin: 16px auto;
+  min-height: 200px;
+  min-width: 400px;
+  height: 80%;
+  width: 80%;
+  background-color: #e0e0e0;
+  color: black; }
 
 /*# sourceMappingURL=App.css.map */
