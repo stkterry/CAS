@@ -5,9 +5,9 @@ const passport = require("passport");
 
 const router = express.Router();
 
-const { errRes } = require("../../utility/validation/validation-util");
-const validateRegisterInput = require("../../utility/validation/register");
-const validateLoginInput = require("../../utility/validation/login");
+const { errRes } = require("../../validation/validation-util");
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
 const keys = require("../../config/keys");
 const User = require("../../models/User");
 const { create } = require("../../models/User");
