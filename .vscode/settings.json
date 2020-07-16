@@ -8,5 +8,6 @@
     "**/.vscode": true,
     "**/CVS": true,
     "**/node_modules": true
-  }
+  },
+  "git.ignoreLimitWarning": true
 }
