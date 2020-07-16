@@ -5,9 +5,9 @@ const passport = require("passport");
 
 
 const app = express();
-const db = require("./config/keys").mongoURI;
+const db = require("./server/config/keys").mongoURI;
 const port = process.env.PORT || 5001;
-const users = require("./routes/api/users");
+const users = require("./server/routes/api/users");
 
 
 mongoose
@@ -16,7 +16,7 @@ mongoose
   .catch(err => console.log(err));
 
 app.use(passport.initialize());
-require('./config/passport')(passport);
+require('./server/config/passport')(passport);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
