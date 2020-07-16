@@ -4,11 +4,11 @@ import axios from "axios";
 import { setAuthToken } from "../util/session_api_util";
 
 // Axios ============================================================
-const axios_signup = userData =>
-  axios.post('/api/users/register', userData);
 
-const axios_login = userData =>
-  axios.post('/api/users/login', userData);
+export const APICalls = {
+  signup: userDat => axios.post("/api/users/register", userDat),
+  login: userDat => axios.post("/api/users/login", userDat)
+}
 
 // Dispatch Labels ===========================================================
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
@@ -43,14 +43,14 @@ export const logoutUser = () => ({
 
 // Dispatch Functions ========================================================
 // Dispatched on user sign up
-export const signup = user => dispatch => axios_signup(user)
+export const signup = user => dispatch => APICalls.signup(user)
     .then(
       () => dispatch(receiveUserSignIn()),
       err => dispatch(receiveErrors(err.response.data))
     )
 
 // Set session token and dispatch user on login
-export const login = user => dispatch => axios_login(user)
+export const login = user => dispatch => APICalls.login(user)
     .then(
       res => {
         const { token } = res.data;
