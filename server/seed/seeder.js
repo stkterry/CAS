@@ -88,6 +88,8 @@ const seedGames = async (amount) => {
       }
     }
 
+    // Clear the previous game and await successful game creation...
+    game = undefined;
     game = await registerGame({ 
       host: host_player, 
       players: player_ids 
@@ -96,14 +98,40 @@ const seedGames = async (amount) => {
     .catch(err => `Couldn't add game because ${err}`);
 
     // If the game was successfully added, update players
-    if (game) {
+    if (game._id) {
       for (let player of players) {
-
+        player.game_ids.push(game._id);
+        await player.save();
       }
     }
-
-
-
-  
   }
-}
+};
+
+const dropDB = () => 
+  mongoose
+    .connect(db, { useNewUrlParser: true })
+    .then(async db => 
+      await dropDB(db)
+        .catch(err => console.log(`Database could not be dropped because ${err}`))
+    )
+
+const seedDB = () => 
+  mongoose
+    .connect(db, { useNewUrlParser: true })
+    .then(async db => {
+      await dropDB(db)
+        .catch(err => console.log(`Database could not be dropped because ${err}`));
+      await seedUsers(20)
+        .catch(err => console.log(`Couldn't seed users because ${err}`));
+      await seedGames(10)
+        .catch(err => console.log(`Couldn't seed games because ${err}`));
+      
+      console.log("Done seeding, exiting.");
+
+      db.connection.close();
+    });
+
+module.exports = {
+  dropDB,
+  seedDB
+};

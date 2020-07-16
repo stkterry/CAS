@@ -10,7 +10,8 @@
     "client-install": "npm install --prefix client",
     "client": "npm start --prefix client",
     "sass": "sass --watch client/src/assets/stylesheets/input.scss:client/src/assets/stylesheets/App.css",
-    "dev": "concurrently \"npm run server:debug\" \"npm run client\" \"npm run sass\""
+    "dev": "concurrently \"npm run server:debug\" \"npm run client\" \"npm run sass\"",
+    "dropDB": "node -e 'require(\"/seed/seeder.js\").dropDB"
   },
   "author": "Steven K Terry",
   "license": "ISC",
