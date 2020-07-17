@@ -17,10 +17,6 @@ class Landing extends React.Component {
     this.props.getGames();
   }
 
-  // componentWillUpdate(newState) {
-  //   this.setState({ games: newState.games });
-  // }
-
   componentDidUpdate(prevProps) {
     if (prevProps.errors !== this.props.errors) {
       this.setState({errors: this.props.errors })
@@ -33,10 +29,10 @@ class Landing extends React.Component {
 
   getGames () {
     return (this.state.games.length === 0) ?
-      (<div>
+      (<div className="landing_games-box">
         ...Loading Games
       </div>) :
-      (<div>
+      (<div className="landing_games-box">
         {this.state.games.map(game =>
           <GameBox key={game._id} game={game} />
         )}

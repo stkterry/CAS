@@ -15,6 +15,10 @@ const GameSchema = new Schema({
     type: Array,
     default: []
   },
+  cardPacks: [{
+    type: Schema.Types.ObjectId,
+    ref: "CardPack"
+  }],
   name: {
     type: String,
     default: ""

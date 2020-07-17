@@ -17,6 +17,7 @@ console.log(db);
 const port = process.env.PORT || 5001;
 const users = require("./server/routes/api/users");
 const games = require("./server/routes/api/games");
+const cardPacks = require("./server/routes/api/cardPacks");
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -31,5 +32,6 @@ app.use(bodyParser.json());
 
 app.use("/api/users", users);
 app.use("/api/games", games);
+app.use("/api/cardPacks", cardPacks);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));

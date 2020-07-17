@@ -21,13 +21,38 @@ time, mark, audio, video, input {
 	padding: 0;
 	border: 0;
 	font: inherit;
+	font-size: 1.6rem;
 	vertical-align: baseline;
 	font-family: 'Montserrat', sans-serif;
 }
 
+h1 {
+	font-size: 3.2rem;
+}
+h2 {
+	font-size: 2.4rem;
+}
+h3 {
+	font-size: 1.9rem;
+}
+h4 {
+	font-size: 1.6rem;
+}
+h5 {
+	font-size: 1.33rem;
+}
+h6 {
+	font-size: 1.1rem;
+}
+p, li, body {
+	font-size: 1.4rem;
+}
+
+
 html {
 	font-size: 62.5%;
 }
+
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 

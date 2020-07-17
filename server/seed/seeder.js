@@ -6,6 +6,7 @@ chance = new Chance();
 const { STATIC_USERS } = require("./static_seeds");
 const User = require("../models/User");
 const Game = require("../models/Game");
+const CardPack = require("../models/CardPack");
 require("../models/model_index");
 const db = require("../config/keys").mongoURI;
 
@@ -29,16 +30,9 @@ const registerUser = async data => {
 
 const registerGame = async data => {
   try {
-    const { host, players, name } = data;
-    const rules = data.rules ? data.rules : [];
-    
+    data.rules = data.rules ? data.rules : [];
     const game = new Game(
-      {
-        host: host,
-        name: name,
-        players: players,
-        rules: rules
-      },
+      data,
       err => {if (err) throw err}
     );
     await game.save();
@@ -77,12 +71,17 @@ const seedUsers = async (amount) => {
 
 const seedGames = async (amount) => {
   const users = await User.find();
+  const cardPacks = await CardPack.find();
+  const range = {
+    min: cardPacks.length ? 3 : 0,
+    max: cardPacks.length ? cardPacks.length : 0
+  };
 
   for (let i = 0; i < amount; i++) {
     let host_player = chance.pickone(users);
     let players = [host_player];
 
-    let numPlayers = chance.integer({min: 2, max: 7}); // Range excludes host_player
+    let numPlayers = chance.integer({ min: 2, max: 7 }); // Range excludes host_player
     while (players.length <= numPlayers) {
       let tempPlayer = chance.pickone(users);
       if (String(tempPlayer._id) != String(host_player._id)) {
@@ -94,10 +93,12 @@ const seedGames = async (amount) => {
     players = [... new Set(players)];
 
     // Clear the previous game and await successful game creation...
+
     await registerGame({ 
         host: host_player._id, 
         players: players.map(player => player._id),
-        name: host_player.handle + "'s Game"
+        name: host_player.handle + "'s Game",
+        cardPacks: chance.pickset(cardPacks, chance.integer(range))
       })
       .then(async game => {
         console.log(`Added Game - Host : ${host_player.handle}, Players: ${game.players.length}`);
