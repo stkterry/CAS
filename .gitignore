@@ -1,6 +1,5 @@
 /noCommit
+/keys_dev.js
 /node_modules
-/config/keys.js
-/frontend/node_modules
 .sass-cache
 /.sass-cache

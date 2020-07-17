@@ -1,4 +1,5 @@
-module.exports = {
-  mongoURI: 'mongodb+srv://StevenKT:nCo4P9nqlStCfJfM@cah.bo7wx.mongodb.net/<dbname>?retryWrites=true&w=majority',
-  secretOrKey: "@*a7+tzV9^':d27roNH[[}I-)LJI.u"
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./keys_prod');
+} else {
+  module.exports = require('./keys_dev');
 }
