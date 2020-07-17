@@ -22,9 +22,14 @@ export const receiveGames = games => ({
   games: games
 });
 
+export const receiveUserGames = games => ({
+  type: RECEIVE_USER_GAMES,
+  games: games
+})
+
 export const receiveNewGame = game => ({
   type: RECEIVE_NEW_GAME,
-  game
+  game: game
 });
 
 // Dispatch Functions ========================================================

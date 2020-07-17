@@ -29,12 +29,13 @@ const registerUser = async data => {
 
 const registerGame = async data => {
   try {
-    const { host, players } = data;
+    const { host, players, name } = data;
     const rules = data.rules ? data.rules : [];
     
     const game = new Game(
       {
         host: host,
+        name: name,
         players: players,
         rules: rules
       },
@@ -94,8 +95,9 @@ const seedGames = async (amount) => {
 
     // Clear the previous game and await successful game creation...
     await registerGame({ 
-        host: host_player, 
-        players: players.map(player => player._id)
+        host: host_player._id, 
+        players: players.map(player => player._id),
+        name: host_player.handle + "'s Game"
       })
       .then(async game => {
         console.log(`Added Game - Host : ${host_player.handle}, Players: ${game.players.length}`);
@@ -114,6 +116,9 @@ const dropDataBase = async (db) => {
   await db.connection.dropDatabase();
 }
 
+const dropCollection = async(db, collection) => 
+  await db.connection.dropCollection(collection);
+
 const dropDB = () =>
   mongoose
     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -126,14 +131,27 @@ const dropDB = () =>
       db.connection.close();
     });
 
+const dropDBC = (collections = null) => {
+  collections = collections || ['users', 'games'];
+
+  mongoose
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(async db => {
+      for (let collection of collections) {
+        console.log(`Dropping ${collection} collection...`)
+        await dropCollection(db, collection)
+          .then(() => console.log("...dropped"))
+          .catch(err => console.log(err));
+      }
+
+      db.connection.close();
+    });
+}
+
 const seedDB = () => 
   mongoose
     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true  })
     .then(async db => {
-      console.log("Dropping database...");
-      await dropDataBase(db)
-        .then(() => console.log("...dropped"))
-        .catch(err => console.log(`Database could not be dropped because ${err}`));
       await seedUsers(20)
         .catch(err => console.log(`Couldn't seed users because ${err}`));
       await seedGames(10)
@@ -146,5 +164,6 @@ const seedDB = () =>
 
 module.exports = {
   dropDB,
+  dropDBC,
   seedDB
 };

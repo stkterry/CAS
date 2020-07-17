@@ -1,7 +1,4 @@
-
-body {
-  background-color: $bg_color_dark;
-}
+@import "./palettes.scss";
 
 #landing_games {
   margin: 16px auto;
@@ -9,6 +6,6 @@ body {
   min-width: 400px;
   height: 80%;
   width: 80%;
-  background-color: $bg_color_light;
+  background-color: $palette_light;
   color: black;
 }

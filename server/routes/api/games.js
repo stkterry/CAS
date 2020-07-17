@@ -16,7 +16,8 @@ const ERRORS = {
 
 const gameObj = req => ({
   host: req.body.id,
-  rules: req.body.rules ? req.body.rules : []
+  rules: req.body.rules ? req.body.rules : [],
+  name: req.body.name
 });
 
 // TEST
@@ -28,6 +29,7 @@ router.get("/test", (req, res) => res.json({ msg: "This is the games route!" }))
 router.get("/", (req, res) => {
   Game.find()
     .sort({ date: -1 })
+    .populate('host players')
     .then(games => res.json(games))
     .catch(err => eRes(res, 404, ERRORS.noGamesFound))
 })

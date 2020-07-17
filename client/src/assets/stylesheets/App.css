@@ -18,9 +18,12 @@ time, mark, audio, video, input {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
-  vertical-align: baseline; }
+  vertical-align: baseline;
+  font-family: 'Montserrat', sans-serif; }
+
+html {
+  font-size: 62.5%; }
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -60,12 +63,12 @@ table {
   /* Current Versions*/ }
 
 body {
-  background-color: gray; }
+  background-color: #0d0f13; }
 
 #footer {
   margin-top: 1rem;
   padding: 1rem;
-  background-color: #ebc340;
+  background-color: #f2a365;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -93,14 +96,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black; }
+  background-color: #0d0f13; }
 
 #splash-hero-main {
   border-radius: 24px;
   display: flex;
   flex-direction: row;
   margin-top: 10%;
-  background-color: #e0e0e0; }
+  background-color: #ececec; }
 
 #splash-hero-left {
   padding: 20px;
@@ -177,10 +180,18 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+  background-color: #1c2a38; }
 
-body {
-  background-color: black; }
+.title-text {
+  padding-left: 4px;
+  color: #ececec;
+  font-size: 24px; }
+
+.secondary-text {
+  padding-left: 10px;
+  color: #818181;
+  font-size: 12px; }
 
 #landing_games {
   margin: 16px auto;
@@ -188,7 +199,27 @@ body {
   min-width: 400px;
   height: 80%;
   width: 80%;
-  background-color: #e0e0e0;
+  background-color: #ececec;
   color: black; }
+
+.game_box {
+  border: solid .2rem;
+  border-radius: .8rem;
+  padding: .4rem;
+  font-size: 1.2rem;
+  margin: .8rem 0;
+  max-width: 40rem; }
+  .game_box h1 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    padding-bottom: .8rem; }
+  .game_box .game_box-entry {
+    padding-bottom: 1rem; }
+    .game_box .game_box-entry h2 {
+      font-weight: bold; }
+    .game_box .game_box-entry h3 {
+      padding-left: .8rem;
+      font-family: 'Montserrat Alternates', sans-serif;
+      font-style: italic; }
 
 /*# sourceMappingURL=App.css.map */

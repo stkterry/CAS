@@ -18,7 +18,7 @@ const UserSchema = new Schema({
   },
   game_ids: [{
     type: Schema.Types.ObjectId,
-    ref: "games"
+    ref: "Game"
   }],
   date: {
     type: Date,
@@ -57,33 +57,5 @@ UserSchema.statics.removeGame = function (user_id, game_id) {
 
   return (uRemove, gRemove);
 };
-
-UserSchema.statics.addRemoveGame = function (command, user_id, game_id) {
-  command = function(command) {
-    switch (command) {
-      case "add":
-        return "$addToSet";
-      case "remove":
-        return "$pull";
-      default:
-        return null;
-    }
-  }(command);
-
-  const user = this.findByIdAndUpdate(
-    user_id,
-    { [command]: { game_ids: game_id } },
-    { new: true }
-  )
-
-  const game = Game.findByIdAndUpdate(
-    game_id,
-    { [command]: { players: user_id } },
-    { new: true }
-  )
-
-  return user, game;
-
-}
 
 module.exports = User = mongoose.model("User", UserSchema);

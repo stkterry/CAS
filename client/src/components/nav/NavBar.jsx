@@ -1,6 +1,9 @@
 import React from "react"
 import { Link } from "react-router-dom";
 
+import { getPhrase } from "../../util/util";
+
+
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -15,7 +18,10 @@ class NavBar extends React.Component {
   render() {
     return (
       <div id="nav_bar">
-        <h1>CAH</h1>
+        <div>
+          <h1 className="title-text">Crimes Against Stupidity</h1>
+          <h2 className="secondary-text">&#8627; {getPhrase()}</h2>
+        </div>
         <div>
           <Link to={'/profile'}>Profile</Link>
           <button onClick={this.logoutUser}>Logout</button>
