@@ -10,7 +10,7 @@
 }
 
 #splash-hero-main {
-  border-radius: 24px;
+  border-radius: 2.4rem;
   display: flex;
   flex-direction: row;
   // justify-content: center;
@@ -20,21 +20,18 @@
 }
 
 #splash-hero-left {
-  padding: 20px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 #splash-hero-tagline {
-  padding-top: 24px;
+  padding-top: 2.4rem;
   h1 {
-    font-size: 36px;
+    font-size: 3.6rem;
     font-family: 'Luckiest Guy', cursive;
   }
-  p {
-    font-size: 16px;
-  }  
 }
 
 #splash-hero-log {
@@ -42,13 +39,13 @@
   flex-direction: row;
   align-items: center;
   span {
-    margin-right: 8px;
+    margin-right: .8rem;
   }
   .default-btn {
-    margin-right: 8px;
+    margin-right: .8rem;
   }
 }
 
 #splash-hero-right {
-  padding: 20px;
+  padding: 2rem;
 }

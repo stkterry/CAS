@@ -29,9 +29,14 @@ router.get("/test", (req, res) => res.json({ msg: "This is the games route!" }))
 router.get("/", (req, res) => {
   Game.find()
     .sort({ date: -1 })
-    .populate('host players')
+    .populate({
+      path: 'host players', select: 'handle _id'
+    })
+    .populate({
+      path: 'cardPacks', select: 'name _id quantity'
+    })
     .then(games => res.json(games))
-    .catch(err => eRes(res, 404, ERRORS.noGamesFound))
+    .catch(err => console.log(err))
 })
 
 // /user/:user_id
