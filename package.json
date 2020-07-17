@@ -26,6 +26,7 @@
     "mongoose": "^5.9.22",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "simplebar-react": "^2.2.1",
     "validator": "^13.1.1"
   },
   "devDependencies": {
