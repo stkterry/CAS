@@ -1,3 +1,7 @@
+@import "./_palettes.scss";
+
+
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -7,20 +11,14 @@
   user-select: none; /* Current Versions*/
 }
 
-$default_bg_color: #e0e0e0;
-$darker_bg_color: #adadad;
-$bg_color_dark: rgb(0,0,0);
-$bg_color_light: #e0e0e0;
-$button_red: rgb(181, 3, 3);
-
 body {
-  background-color: gray;
+  background-color: $palette_dark;
 }
 
 #footer{
   margin-top: 1rem;
   padding: 1rem;
-  background-color: rgb(235, 195, 64);
+  background-color: $palette_accent;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -29,7 +27,7 @@ body {
 
 .default-btn{
   font-size: 18px;
-  border: .5px solid$button_red;
+  border: .5px solid $button_red;
   border-radius: 7px;
   background:$button_red;
   color: white;
