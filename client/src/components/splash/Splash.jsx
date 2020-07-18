@@ -3,6 +3,7 @@ import React from "react";
 import SplashNavContainer from "./splash_nav_container";
 import CardFlipHover from "../card_anims/CardFlipHover";
 
+
 class Splash extends React.Component {
 
   render() {

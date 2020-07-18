@@ -6,7 +6,7 @@
 }
 
 .flip-card-inner {
-  border-radius: 16px;
+  border-radius: 1.6rem;
   position: relative;
   width: 100%;
   height: 100%;
@@ -14,7 +14,7 @@
   transition: transform 0.6s;
   transform-style: preserve-3d;
   background-color: black;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2);
 }
 
 .flip-card:hover .flip-card-inner {
@@ -22,9 +22,9 @@
 }
 
 .flip-card-front, .flip-card-back {
-  border-radius: 16px;
+  border-radius: 1.6rem;
   box-sizing: border-box;
-  padding: 24px;
+  padding: 2.4rem 1.6rem;
   text-align: left;
   position: absolute;
   width: 100%;
@@ -34,15 +34,17 @@
 }
 
 .flip-card-front {
-  font-family: "Luckiest Guy", cursive;
-  font-size: 36px;
+  h1 {
+    font-size: 3.6rem;
+    font-family: "Luckiest Guy", cursive;
+  }
   background-color: black;
   color: white;
 }
 
 .flip-card-back {
   font-family: 'Monteserrat', sans-serif;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: bold;
   background-color: black;
   color: white;

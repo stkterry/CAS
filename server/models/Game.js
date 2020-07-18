@@ -4,16 +4,28 @@ const Schema = mongoose.Schema;
 const GameSchema = new Schema({
   host: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
     required: true
   },
   players: [{
     type: Schema.Types.ObjectId,
-    ref: "users"
+    ref: "User"
   }],
   rules: {
     type: Array,
     default: []
+  },
+  cardPacks: [{
+    type: Schema.Types.ObjectId,
+    ref: "CardPack"
+  }],
+  name: {
+    type: String,
+    default: ""
+  },
+  game_state: {
+    type: Schema.Types.Mixed,
+    default: {}
   },
   date: {
     type: Date,

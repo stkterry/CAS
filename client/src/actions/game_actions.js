@@ -7,13 +7,16 @@ import axios from "axios";
 export const APICalls = {
   getGames: () => axios.get("/api/games"),
   getUserGames: id => axios.get(`/api/games/user/${id}`),
-  createGame: gameDat => axios.post("/api/games/", gameDat)
+  createGame: gameDat => axios.post("/api/games/", gameDat),
+  getGame: game_id => axios.get(`/api/games/${game_id}`),
 }
 
 // Dispatch Labels ===========================================================
 export const RECEIVE_GAMES = "RECEIVE_GAMES";
 export const RECEIVE_USER_GAMES = "RECEIVE_USER_GAMES";
 export const RECEIVE_NEW_GAME = "RECEIVE_NEW_GAME";
+export const RECEIVE_GAME = "RECEIVE_GAME";
+export const RECEIVE_ACTIVE_GAME = "RECEIVE_ACTIVE_GAME";
 
 
 // Dispatches ================================================================
@@ -22,14 +25,37 @@ export const receiveGames = games => ({
   games: games
 });
 
+export const receiveUserGames = games => ({
+  type: RECEIVE_USER_GAMES,
+  games: games
+})
+
 export const receiveNewGame = game => ({
   type: RECEIVE_NEW_GAME,
-  game
+  game: game
 });
+
+export const receiveGame = game => ({
+  type: RECEIVE_GAME,
+  game: game
+});
+
+export const receiveActiveGame = game => ({
+  type: RECEIVE_ACTIVE_GAME,
+  game: game
+})
 
 // Dispatch Functions ========================================================
 export const getGames = () => dispatch => APICalls.getGames()
   .then(games => dispatch(receiveGames(games)))
+  .catch(err => console.log(err));
+
+export const getGame = game_id => dispatch => APICalls.getGame(game_id)
+  .then(game => dispatch(receiveGame(game)))
+  .catch(err => console.log(err));
+
+export const getActiveGame = game_id => dispatch => APICalls.getGame(game_id)
+  .then(game => dispatch(receiveActiveGame(game)))
   .catch(err => console.log(err));
 
 export const getUserGames = id => dispatch => APICalls.getUserGames(id)

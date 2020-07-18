@@ -1,0 +1,48 @@
+@import "./palettes";
+
+.game_box {
+  display: flex;
+  flex-direction: column;
+  background: $palette_dark;
+  color: $palette_text_light;
+  line-height: normal;
+  // border: solid .2rem;
+  border-radius: 1.2rem;
+  padding: .8rem;
+  font-size: 1.2rem;
+
+  max-width: 30rem;
+  max-height: 30rem;
+
+  h4 {
+    font-weight: bold;
+    padding-bottom: .8rem;
+  }
+
+}
+
+.game_box-entry {
+  padding-bottom: 1rem;
+
+  .game_box-entry-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .game_box-entry-content {
+    height: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    font-size: 1.2rem;
+    padding-left: .8rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: italic;
+  }
+}
+
+.game_box-buttons {
+  margin-top: auto;
+}

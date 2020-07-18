@@ -16,7 +16,8 @@ const ERRORS = {
 
 const gameObj = req => ({
   host: req.body.id,
-  rules: req.body.rules ? req.body.rules : []
+  rules: req.body.rules ? req.body.rules : [],
+  name: req.body.name
 });
 
 // TEST
@@ -28,8 +29,14 @@ router.get("/test", (req, res) => res.json({ msg: "This is the games route!" }))
 router.get("/", (req, res) => {
   Game.find()
     .sort({ date: -1 })
+    .populate({
+      path: 'host players', select: 'handle _id'
+    })
+    .populate({
+      path: 'cardPacks', select: 'name _id quantity'
+    })
     .then(games => res.json(games))
-    .catch(err => eRes(res, 404, ERRORS.noGamesFound))
+    .catch(err => console.log(err))
 })
 
 // /user/:user_id
@@ -40,8 +47,14 @@ router.get("/user/:user_id", (req, res) => {
 })
 
 // /:id
-router.get("/:id", (req, res) => {
-  Game.findById(req.params.id)
+router.get("/:game_id", (req, res) => {
+  Game.findById(req.params.game_id)
+    .populate({
+      path: 'host players', select: 'handle _id'
+    })
+    .populate({
+      path: 'cardPacks', select: 'name _id quantity'
+    })
     .then(game => res.json(game))
     .catch(err => eRes(res, 404, ERRORS.noIDgames))
 })

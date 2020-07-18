@@ -1,7 +1,26 @@
+@import "./palettes";
 
 #nav_bar {
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  background-color: $palette_med;
+
+  // height: 32px;
+
+}
+
+.title-text {
+  padding-left: .4rem;
+  color: $palette_text_light;
+  font-size: 2.4rem;
+}
+
+.secondary-text {
+  padding-left: 1rem;
+  color: $palette_text_med;
+  font-size: 1.2rem;
 }

@@ -18,9 +18,34 @@ time, mark, audio, video, input {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
-  vertical-align: baseline; }
+  font-size: 1.6rem;
+  vertical-align: baseline;
+  font-family: 'Montserrat', sans-serif; }
+
+h1 {
+  font-size: 3.2rem; }
+
+h2 {
+  font-size: 2.4rem; }
+
+h3 {
+  font-size: 1.9rem; }
+
+h4 {
+  font-size: 1.6rem; }
+
+h5 {
+  font-size: 1.33rem; }
+
+h6 {
+  font-size: 1.1rem; }
+
+p, li, body {
+  font-size: 1.4rem; }
+
+html {
+  font-size: 62.5%; }
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -60,73 +85,145 @@ table {
   /* Current Versions*/ }
 
 body {
-  background-color: gray; }
+  background-color: #0d0f13; }
 
 #footer {
   margin-top: 1rem;
   padding: 1rem;
-  background-color: #ebc340;
+  background-color: #f2a365;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%; }
 
-.default-btn {
-  font-size: 18px;
+.btn-default {
+  font-size: 1.8rem;
   border: 0.5px solid #b50303;
-  border-radius: 7px;
+  border-radius: .7rem;
   background: #b50303;
   color: white;
   text-decoration: none;
-  padding: 5px 10px;
+  padding: .5rem 1rem;
   width: 85px;
   height: 25px;
   text-align: center;
-  line-height: 25px; }
+  line-height: 2.5rem; }
 
-.default-btn:hover {
-  border: .5px solid white;
+.btn-default:hover {
+  border: .05rem solid white;
   background: rgba(13, 13, 13, 0.75); }
+
+.btn-ghost {
+  margin: 0 1rem;
+  color: #ececec;
+  background: #b50303;
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: 'Montserrat Alternates', sans-serif;
+  text-decoration: none;
+  padding: .5rem 1rem;
+  border-radius: .7rem;
+  border: 0.5px solid #b50303;
+  display: inline-block;
+  transition: all 0.4s ease 0s; }
+
+.btn-ghost:hover {
+  color: #ececec;
+  background: #0d0f13;
+  border-color: #0d0f13;
+  transition: all 0.4s ease 0s; }
+
+.btn-exp {
+  border-radius: .35rem;
+  background: linear-gradient(to right, #67b26b, #4ca2cb) !important;
+  border: none;
+  color: #0d0f13;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.8rem;
+  padding: .35rem 1rem .35rem 1rem;
+  transition: all 0.4s;
+  cursor: pointer;
+  margin: 5px; }
+
+.btn-exp span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.4s; }
+
+.btn-exp span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -2rem;
+  transition: 0.5s; }
+
+.btn-exp:hover span {
+  padding-right: 2.5rem; }
+
+.btn-exp:hover span:after {
+  opacity: 1;
+  right: 0; }
+
+div {
+  --scrollbarBG: #CFD8DC;
+  --thumbBG: #90A4AE; }
+
+div::-webkit-scrollbar {
+  width: 11px; }
+
+div {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG); }
+
+div::-webkit-scrollbar-track {
+  background: var(--scrollbarBG); }
+
+div::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG); }
 
 #splash-main {
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black; }
+  background-color: #0d0f13; }
 
 #splash-hero-main {
-  border-radius: 24px;
+  border-radius: 2.4rem;
   display: flex;
   flex-direction: row;
   margin-top: 10%;
-  background-color: #e0e0e0; }
+  background-color: #ececec; }
 
 #splash-hero-left {
-  padding: 20px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
 
 #splash-hero-tagline {
-  padding-top: 24px; }
+  padding-top: 2.4rem; }
   #splash-hero-tagline h1 {
-    font-size: 36px;
+    font-size: 3.6rem;
     font-family: 'Luckiest Guy', cursive; }
-  #splash-hero-tagline p {
-    font-size: 16px; }
 
 #splash-hero-log {
   display: flex;
   flex-direction: row;
   align-items: center; }
   #splash-hero-log span {
-    margin-right: 8px; }
+    margin-right: .8rem; }
   #splash-hero-log .default-btn {
-    margin-right: 8px; }
+    margin-right: .8rem; }
 
 #splash-hero-right {
-  padding: 20px; }
+  padding: 2rem; }
 
 .flip-card {
   background-color: transparent;
@@ -135,7 +232,7 @@ body {
   perspective: 1000px; }
 
 .flip-card-inner {
-  border-radius: 16px;
+  border-radius: 1.6rem;
   position: relative;
   width: 100%;
   height: 100%;
@@ -143,15 +240,15 @@ body {
   transition: transform 0.6s;
   transform-style: preserve-3d;
   background-color: black;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); }
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.2); }
 
 .flip-card:hover .flip-card-inner {
   transform: rotateY(180deg); }
 
 .flip-card-front, .flip-card-back {
-  border-radius: 16px;
+  border-radius: 1.6rem;
   box-sizing: border-box;
-  padding: 24px;
+  padding: 2.4rem 1.6rem;
   text-align: left;
   position: absolute;
   width: 100%;
@@ -160,14 +257,15 @@ body {
   backface-visibility: hidden; }
 
 .flip-card-front {
-  font-family: "Luckiest Guy", cursive;
-  font-size: 36px;
   background-color: black;
   color: white; }
+  .flip-card-front h1 {
+    font-size: 3.6rem;
+    font-family: "Luckiest Guy", cursive; }
 
 .flip-card-back {
   font-family: 'Monteserrat', sans-serif;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: bold;
   background-color: black;
   color: white;
@@ -177,18 +275,152 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+  background-color: #1c2a38; }
 
-body {
-  background-color: black; }
+.title-text {
+  padding-left: .4rem;
+  color: #ececec;
+  font-size: 2.4rem; }
+
+.secondary-text {
+  padding-left: 1rem;
+  color: #818181;
+  font-size: 1.2rem; }
 
 #landing_games {
-  margin: 16px auto;
   min-height: 200px;
   min-width: 400px;
-  height: 80%;
-  width: 80%;
-  background-color: #e0e0e0;
-  color: black; }
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  color: black;
+  padding: 1rem;
+  margin: 5rem auto;
+  width: 90%;
+  align-content: center;
+  background: #ececec; }
+
+.landing_games-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -10px; }
+
+.landing_games-box > * {
+  flex: 1 1 33.3333%;
+  margin: 10px; }
+
+.game_box {
+  display: flex;
+  flex-direction: column;
+  background: #0d0f13;
+  color: #ececec;
+  line-height: normal;
+  border-radius: 1.2rem;
+  padding: .8rem;
+  font-size: 1.2rem;
+  max-width: 30rem;
+  max-height: 30rem; }
+  .game_box h4 {
+    font-weight: bold;
+    padding-bottom: .8rem; }
+
+.game_box-entry {
+  padding-bottom: 1rem; }
+  .game_box-entry .game_box-entry-title {
+    font-weight: bold;
+    font-size: 1.2rem; }
+  .game_box-entry .game_box-entry-content {
+    height: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+    font-size: 1.2rem;
+    padding-left: .8rem;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: italic; }
+
+.game_box-buttons {
+  margin-top: auto; }
+
+.rise {
+  position: relative;
+  transition: all 300ms ease-out; }
+
+.rise:hover {
+  transition: all 300ms ease-in-out;
+  transform: scale(1.02, 1.02);
+  transform: translate(0, -2%);
+  box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.5); }
+
+#game_show {
+  margin: 2.5rem auto;
+  min-width: 650px;
+  max-width: 1200px;
+  width: 90%;
+  height: 90%;
+  align-content: center;
+  background: #1c2a38;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+#game_show-content {
+  display: flex;
+  flex-direction: row;
+  max-height: 1000px;
+  max-width: 1200px;
+  width: 100%;
+  border: 2px solid black; }
+
+#game_show-left, #game_show-played_cards {
+  margin: 1rem auto;
+  min-height: 175px;
+  max-height: 400px; }
+
+#game_show-left {
+  width: 30%;
+  max-width: 300px;
+  background: red; }
+
+#game_show-played_cards {
+  width: 70%;
+  max-width: 600px;
+  max-height: 400px;
+  min-width: 450px;
+  min-height: 325px;
+  background: blue;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+
+.card_standin {
+  border-radius: .7rem;
+  margin: .5rem;
+  width: 100px;
+  height: 150px;
+  background: #ececec; }
+
+.card_standin-inner {
+  width: 100%;
+  height: 100%; }
+
+#game_show-players {
+  display: flex;
+  flex-direction: row; }
+
+.player_icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5rem; }
+
+.player_icon-ico {
+  height: 6rem;
+  border-radius: 50%; }
 
 /*# sourceMappingURL=App.css.map */
