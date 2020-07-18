@@ -1,14 +1,27 @@
-
-body {
-  background-color: $bg_color_dark;
-}
+@import "./palettes.scss";
+@import "./mixins";
 
 #landing_games {
-  margin: 16px auto;
   min-height: 200px;
   min-width: 400px;
-  height: 80%;
-  width: 80%;
-  background-color: $bg_color_light;
+  height: 80vh;
+  // max-height: 50%;
+  overflow-y: scroll;
+  overflow-x: hidden;
   color: black;
+  
+  @include main-content-spacing;
+
+}
+
+.landing_games-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -10px;
+}
+
+.landing_games-box>* {
+  flex: 1 1 33.3333%;
+  margin: 10px;
 }
