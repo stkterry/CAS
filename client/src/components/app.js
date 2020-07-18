@@ -7,6 +7,7 @@ import NavBarContainer from "./nav/navbar_container";
 import LoginFormContainer from "./session/login_form_container";
 import SignupFormContainer from "./session/signup_form_container";
 import LandingContainer from "./landing/landing_container";
+import GameShowContainer from "./games/game_show_container";
 
 import Main from "./main/Main";
 import Footer from "./footer/Footer";
@@ -22,10 +23,11 @@ const App = () => (
       <>
         <NavBarContainer />
         <ProtectedRoute exact path="/landing" component={LandingContainer} />
+        <ProtectedRoute exact path="/game/:game_id" component={GameShowContainer} />
       </>
     </Switch>
     
-    <Footer />
+    {/* <Footer /> */}
   </div>
 );
 
