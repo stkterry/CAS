@@ -1,32 +1,17 @@
 @import "./palettes.scss";
-
+@import "./mixins";
 
 #landing_games {
-  margin: 4vh auto;
-  padding: 1rem;
   min-height: 200px;
   min-width: 400px;
-  height: 85vh;
+  height: 80vh;
   // max-height: 50%;
   overflow-y: scroll;
   overflow-x: hidden;
-  width: 80%;
-  background-color: $palette_light;
   color: black;
   
-  align-content: center;
+  @include main-content-spacing;
 
-  background: 
-  radial-gradient(
-    farthest-side at bottom left,
-    rgba(255, 0, 255, 0.5), 
-    #246756
-  ),
-  radial-gradient(
-    farthest-corner at bottom right,
-    rgba(255, 50, 50, 0.5), 
-    #246756 400px
-  );
 }
 
 .landing_games-box {

@@ -1,0 +1,12 @@
+
+@mixin main-content-spacing {
+  padding: 1rem;
+  margin: 5rem auto;
+  width: 90%;
+  align-content: center;
+  background: $palette_light;
+}
+
+@mixin card {
+  border-radius: .7rem;
+}

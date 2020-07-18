@@ -4,9 +4,9 @@ import { Link, withRouter } from "react-router-dom";
 class GameBox extends React.Component {
 
   toGamePage = () => {
-    const _id = this.props.game._id;
+    const game_id = this.props.game._id;
     this.props.history.push({
-      pathname: `/game/${_id}`
+      pathname: `/game/${game_id}`
     });
   }
 
@@ -48,8 +48,12 @@ class GameBox extends React.Component {
         </div>
 
         <div className="game_box-buttons">
-          <button onClick={this.toGamePage}>Join</button>
-          <button>Spectate</button>
+          <button onClick={this.toGamePage} className="btn-exp">
+            <span>Join</span>
+          </button>
+          <button className="btn-exp">
+            <span>Spectate</span>
+          </button>
         </div>
       </div>
     )
