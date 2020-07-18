@@ -47,8 +47,14 @@ router.get("/user/:user_id", (req, res) => {
 })
 
 // /:id
-router.get("/:id", (req, res) => {
-  Game.findById(req.params.id)
+router.get("/:game_id", (req, res) => {
+  Game.findById(req.params.game_id)
+    .populate({
+      path: 'host players', select: 'handle _id'
+    })
+    .populate({
+      path: 'cardPacks', select: 'name _id quantity'
+    })
     .then(game => res.json(game))
     .catch(err => eRes(res, 404, ERRORS.noIDgames))
 })

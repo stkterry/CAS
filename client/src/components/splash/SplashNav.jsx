@@ -15,11 +15,11 @@ class SplashNav extends React.Component {
   loggedOut() {
     return (
       <div id="splash-hero-log">
-        <Link className="default-btn" to={'/signup'}>
+        <Link className="btn-ghost" to={'/signup'}>
           Signup
         </Link>
         <span>or</span>
-        <Link className="default-btn" to={'/login'}>
+        <Link className="btn-ghost" to={'/login'}>
           Login
         </Link>
         <span>to start a game!</span>
@@ -30,11 +30,11 @@ class SplashNav extends React.Component {
   loggedIn() {
     return (
       <div id="splash-hero-log">
-        <Link className="default-btn" to={"/signup"}>
+        <Link className="btn-ghost" to={"/signup"}>
           Signup
         </Link>
         <span>or</span>
-        <Link className="default-btn" to={"/login"}>
+        <Link className="btn-ghost" to={"/login"}>
           Login
         </Link>
         <span>to start a game!</span>
