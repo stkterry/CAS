@@ -1,10 +1,7 @@
-@import "./palettes";
-@import "./mixins";
-
 #game_show {
   // padding: 1rem;
   margin: 2.5rem auto;
-  min-width: 650px;
+  min-width: 725px;
   max-width: 1200px;
   width: 90%;
   height: 90%;
@@ -44,42 +41,51 @@
 #game_show-left {
   width: 30%;
   max-width: 300px;
-  background: red;
+  background: $palette_light;
 }
 
 #game_show-played_cards {
   width: 70%;
   max-width: 600px;
   max-height: 400px;
-  min-width: 450px;
+  min-width: 550px;
   min-height: 325px;
-  background: blue;
+  background: $palette_light;
 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.card_standin {
-  @include card;
-  margin: .5rem;
-  width: 100px;
-  height: 150px;
-  background: $palette_light;
-
-}
-
-.card_standin-inner {
-  width: 100%;
-  height: 100%;
-}
 
 #game_show-players {
-  
   display: flex;
   flex-direction: row;
 }
 
+#game_show-current {
+
+}
+
+#game_show-black {
+  @include card;
+
+  margin: 2.5rem auto;
+  justify-content: center;
+
+  h5 {
+    // padding-left: .75rem;
+    
+  }
+
+  .game_show-current_turn {
+    padding-left: .75rem;
+    font-weight: bold;
+  }
+}
+
 
 #game_show-player_cards {
-
+  width: 90%;
+  height: 10rem;
+  background: yellow;
 }

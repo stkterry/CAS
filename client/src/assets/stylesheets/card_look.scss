@@ -1,0 +1,82 @@
+.card_look-container_white, .card_look-container_black {
+  @include card;
+  @include no-select;
+  box-sizing: border-box;
+  width: 125px;
+  height: 188px;
+  margin: .5rem;
+  padding: .75rem;
+  border: .01rem solid rgba(255, 255, 255, 0.25);
+  // background: inherit;
+  background: none;
+  position: relative;
+
+  // display: flex;
+  // flex-direction: row;
+  // align-content: space-between;
+  
+  h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+    // line-height: normal;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // display: -webkit-box;
+    // -webkit-line-clamp: 13; /* number of lines to show */
+    // -webkit-box-orient: vertical;
+  }
+
+  transform-style: preserve-3d;
+  -webkit-tap-highlight-color: rgba(#000,0);
+
+  box-shadow: 0 .2rem .8rem rgba(14,21,47,0.25);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card_look-container_black {
+  border: .01rem solid rgba(0, 0, 0, 0.25);
+  h5, h6 {
+    color: $palette_light;
+  }
+}
+
+.card_look-container:hover, .card_look-container_black:hover {
+  box-shadow: 0 1.6rem 4rem rgba(14,21,47,0.4), 0 4.5rem 10rem rgba(14,21,47,0.4);
+}
+
+.card_look-content {
+  margin-bottom: auto;
+}
+
+.card_look-draw_count {
+  display: flex;
+  flex-direction: row;
+
+  position: absolute;
+  bottom: .75rem;
+
+  h6 {
+    padding: .75rem;
+  }
+}
+
+.card_look-sheen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: inherit;
+}
+
+.card_look-bottom {
+  @include card;
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: $palette_light;
+}
