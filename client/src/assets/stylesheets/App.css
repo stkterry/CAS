@@ -52,9 +52,6 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block; }
 
-body {
-  line-height: 1; }
-
 ol, ul {
   list-style: none; }
 
@@ -359,7 +356,7 @@ div::-webkit-scrollbar-thumb {
 
 #game_show {
   margin: 2.5rem auto;
-  min-width: 650px;
+  min-width: 725px;
   max-width: 1200px;
   width: 90%;
   height: 90%;
@@ -385,33 +382,37 @@ div::-webkit-scrollbar-thumb {
 #game_show-left {
   width: 30%;
   max-width: 300px;
-  background: red; }
+  background: #ececec; }
 
 #game_show-played_cards {
   width: 70%;
   max-width: 600px;
   max-height: 400px;
-  min-width: 450px;
+  min-width: 550px;
   min-height: 325px;
-  background: blue;
+  background: #ececec;
   display: flex;
   flex-wrap: wrap;
   justify-content: center; }
 
-.card_standin {
-  border-radius: .7rem;
-  margin: .5rem;
-  width: 100px;
-  height: 150px;
-  background: #ececec; }
-
-.card_standin-inner {
-  width: 100%;
-  height: 100%; }
-
 #game_show-players {
   display: flex;
   flex-direction: row; }
+
+#game_show-black {
+  border-radius: .7rem;
+  width: 125px;
+  height: 188px;
+  margin: 2.5rem auto;
+  justify-content: center; }
+  #game_show-black .game_show-current_turn {
+    padding-left: .75rem;
+    font-weight: bold; }
+
+#game_show-player_cards {
+  width: 90%;
+  height: 10rem;
+  background: yellow; }
 
 .player_icon {
   display: flex;
@@ -422,5 +423,77 @@ div::-webkit-scrollbar-thumb {
 .player_icon-ico {
   height: 6rem;
   border-radius: 50%; }
+
+.card_look-container_white, .card_look-container_black {
+  border-radius: .7rem;
+  width: 125px;
+  height: 188px;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  box-sizing: border-box;
+  width: 125px;
+  height: 188px;
+  margin: .5rem;
+  padding: .75rem;
+  border: 0.01rem solid rgba(255, 255, 255, 0.25);
+  background: none;
+  position: relative;
+  transform-style: preserve-3d;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-shadow: 0 0.2rem 0.8rem rgba(14, 21, 47, 0.25);
+  transition: box-shadow 0.3s ease-in-out; }
+  .card_look-container_white h5, .card_look-container_white h6, .card_look-container_black h5, .card_look-container_black h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word; }
+
+.card_look-container_black {
+  border: 0.01rem solid rgba(0, 0, 0, 0.25); }
+  .card_look-container_black h5, .card_look-container_black h6 {
+    color: #ececec; }
+
+.card_look-container:hover, .card_look-container_black:hover {
+  box-shadow: 0 1.6rem 4rem rgba(14, 21, 47, 0.4), 0 4.5rem 10rem rgba(14, 21, 47, 0.4); }
+
+.card_look-content {
+  margin-bottom: auto; }
+
+.card_look-draw_count {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: .75rem; }
+  .card_look-draw_count h6 {
+    padding: .75rem; }
+
+.card_look-sheen {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: inherit; }
+
+.card_look-bottom {
+  border-radius: .7rem;
+  width: 125px;
+  height: 188px;
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: #ececec; }
 
 /*# sourceMappingURL=App.css.map */

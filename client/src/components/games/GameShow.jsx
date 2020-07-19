@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from "react-router-dom";
 
 import PlayerIcon from "./PlayerIcon";
+import CardLook from "../card_anims/CardLook";
 
 class GameShow extends React.Component {
 
@@ -13,7 +14,7 @@ class GameShow extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getGame(this.props.match.params.game_id);
   }
 
@@ -39,37 +40,72 @@ class GameShow extends React.Component {
   }
 
   renderCardsTemp = () => {
-    const text = "Here's some card text to read you loser!"
-
-    let arr = [];
-    for (let i = 0; i < 8; i++) arr.push(text);
-
-    return (
-      arr.map(text => 
-        <div className="card_standin">
-            <h5>{text}</h5>
-
-        </div>
+    if (this.state.game.cardPacks) {
+      let cards = [];
+      let pack;
+      let packs = this.state.game.cardPacks;
+      for (let i = 0; i < 8; i++) {
+        pack = packs[Math.floor(Math.random() * packs.length)];
+        cards.push(pack.white[Math.floor(Math.random() * pack.white.length)]);
+      }
+      return (
+        cards.map(card => (
+          <CardLook key={card._id} card={card} />
+        ))
       )
-    )
+    }
+  }
+
+  renderBlackCardTemp = () => {
+    if (this.state.game.cardPacks) {
+      const packs = this.state.game.cardPacks;
+      const pack = packs[Math.floor(Math.random() * packs.length)];
+      const card = pack.black[Math.floor(Math.random() * pack.black.length)];
+
+      return(
+        <CardLook key={card._id} card={card} />
+      )
+    }
+  }
+
+  renderPlayerTurnTemp = () => {
+    if (this.state.game.cardPacks) {
+      const player = this.state.game.players[Math.floor(Math.random() * this.state.game.players.length)];
+      return player.handle + "'s turn"
+    }
+
+  }
+
+  renderPlayerCardsTemp = () => {
+    if (this.state.game.cardPacks) {
+
+      
+    }
   }
 
   render() {
+
     return (
       <div id="game_show">
         <h1>{this.state.game.name}</h1>
           {this.renderPlayersIcons()}
         <div id="game_show-content">
           <div id="game_show-left">
-            <h1>Content</h1>
+            <div id="game_show-current">
+
+            </div>
+            <div id ="game_show-black">
+              {this.renderBlackCardTemp()}
+              <h5 className="game_show-current_turn">{this.renderPlayerTurnTemp()}</h5>
+            </div>
           </div>
           <div id="game_show-played_cards">
             {this.renderCardsTemp()}
           </div>
         </div>
-        {/* <div id="game_show-player_cards">
+        <div id="game_show-player_cards">
 
-        </div> */}
+        </div>
       </div>
     )
   }
