@@ -1,73 +1,50 @@
 @import "./mixins";
+@import "./funcs";
 
-.flip-card {
-  @include card;
-  @include no-select;
-  // box-sizing: border-box;
-  // padding: .75rem;
-  background-color: none;
-  perspective: 1000px;
+// CardFlipHover ===================================
+.card_flip_hover-container {
+  @include card-container;
 }
-
-.flip-card-inner {
-  @include card;
-  box-sizing: border-box;
-  position: relative;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  background-color: none;
-
-  // box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2);
-}
-
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-
-.flip-card-front, .flip-card-back {
-  @include card;
-  box-sizing: border-box;
-  text-align: left;
-  position: absolute;
+.card_flip_hover-inner {
+  @include card-inner;
   background-color: black;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  // @include card-img;
 }
-
-.flip-card-front {
-  padding: 1.5rem;
-  h3 {
-    font-family: "Luckiest Guy", cursive;
-  }
-  color: white;
-}
-
-.flip-card-back {
-  h5 {
-    // -webkit-font-smoothing: antialiased;
-    // -moz-osx-font-smoothing: grayscale;
-    padding: .75rem;
-  }
-  @include card-lim;
-  font-family: 'Monteserrat', sans-serif;
-  // font-size: 1.6rem;
-  font-weight: bold;
-  color: white;
+.card_flip_hover-container:hover .card_flip_hover-inner {
   transform: rotateY(180deg);
-  background-color: none;
+}
+.card_flip_hover-front {
+  @include card-front;
+  background-color: black;
+}
+.card_flip_hover-back {
+  @include card-back;
+
+  background-color: black;
 }
 
-.flip-card-splash {
+// Splash page adjustments.....
+
+.card_flip-splash {
   padding: 0 !important;
   // margin: .75rem;
   box-sizing: border-box;
 }
 
+// Empty Card item.....
+
 .empty_card {
   @include card;
   background-color: none;
+}
+
+// CardFront
+.card_front-container {
+  @include card-container;
+}
+.card_front-front {
+  @include card-front;
+  background-color: black;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -106,3 +83,66 @@
 
 // CardFlip ==================================
 
+.card_flip-container {
+  @include card-container;
+  position: absolute;
+  right: 0;
+  // top: 0;
+}
+.card_flip-inner {
+  @include card-inner;
+  @include card-img;
+  background-color: black;
+}
+.card_flip-front {
+  @include card-front;
+  background-color: black;
+}
+.card_flip-back {
+  @include card-back;
+  background-color: black;
+}
+
+.card_flip-anim {
+  animation: ease card_flipTransformLeft 1s forwards;
+}
+.card_flip-anim .card_flip-inner {
+  animation: ease card_flipRotateNeg180 1s forwards;
+}
+
+@keyframes card_flipTransformRight {
+  0% {
+    left: 0px;
+    // top: 0px;
+  }
+  100% {
+    left: 135px;
+  }
+}
+@keyframes card_flipRotate180 {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes card_flipTransformLeft {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: 135px;
+  }
+}
+
+@keyframes card_flipRotateNeg180 {
+  0% {
+
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(-180deg);
+  }
+}

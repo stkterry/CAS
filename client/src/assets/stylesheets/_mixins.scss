@@ -29,3 +29,62 @@
   width: 125px;
   height: 188px;
 }
+
+@mixin card-container {
+  @include card;
+  @include no-select;
+  background-color: none;
+  perspective: 1000px;
+}
+@mixin card-inner {
+  @include card;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  background-color: none;
+  box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2); 
+}
+
+@mixin card-img {
+  img {
+    @include card;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+}
+
+@mixin card-face {
+  @include card;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  background-color: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@mixin card-front {
+  @include card-face;
+  padding: 1.5rem;
+  h3 {
+    font-family: "Luckiest Guy", cursive;
+  }
+  color: white;
+}
+
+@mixin card-back {
+  @include card-face;
+  @include card-lim;
+  h1, h2, h3, h4, h5, h6 {
+    padding: .75rem;
+  }
+  font-family: 'Monteserrat', sans-serif;
+  font-weight: bold;
+  color: white;
+  background-color: none;
+  transform: rotateY(180deg);
+}

@@ -127,24 +127,15 @@ class SignupForm extends React.Component {
   }
 
   renderErrors() {
+    // if (Object.keys(this.state.errors).length) {
 
-    const errs = Object.values(this.state.errors).map(error => (<h5>{error}</h5>))
-    return (
-      <>
-        <CardFront className="signup_form-static_card"/>
-        <CardFlip content={errs} />
-      </>
+    // }
+    let updateNow = (!!Object.keys(this.props.errors).length);
+    const errs = Object.values(this.props.errors).map(error => (
+      <h6 key={error}>{error}</h6>)
     )
 
-    // return (
-    //   <ul>
-    //     {Object.keys(this.state.errors).map((error, i) => (
-    //       <li key={`error-{i}`}>
-    //         {this.state.errors[error]}
-    //       </li>
-    //     ))}
-    //   </ul>
-    // );
+    return (<CardFlip content={errs} />)
   }
 
   renderSoftErrors() {
@@ -153,7 +144,7 @@ class SignupForm extends React.Component {
       Object.keys(this.state.prevErrors).map((key, idx) => {
         // return <CardFlipHover className="signup_form-card" content={key}/>
         const content = this.state.currentErrors
-        return <h6>{key} {`${this.state.currentErrors[key]}`}</h6>
+        return <h6 className="signup_form-errors">{key} {`${this.state.currentErrors[key]}`}</h6>
       }
  
       )
@@ -162,7 +153,7 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="signup-form-container">
+      <div id="signup_form-container">
         <div id="signup_form">
           <div id="signup_form-heading">
             <h3 className="signup_form-title_text">Crimes Against Stupidity</h3>
@@ -205,11 +196,10 @@ class SignupForm extends React.Component {
             </form>
 
             <div id="signup_form-errors_container">
+              <CardFront className="signup_form-static_card" />
+              {this.renderErrors()}
+
               <div id="signup_form-errors">
-                {this.renderErrors()}
-                {/* <h6>SOME ERRORS HEREE check</h6>
-                <h6>SOME ERRORS HEREE check</h6> */}
-                {/* {this.renderSoftErrors()} */}
               </div>
             </div>
           </div>
