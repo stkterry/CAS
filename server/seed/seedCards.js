@@ -8,10 +8,12 @@ const CardPack = require("../models/CardPack");
 // registerCard ==============================================================
 const registerWhiteCard = async data => {
   try {
+    const { content, cardPack } = data;
     const card = new Card(
       {
         color: 'white',
-        content: data,
+        content: content,
+        cardPack: cardPack
       },
       err => { if (err) throw err }
     );
@@ -23,13 +25,14 @@ const registerWhiteCard = async data => {
 
 const registerBlackCard = async data => {
   try {
-    let { content, draw, pick } = data;
+    let { content, draw, pick, cardPack } = data;
     const card = new Card(
       {
         color: 'black',
         content: content,
         draw: draw,
-        pick: pick
+        pick: pick,
+        cardPack: cardPack
       },
       err => { if (err) throw err }
     );
@@ -78,16 +81,19 @@ const fetchCardsAndUpdatePacks = async () => {
       await fetch(`https://cah.greencoaststudios.com/api/v1/official/${cardPack.url_id}`)
         .then(res => res.json())
         .then(async pack => {
-          // Get white cards???
+          // Get cards???
+          let cardDat;
           let whiteCards = [];
           let blackCards = [];
           for (let whiteCard of pack.white) {
-            await registerWhiteCard(whiteCard)
+            cardDat = { content: whiteCard, cardPack: cardPack._id };
+            await registerWhiteCard(cardDat)
               .then(card => { whiteCards.push(card._id) });
           }
 
           // Get black cards???
           for (let blackCard of pack.black) {
+            blackCard.cardPack = cardPack._id;
             await registerBlackCard(blackCard)
               .then(card => blackCards.push(card._id));
           }

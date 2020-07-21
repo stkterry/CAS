@@ -89,7 +89,7 @@ const seedGames = async (amount) => {
       }
     }
     
-    // I really can't figure out why this is necessary... maybe it's just really tired...
+    // I really can't figure out why this is necessary... maybe it's just that I'm really tired...
     players = [... new Set(players)];
 
     // Clear the previous game and await successful game creation...
@@ -101,6 +101,13 @@ const seedGames = async (amount) => {
         cardPacks: chance.pickset(cardPacks, chance.integer(range))
       })
       .then(async game => {
+
+        for (let pack of game.cardPacks) {
+          game.white.push(...pack.white);
+          game.black.push(...pack.black);
+        }
+        await game.save();
+
         console.log(`Added Game - Host : ${host_player.handle}, Players: ${game.players.length}`);
         for (let player of players) {
           player.game_ids.push(game._id);

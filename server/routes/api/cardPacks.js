@@ -25,9 +25,9 @@ router.get("/", (req, res) => {
 });
 
 // /popall
-router.get("/popall", (req, res) => {
+router.get("/pop", (req, res) => {
   CardPack.find()
-    .populate('white black')
+    .populate('white black', '-date -__v -cardPack')
     .then(cardPacks => res.json(cardPacks))
     .catch(err => eRes(res, 404, ERRORS.noCardPacksFound))
 });
@@ -35,7 +35,8 @@ router.get("/popall", (req, res) => {
 // popone/:id
 router.get("/popone/:_id", (req, res) => {
   CardPack.findById(req.params._id)
-    .populate('white black')
+    .select('-date -__v')
+    .populate('white black', '-date -__v -cardPack')
     .then(cardPack => res.json(cardPack))
     .catch(err => eRes(res, 404, ERRORS.noIDCardPacks))
 });
@@ -43,6 +44,8 @@ router.get("/popone/:_id", (req, res) => {
 // /:_id
 router.get("/:_id", (req, res) => {
   CardPack.findById(req.params._id)
+    .select('-date -__v')
+    .populate('white black', '-date -__v -cardPack')
     .then(cardPack => res.json(cardPack))
     .catch(err => eRes(res, 404, ERRORS.noIDCardPacks));
 })

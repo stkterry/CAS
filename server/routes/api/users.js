@@ -60,9 +60,12 @@ router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) eRes(res, 400, errors);
 
-  User.findOne({ email: req.body.email })
+  User.findOne({ email: req.body.email, handle: req.body.handle })
     .then(user => {
-      if (user) eRes(res, 400, ERRORS.emailUnavailable)
+      if (user) {
+        if (user.email === req.body.email) eRes(res, 400, ERRORS.emailUnavailable)
+        else if (user.handle === req.body.handle) eRes(res, 400, ERRORS.handleUnavailable);
+      }
       else createUser(req, res);
     })
 })
@@ -95,5 +98,12 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     email: req.user.email
   });
 })
+
+// /checkhandle/:handle (Check if the handle is in use)
+router.get('/checkhandle/:handle', (req, res) => {
+  User.findOne({handle: req.params.handle})
+    .then(user => ((user) ? res.json({ exists: true }) : res.json({ exists: false })))
+    .catch(err => console.log(err));
+});
 
 module.exports = router;
