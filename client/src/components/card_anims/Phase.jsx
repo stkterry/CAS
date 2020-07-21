@@ -154,7 +154,7 @@ class Phase extends Component {
     }
     return (
       <div 
-        className={this.props.class}
+        className={this.props.className}
         style={style}
         onMouseEnter={this.handleMouseEnter}
         onMouseMove={this.handleMouseMove}

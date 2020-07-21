@@ -5,31 +5,87 @@ class CardFlip extends React.Component {
 
   state = {
     classNames: "",
-    animationFinished: false,
+    animFinished: false,
+    animNow: this.props.animNow || false,
+    content: this.props.content
   }
 
   anim = () => {
     const { classNames } = this.state;
     this.setState({
-      classNames: classNames ? "" : "card"
+      classNames: classNames ? "" : "card_flip-anim",
+      animNow: false
+    });
+  }
+
+  onAnimStart = () => {
+    this.setState({
+      animFinished: false
     })
   }
 
+  onAnimEnd = () => {
+    this.setState({
+      animFinished: true
+    })
+  }
+
+  componentDidMount() {
+    this.setState({
+      content: this.props.content
+    })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // if (prevProps.content !== this.props.content && this.props.content.length) {
+    //   this.setState({
+    //     content: this.props.content
+    //   })
+    // }
+
+    // if (prevState.anim !== this.state.anim) {
+    //   this.anim();
+    //   this.setState({
+    //     animNow: true
+    //   })
+    // }
+
+    if (this.state.content !== this.props.content && this.props.content.length) {
+      this.setState({
+        content: this.props.content,
+        animNow: true
+      })
+
+    }
+
+    if (prevState.animNow !== this.state.animNow && this.state.animNow) {
+      this.anim();
+    }
+  }
+
+  shouldComponentUpdate(prevProps, prevState) {
+    return (prevState.content !== this.props.content)
+  }
 
   render() {
+    const { animFinished, classNames } = this.state;
+
     return (
-      <div className="flip-card">
-        <div className="flip-card-inner">
-          <div className="flip-card-front">
+      <div 
+        className={`card_flip-container ${classNames}`}
+        onAnimationEnd={this.onAnimEnd}
+        onAnimationStart={this.onAnimStart}
+        // onUpdate={this.anim}
+        // onClick={this.anim}
+      >
+        <div className="card_flip-inner">
+          <div className="card_flip-front">
             <h3>Crimes</h3>
             <h3>Against</h3>
             <h3>Stupidity</h3>
           </div>
-
-          {/* <img src={BLACK_125X188} /> */}
-          <div className="flip-card-back">
+          <div className="card_flip-back">
             {this.props.content}
-            {/* <img src={BLACK_125X188} /> */}
           </div>
         </div>
 

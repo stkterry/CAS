@@ -5,19 +5,19 @@ class CardFlipHover extends React.Component {
 
   render() {
     return (
-      <div className="flip-card">
-        <div className="flip-card-inner">
-          <div className="flip-card-front">
+      <div className={`card_flip_hover-container ${this.props.className}`}>
+        <div className="card_flip_hover-inner">
+          <div className="card_flip_hover-front">
             <h3>Crimes</h3>
             <h3>Against</h3>
             <h3>Stupidity</h3>
           </div>
           
           {/* <img src={BLACK_125X188} /> */}
-          <div className="flip-card-back">
+          <div className="card_flip_hover-back">
             <h5>{this.props.content}</h5>
-            {/* <img src={BLACK_125X188} /> */}
           </div>
+            {/* <img src={BLACK_125X188} /> */}
         </div>
       
       </div>
