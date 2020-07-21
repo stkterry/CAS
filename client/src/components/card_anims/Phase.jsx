@@ -35,7 +35,9 @@ class Phase extends Component {
 
     this.reverse = this.settings.reverse ? -1 : 1;
 
-  } componentDidMount() {
+  } 
+  
+  componentDidMount() {
     this.element = findDOMNode(this);
   } 
   
@@ -43,7 +45,6 @@ class Phase extends Component {
     clearTimeout(this.transitionTimeout);
     cancelAnimationFrame(this.updateCall);
   } 
-  
   handleMouseEnter = event =>  {
     this.updateElementPosition();
     this.setTransition();
@@ -61,7 +62,7 @@ class Phase extends Component {
         style: {
           ...prevState.style,
           ...this.props.condStyle.off,
-          transform: `perspective(${this.settings.perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`,
+          transform: `perspective(${this.settings.perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`
         }
       }))
     })
@@ -104,11 +105,10 @@ class Phase extends Component {
     }
   } 
   
-  getValues(e) {
-    const xPos = e.nativeEvent.clientX - this.left; //
-    const yPos = e.nativeEvent.clientY - this.top; //
-    // const wMult = 300 / this.width;
-
+  getValues(event) {
+    const xPos = event.nativeEvent.clientX - this.left; //
+    const yPos = event.nativeEvent.clientY - this.top; //
+    
     const x = xPos / this.width;
     const y = yPos / this.height;
     const _x = Math.min(Math.max(x, 0), 1);
@@ -117,26 +117,12 @@ class Phase extends Component {
     const tiltY = (this.reverse * (_y * this.settings.max - this.settings.max / 2)).toFixed(2);  
     const percentageX = _x * 100;
     const percentageY = _y * 100;  
-
-    // const offsetX = 0.52 - x; //
-    // const offsetY = 0.52 - y; //
-    // const dx = xPos / (this.width / 2);
-    // const dy = yPos / (this.width / 2);
-
-    // const rotY = (offsetX - dx)*(0.07 * wMult);
-    // const rotX = (dy - offsetY)*(0.1 * wMult);
-    // const arad = Math.atan2(dy, dx);
-    // let angle = arad * 180 / Math.PI - 90;
-    // angle = angle < 0 ? angle + 360 : angle;
-
+    
     return {
       tiltX,
       tiltY,
       percentageX,
-      percentageY,
-      // angle,
-      // x,
-      // y
+      percentageY
     }
   } 
   
@@ -148,13 +134,12 @@ class Phase extends Component {
     this.top = rect.top
   } 
   
-  update(e) {
-    const values = this.getValues(e)
+  update(event) {
+    const values = this.getValues(event)
     this.setState(prevState => ({
       style: {
         ...prevState.style,
-        transform: `perspective(${this.settings.perspective}px) rotateX(${this.settings.axis === 'x' ? 0 : values.tiltY}deg) rotateY(${this.settings.axis === 'y' ? 0 : values.tiltX}deg) scale3d(${this.settings.scale}, ${this.settings.scale}, ${this.settings.scale})`,
-        // background: `linear-gradient(${values.angle}deg, rgb(255, 255, 255, ${values.x*0.4}) 0%, rgba(217, 219, 255,0.1) 90%)`,
+        transform: `perspective(${this.settings.perspective}px) rotateX(${this.settings.axis === 'x' ? 0 : values.tiltY}deg) rotateY(${this.settings.axis === 'y' ? 0 : values.tiltX}deg) scale3d(${this.settings.scale}, ${this.settings.scale}, ${this.settings.scale})`
         
       }
     }))    
@@ -168,7 +153,8 @@ class Phase extends Component {
       ...this.state.style
     }
     return (
-      <div className={this.props.class}
+      <div 
+        className={this.props.class}
         style={style}
         onMouseEnter={this.handleMouseEnter}
         onMouseMove={this.handleMouseMove}

@@ -56,6 +56,9 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.game_show-played_card {
+  margin: .5rem;
+}
 
 #game_show-players {
   display: flex;
@@ -85,7 +88,31 @@
 
 
 #game_show-player_cards {
-  width: 90%;
-  height: 10rem;
+  width: 100%;
+  margin: 1rem auto;
+  padding: .75rem 0;
+  // max-width: 1200px;
+  // height: 10rem;
   background: yellow;
+
+  display: grid;
+  grid-template-columns: repeat(9, 9.1%);
+  // grid-template-rows: 188px;
+  
+  justify-content: center;
+  // align-items: center;
+  // align-content: center;
 }
+
+.game_show-player_cards {
+  grid-row-start: 1;
+}
+// .game_show-player-cards:nth-child(1) { grid-column: 1 / 6; }
+// .game_show-player-cards:nth-child(2) { grid-column: 4 / 9; }
+// .game_show-player-cards:nth-child(3) { grid-column: 7 / 12; }
+// .game_show-player-cards:nth-child(4) { grid-column: 10 / 15; }
+// .game_show-player-cards:nth-child(5) { grid-column: 13 / 18; }
+// .game_show-player-cards:nth-child(6) { grid-column: 16 / 21; }
+// .game_show-player-cards:nth-child(7) { grid-column: 19 / 24; }
+// .game_show-player-cards:nth-child(8) { grid-column: 22 / 27; }
+// .game_show-player-cards:nth-child(9) { grid-column: 25 / 30; }

@@ -14,7 +14,7 @@
     "dropDB": "node -e 'require(\"./server/seed/seeder.js\").dropDB()'",
     "dropDBC": "node -e 'require(\"./server/seed/seeder.js\").dropDBC()'",
     "seedDB": "node -e 'require(\"./server/seed/seeder.js\").seedDB()'",
-    "seedCards": "node -e 'require(\"./server/seed/cardSeed.js\").seedCards()'"
+    "seedCards": "node -e 'require(\"./server/seed/seedCards.js\").seedCards()'"
   },
   "author": "Steven K Terry",
   "license": "ISC",
@@ -25,10 +25,10 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.19",
     "mongoose": "^5.9.22",
+    "mongoose-simple-random": "^0.4.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react-fittext": "^1.0.0",
-    "react-textfit": "^1.1.0",
     "simplebar-react": "^2.2.1",
     "validator": "^13.1.1"
   },

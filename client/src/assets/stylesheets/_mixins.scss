@@ -16,6 +16,14 @@
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
+@mixin card-lim {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 15; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
 @mixin card {
   border-radius: .7rem;
   width: 125px;

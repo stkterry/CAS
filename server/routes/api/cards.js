@@ -23,6 +23,14 @@ router.get("/", (req, res) => {
     .catch(err => console.log(err))
 });
 
+// /pop
+router.get("/pop", (req, res) => {
+  Card.find()
+    .populate('cardPack', '-date -__v')
+    .then(cards => res.json(cards))
+    .catch(err => console.log(err))
+});
+
 // /:_id
 router.get("/:_id", (req, res) => {
   Card.findById(req.params._id)
@@ -37,5 +45,16 @@ router.get("/pack/:pack_id", (req, res) => {
     .then(cards => res.json(cards))
     .catch(err => console.log(err));
 })
+
+// /rand/:amount/:color
+router.get("/rand/:amount/:color", (req, res) => {
+  Card.aggregate([
+      { $match: { color: req.params.color } }, 
+      { $sample: { size: Number(req.params.amount) } }, 
+      { $project: { content: 1, _id: 1, color: 1, draw: 1, pick: 1 } }
+    ])
+    .then(cards => res.json(cards))
+    .catch(err => console.log(err))
+});
 
 module.exports = router;

@@ -1,7 +1,20 @@
 import React from "react";
 const BLACK_125X188 = require("../../assets/images/125x188_black_4x.png");
 
-class CardFlipHover extends React.Component {
+class CardFlip extends React.Component {
+
+  state = {
+    classNames: "",
+    animationFinished: false,
+  }
+
+  anim = () => {
+    const { classNames } = this.state;
+    this.setState({
+      classNames: classNames ? "" : "card"
+    })
+  }
+
 
   render() {
     return (
@@ -12,17 +25,17 @@ class CardFlipHover extends React.Component {
             <h3>Against</h3>
             <h3>Stupidity</h3>
           </div>
-          
+
           {/* <img src={BLACK_125X188} /> */}
           <div className="flip-card-back">
-            <h5>{this.props.content}</h5>
+            {this.props.content}
             {/* <img src={BLACK_125X188} /> */}
           </div>
         </div>
-      
+
       </div>
     )
   }
 }
 
-export default CardFlipHover;
+export default CardFlip;

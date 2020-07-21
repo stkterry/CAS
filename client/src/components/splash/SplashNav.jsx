@@ -1,33 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class SplashNav extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
+  render() {
+    if (this.props.loggedIn) this.props.history.push("/landing");
 
-  logoutUser = (event) => {
-    event.preventDefault();
-    this.props.logout();
-  }
-
-  loggedOut() {
-    return (
-      <div id="splash-hero-log">
-        <Link className="btn-ghost" to={'/signup'}>
-          Signup
-        </Link>
-        <span>or</span>
-        <Link className="btn-ghost" to={'/login'}>
-          Login
-        </Link>
-        <span>to start a game!</span>
-      </div>
-    )
-  }
-
-  loggedIn() {
     return (
       <div id="splash-hero-log">
         <Link className="btn-ghost" to={"/signup"}>
@@ -42,15 +20,6 @@ class SplashNav extends React.Component {
     )
   }
 
-  getLinks = () => {
-    if (this.props.loggedIn) return this.loggedIn()
-    else return this.loggedOut();
-  }
-
-  render() {
-    return this.getLinks();
-  }
-
 }
 
-export default SplashNav;
+export default withRouter(SplashNav);

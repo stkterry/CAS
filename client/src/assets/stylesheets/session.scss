@@ -1,0 +1,95 @@
+
+.signup-form-container {
+  // width: 100%;
+  // padding: 4rem;
+  // box-sizing: border-box;
+  border: 1px solid red;
+  // height: 100%;
+  // margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8rem;
+}
+
+#signup_form {
+  width: 600px;
+  background-color: $palette_light;
+  border-radius: 1.6rem;
+  color: black;
+  padding: 3rem;
+  // display: flex;
+  // flex-direction: column;
+
+  h4 {
+
+    padding-left: .5rem;
+  }
+
+  form {
+    input {
+      background: $palette_light;
+      padding: .75rem;
+      margin: 1rem 0rem;
+      border: .1rem solid $palette_dark;
+      border-radius: .7rem;
+      outline: none;
+      transition: border-color .2s ease-in-out;
+    }
+    input:focus {
+      border-color: $palette_accent;
+      border-width: .2rem;
+      padding: .65rem;
+    }
+    button {
+      margin-left: 0;
+    }
+  }
+}
+
+#signup_form-left {
+
+}
+
+#signup_form-body {
+  display: flex;
+  flex-direction: row;
+
+}
+
+#signup_form-errors {
+  margin-top: 2rem;
+  font-style: italic;
+
+  transition: all 0.5s ease-in-out;
+}
+
+#signup_form-errors_container {
+  margin: 0 auto;
+  position: relative;
+}
+.signup_form-card {
+  h4 {
+     font-size: 1rem;
+  }
+}
+.signup_form-static_card {
+  position: absolute;
+  // left: 0;
+  // top: 0;
+}
+
+.signup_form-title_text {
+    // display: inline;
+    // font-family: "Luckiest Guy", cursive;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.inputEntry {
+  h4 {
+    
+    background: $palette_light;
+  }
+}

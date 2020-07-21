@@ -19,6 +19,15 @@ const GameSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "CardPack"
   }],
+  white: [{
+    type: Schema.Types.ObjectId,
+    ref: "Card"
+  }],
+  black: [{
+    type: Schema.Types.ObjectId,
+    ref: "Card"
+  }],
+
   name: {
     type: String,
     default: ""

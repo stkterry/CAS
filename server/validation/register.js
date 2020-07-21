@@ -8,8 +8,8 @@ module.exports = ({ handle, email, password, password2 }) => {
   password2 = toValidText(password2);
 
   const errors = {
-    ...(!Validator.isLength(handle, { min: 2, max: 30 })
-      && { handle: "Handle must be between 2 and 30 characters" }),
+    ...(!Validator.isLength(handle, { min: 4, max: 30 })
+      && { handle: "Handle must be between 4 and 30 characters" }),
     ...(Validator.isEmpty(handle) && { handle: "Handle field is required" }),
     ...(Validator.isEmpty(email) && { email: "Email field is required" }),
     ...(!Validator.isEmail(email) && { email: "Email is invalid" }),

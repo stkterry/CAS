@@ -1,5 +1,4 @@
 import React from "react";
-import { Textfit } from "react-textfit";
 
 import Phase from "./Phase";
 
@@ -25,34 +24,36 @@ class CardLook extends React.Component {
 
   render () {
     let { _id, content } = this.props.card;
-    // content = content.split().map(char => {return char == '_' ? '&#9089;' : char}).join('');
     let src, className, draw, pick;
+    let addedClasses = this.props.classes ? this.props.classes : "";
+    
     if (this.props.card.color === 'white') {
       src = WHITE_125X188;
-      className = "card_look-container_white"
+      className = "card_look-container_white " + addedClasses
     } else {
       src = BLACK_125X188;
-      className = "card_look-container_black"
+      className = "card_look-container_black " + addedClasses
 
-      if (this.props.card.draw < 1 || this.props.card.pick < 1) {
+      if (this.props.card.draw > 0 || this.props.card.pick > 0) {
         draw = 'Draw ' + this.props.card.draw;
         pick = 'Pick ' + this.props.card.pick;
       }
     }
     
     return (
-      <Phase class={className} condStyle={this.condStyle}>
+      <Phase class={className} condStyle={this.condStyle} >
         {/* <div className="card_look-sheen"></div> */}
 
-        <FitText minFontSize={10} maxFontSize={13} compressor={0.5}>
-            <h5>{content}</h5>
-        </FitText>
-
+          <h5>{content}</h5>
+          {/* <FitText >
+          </FitText> */}
+        
+        <h5 className="card_look-pack"></h5>
         <div className='card_look-draw_count'>
           <h6>{draw}</h6>
           <h6>{pick}</h6>
         </div>
-        <img src={src} className="card_look-bottom" />
+        <img src={src}/>
         {/* <div className="card_look-bottom"></div> */}
       </Phase>
     )
