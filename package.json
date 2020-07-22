@@ -29,6 +29,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react-fittext": "^1.0.0",
+    "react-transition-group": "^4.4.1",
     "simplebar-react": "^2.2.1",
     "validator": "^13.1.1"
   },

@@ -4,6 +4,7 @@
 // CardFlipHover ===================================
 .card_flip_hover-container {
   @include card-container;
+  
 }
 .card_flip_hover-inner {
   @include card-inner;
@@ -23,6 +24,14 @@
   background-color: black;
 }
 
+.card_flip-shadow_grow {
+  animation: ease shadow_grow 0.3s forwards;
+}
+
+.card_flip-hover-shadow_light .card_flip_hover-inner {
+   box-shadow: 0 .4rem .8rem 0 rgba(128, 122, 122, 0.4); 
+}
+
 // Splash page adjustments.....
 
 .card_flip-splash {
@@ -35,7 +44,7 @@
 
 .empty_card {
   @include card;
-  background-color: none;
+  background: none;
 }
 
 // CardFront
@@ -45,6 +54,24 @@
 .card_front-front {
   @include card-front;
   background-color: black;
+  box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.4); 
+}
+
+// CardBack
+.card_back-container {
+  @include card-container;
+  position: absolute;
+  right: $card_flip-sep;
+  
+}
+.card_back-back {
+  @include card-back;
+  background-color: black;
+}
+.card_back-inner {
+  @include card-inner;
+  background-color: black;
+  transform: rotateY(-180deg);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -81,18 +108,24 @@
     to   { opacity: 1; }
 }
 
+
 // CardFlip ==================================
 
+.TEMP {
+  position: absolute;
+}
 .card_flip-container {
   @include card-container;
   position: absolute;
-  right: 0;
+  right: $card_flip-sep;
+  
   // top: 0;
 }
 .card_flip-inner {
   @include card-inner;
   @include card-img;
   background-color: black;
+  transform: rotateY(-180deg);
 }
 .card_flip-front {
   @include card-front;
@@ -110,13 +143,23 @@
   animation: ease card_flipRotateNeg180 1s forwards;
 }
 
+
+// Shadow Anim
+@keyframes shadow_grow {
+  0% {
+    box-shadow: 0 .4rem .8rem 0 rgba(136, 131, 131, 0.2)
+  }
+  100% {
+    box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.4), 0 4.5rem 10rem rgba(0, 0, 0, 0.4);
+  }
+}
+
 @keyframes card_flipTransformRight {
   0% {
     left: 0px;
-    // top: 0px;
   }
   100% {
-    left: 135px;
+    left: $card_flip-sep;
   }
 }
 @keyframes card_flipRotate180 {
@@ -133,7 +176,7 @@
     right: 0px;
   }
   100% {
-    right: 135px;
+    right: $card_flip-sep;
   }
 }
 
@@ -142,7 +185,40 @@
 
     transform: rotateY(0deg);
   }
+
   100% {
     transform: rotateY(-180deg);
   }
+}
+
+// Fires when element enters DOM
+.card_flip-transition-enter {
+  right: 0px;
+  .card_flip-inner {
+    transform: rotateY(0deg)
+  }
+}
+// The transition itself
+.card_flip-transition-enter-active {
+  right: $card_flip-sep;
+  transition: all 1000ms;
+  .card_flip-inner {
+    transform: rotateY(-180deg)
+  }
+
+}
+// Fires when this.state.show is false
+.card_flip-transition-exit {
+  // right: 135px;
+  // .card_flip-inner {
+  //   transform: rotateY(-180deg)
+  // }
+}
+// Fires as element leaves the DOM
+.card_flip-transition-exit-active {
+  // right: 0px;
+  // .card_flip-inner {
+  //   transform: rotateY(0deg)
+  // }
+  // transition: all 1000ms;
 }

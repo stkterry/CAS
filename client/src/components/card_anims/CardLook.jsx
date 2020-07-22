@@ -25,7 +25,7 @@ class CardLook extends React.Component {
   render () {
     let { _id, content } = this.props.card;
     let src, className, draw, pick;
-    let addedClasses = this.props.classes ? this.props.classes : "";
+    let addedClasses = this.props.className ? this.props.className : "";
     
     if (this.props.card.color === 'white') {
       src = WHITE_125X188;
@@ -41,14 +41,14 @@ class CardLook extends React.Component {
     }
     
     return (
-      <Phase class={className} condStyle={this.condStyle} >
+      <Phase className={className} condStyle={this.condStyle} >
         {/* <div className="card_look-sheen"></div> */}
 
           <h5>{content}</h5>
           {/* <FitText >
           </FitText> */}
         
-        <h5 className="card_look-pack"></h5>
+        {/* <h5 className="card_look-pack"></h5> */}
         <div className='card_look-draw_count'>
           <h6>{draw}</h6>
           <h6>{pick}</h6>

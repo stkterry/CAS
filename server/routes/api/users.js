@@ -14,10 +14,10 @@ const { create } = require("../../models/User");
 
 //User default errors
 const ERRORS = {
-  emailUnavailable: { email: "A user has already registered with that email" },
-  handleUnavailable: { handle: "A user has already registered with that handle" },
-  userNotFound: { email: "This user does not exist" },
-  incorrectPassword: { password: "Incorrect password" }
+  emailUnavailable: { "A user has already registered with that email": null },
+  handleUnavailable: { "A user has already registered with that handle": null },
+  userNotFound: { "This user does not exist": null },
+  incorrectPassword: { "Incorrect password": null }
 };
 
 // User maker
@@ -78,12 +78,12 @@ router.post('/login', (req, res) => {
   User.findOne ({ email })
     .then(user => {
       
-      if (!user) eRes(res, 404, { email: "This user does not exist!" });
+      if (!user) eRes(res, 404, ERRORS.userNotFound);
 
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) genToken(user, res)
-          else eRes(res, 400, { password: 'Incorrect password' });
+          else eRes(res, 400, ERRORS.incorrectPassword);
         })
     })
 
@@ -102,7 +102,11 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 // /checkhandle/:handle (Check if the handle is in use)
 router.get('/checkhandle/:handle', (req, res) => {
   User.findOne({handle: req.params.handle})
-    .then(user => ((user) ? res.json({ exists: true }) : res.json({ exists: false })))
+    .then(user => (
+      (user && user.handle === req.params.handle) ? 
+        res.json({ exists: true }) : 
+        res.json({ exists: false }))
+      )
     .catch(err => console.log(err));
 });
 

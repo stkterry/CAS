@@ -1,0 +1,73 @@
+
+.error_list {
+  margin-top: 1rem;
+}
+
+.error_list-li {
+  display: inline;
+  align-content: center;
+
+  h5 {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+
+  i {
+    padding-left: .5rem;
+    font-style: normal;
+  }
+}
+.signup_times {
+  color: red;
+}
+.signup_check {
+  color: green;
+}
+
+@keyframes error_list_colorChange {
+  0% {
+    color: black;
+  }
+  50% {
+    color: red;
+  }
+  100% {
+    color: black;
+  }
+}
+
+.error_list-enter {
+  h5 {
+    opacity: 0;
+    color: black;
+    font-size: 0;
+  }
+}
+
+.error_list-enter-active {
+  h5 {
+    opacity: 1;
+    font-size: 1.2rem;
+    // transition: all 1s;
+    animation: ease error_list_colorChange 2s forwards;
+  }
+}
+
+.error_list-exit {
+  h5 {
+    opacity: 1;
+    transition: all 1s;
+    font-size: 1.2rem;
+    color: black;
+  }
+}
+.error_list-exit-active {
+  h5 {
+    color: black;
+    opacity: 0;
+    font-size: 0;
+  }
+}
