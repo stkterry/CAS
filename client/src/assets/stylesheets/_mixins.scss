@@ -24,16 +24,18 @@
   -webkit-box-orient: vertical;
 }
 
+$card_flip-sep: 160px;
 @mixin card {
-  border-radius: .7rem;
-  width: 125px;
-  height: 188px;
+  border-radius: 1rem;
+  width: 150px;
+  height: 225px;
 }
 
 @mixin card-container {
   @include card;
   @include no-select;
-  background-color: none;
+  box-sizing: border-box;
+  background: none;
   perspective: 1000px;
 }
 @mixin card-inner {
@@ -43,8 +45,8 @@
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  background-color: none;
-  box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.2); 
+  background: none;
+  box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.4); 
 }
 
 @mixin card-img {
@@ -62,7 +64,7 @@
   box-sizing: border-box;
   text-align: left;
   position: absolute;
-  background-color: none;
+  background: none;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
@@ -80,11 +82,12 @@
   @include card-face;
   @include card-lim;
   h1, h2, h3, h4, h5, h6 {
-    padding: .75rem;
+    padding: 1.35rem 1rem 1rem 1rem;
+    font-family: Aerial, sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem;
   }
-  font-family: 'Monteserrat', sans-serif;
-  font-weight: bold;
   color: white;
-  background-color: none;
+  background: none;
   transform: rotateY(180deg);
 }

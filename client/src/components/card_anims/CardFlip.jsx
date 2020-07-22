@@ -1,94 +1,106 @@
 import React from "react";
-const BLACK_125X188 = require("../../assets/images/125x188_black_4x.png");
+import ReactDOM from "react-dom";
+import _ from "lodash";
+// import cx from "classnames";
+
+import CardBack from "../card_anims/CardBack";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 class CardFlip extends React.Component {
 
   state = {
-    classNames: "",
-    animFinished: false,
     animNow: this.props.animNow || false,
-    content: this.props.content
+    content: this.props.content,
+    currentIdx: 0,
+    currentContent: null,
+    pastContent: null,
+    started: true,
+    renderStatic: false
   }
 
-  anim = () => {
-    const { classNames } = this.state;
-    this.setState({
-      classNames: classNames ? "" : "card_flip-anim",
-      animNow: false
-    });
-  }
+  started = false;
 
-  onAnimStart = () => {
-    this.setState({
-      animFinished: false
-    })
-  }
-
-  onAnimEnd = () => {
-    this.setState({
-      animFinished: true
-    })
+  switch = () => {
+    this.setState(prevState => ({
+      animNow: !prevState.animNow
+    }))
   }
 
   componentDidMount() {
+    this.switch();
+    this.startLoop();
+  }
+
+  getCurrentContent = () => {
+    let currentIdx = (this.state.currentIdx + 1) % this.state.content.length;
     this.setState({
-      content: this.props.content
+      currentIdx: currentIdx,
+      currentContent: this.state.content[currentIdx]
     })
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // if (prevProps.content !== this.props.content && this.props.content.length) {
-    //   this.setState({
-    //     content: this.props.content
-    //   })
-    // }
+  startStop = () => {
+    this.setState({
+      started: !this.state.started
+    })
+    if (this.state.started) clearInterval(this.interval);
+    else this.startLoop();
+  }
 
-    // if (prevState.anim !== this.state.anim) {
-    //   this.anim();
-    //   this.setState({
-    //     animNow: true
-    //   })
-    // }
+  startLoop = () => {
+    this.interval = setInterval(() => {
+      this.switch();
+    }, 3000)
+  }
 
-    if (this.state.content !== this.props.content && this.props.content.length) {
-      this.setState({
-        content: this.props.content,
-        animNow: true
-      })
-
-    }
-
-    if (prevState.animNow !== this.state.animNow && this.state.animNow) {
-      this.anim();
+  placeHolder = () => {
+    if (this.state.renderStatic) {
+      let content = (<h5>{this.state.pastContent}</h5>)
+      return (<CardBack content={content} />)
     }
   }
 
-  shouldComponentUpdate(prevProps, prevState) {
-    return (prevState.content !== this.props.content)
+  setStatic = () => {
+    this.setState({
+      renderStatic: true,
+      pastContent: this.state.currentContent
+    })
   }
 
   render() {
-    const { animFinished, classNames } = this.state;
 
     return (
-      <div 
-        className={`card_flip-container ${classNames}`}
-        onAnimationEnd={this.onAnimEnd}
-        onAnimationStart={this.onAnimStart}
-        // onUpdate={this.anim}
-        // onClick={this.anim}
+      <div>
+      {this.placeHolder()}
+      <CSSTransition 
+        in={this.state.animNow}
+        timeout={1000}
+        classNames="card_flip-transition"
+        unmountOnExit
+        appear
+        // onEntered={this.setStatic}
+        onEnter={this.getCurrentContent}
+        onExiting={this.setStatic}
+        // onExit={this.getCurrentContent}
+        // onExiting={this.static}
       >
-        <div className="card_flip-inner">
-          <div className="card_flip-front">
-            <h3>Crimes</h3>
-            <h3>Against</h3>
-            <h3>Stupidity</h3>
+        <div 
+          className="card_flip-container"
+          onClick={this.startStop}
+        >
+          <div className="card_flip-inner">
+            <div className="card_flip-front">
+              <h3>Crimes</h3>
+              <h3>Against</h3>
+              <h3>Stupidity</h3>
+            </div>
+            <div className="card_flip-back">
+              <h5>{this.state.currentContent}</h5>
+            </div>
           </div>
-          <div className="card_flip-back">
-            {this.props.content}
-          </div>
-        </div>
 
+        </div>
+      </CSSTransition>
       </div>
     )
   }

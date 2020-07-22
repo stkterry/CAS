@@ -13,11 +13,9 @@ class CardFlipHover extends React.Component {
             <h3>Stupidity</h3>
           </div>
           
-          {/* <img src={BLACK_125X188} /> */}
           <div className="card_flip_hover-back">
             <h5>{this.props.content}</h5>
           </div>
-            {/* <img src={BLACK_125X188} /> */}
         </div>
       
       </div>

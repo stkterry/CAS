@@ -21,8 +21,8 @@ const softCheckHandle = (handle, exists) => {
   handle = toValidText(handle);
 
   return {
-    "Handle must be between 4 and 30 characters": Validator.isLength(handle, { min: 4, max: 30 }),
-    // "Name is available": !exists
+    "Handle is between 4 and 30 characters: ": Validator.isLength(handle, { min: 4, max: 30 }),
+    "Handle is available: ": !exists
   }
 
 }
@@ -30,16 +30,16 @@ const softCheckHandle = (handle, exists) => {
 const softCheckEmail = email => {
   email = toValidText(email);
   return {
-    "Email field valid": Validator.isEmail(email)
+    "Valid email: ": Validator.isEmail(email)
   }
 }
 
 const softCheckPassword = (password, password2) => {
-
+  let match = (password === password2 && password && password2)
   return {
-    "Passwords match": (password === password2),
-    "Between 6 and 30 characters": Validator.isLength(password, { min: 6, max: 30 }) || Validator.isLength(password2, { min: 6, max: 30 }),
-    "Contains at least one number and uppercase letter": oneChar(password) || oneChar(password2)
+    "Passwords match: ": match,
+    "Password is between 6 and 30 characters: ": Validator.isLength(password, { min: 6, max: 30 }) || Validator.isLength(password2, { min: 6, max: 30 }),
+    "Contains a number and uppercase letter: ": oneChar(password) || oneChar(password2)
   }
 }
 

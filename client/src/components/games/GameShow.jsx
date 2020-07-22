@@ -56,7 +56,7 @@ class GameShow extends React.Component {
       }
       return (
         cards.map(card => (
-          <CardLook classes={"game_show-played_card"} key={card._id} card={card} />
+          <CardLook className={"game_show-played_card"} key={card._id} card={card} />
         ))
       )
     }
