@@ -12,18 +12,18 @@ class Splash extends React.Component {
     super(props);
 
     this.state = {
-      cards: [],
+      cards: (this.props.cards.length) ? this.props.cards : [],
       numCards: 41
     }
   }
 
   componentDidMount() {
-    this.props.getNRandColorCards(this.state.numCards, 'black');
+    if (!this.state.cards.length) 
+      this.props.getNRandColorCards(this.state.numCards, 'black');
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.cards !== this.props.cards) {
-      const state = {cards: this.props.cards}
       this.setState({ cards: this.props.cards })
     }
   }

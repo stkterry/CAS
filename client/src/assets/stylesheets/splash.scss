@@ -1,4 +1,4 @@
-
+@import "./mixins";
 
 #splash-main {
   height: 100vh;
@@ -54,6 +54,7 @@
 // New Splash ------------------------------------
 
 #splash-main-adv {
+  @include shell-shadow;
   // height: 100vh;
   overflow: hidden;
   padding-top: 2rem;
@@ -72,8 +73,6 @@
 }
 
 #splash-hero-main-adv {
-  
-  height: 188px;
   box-sizing: content-box;
   border-radius: 2.4rem;
   display: flex;

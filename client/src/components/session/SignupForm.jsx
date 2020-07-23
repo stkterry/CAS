@@ -21,18 +21,14 @@ class SignupForm extends React.Component {
       errors: {},
       checks: { email: false, handle: false, password: false},
 
-      cards: [],
+      cards: (this.props.cards.length) ? this.props.cards : [],
       handleExists: false,
     };
   }
 
   componentDidMount() {
-    if (!this.props.location.state) {
+    if (!this.state.cards.length) {
       this.props.getNRandColorCards(41, 'black');
-    } else if (!this.props.location.state.cards.length) {
-      this.props.getNRandColorCards(41, 'black');
-    } else {
-      this.setState({ cards: this.props.location.state.cards })
     }
   }
 
@@ -136,7 +132,7 @@ class SignupForm extends React.Component {
                   placeholder="Email"
                 />
                 <InputEntry
-                  type="text"
+                  type="password"
                   className="inputEntry"
                   value={this.state.password}
                   onChange={this.update('password')}
@@ -147,7 +143,7 @@ class SignupForm extends React.Component {
                   onChange={this.update('password2')}
                   className="inputEntry"
                   placeholder="test"
-                  type="text"
+                  type="password"
                   placeholder="Confirm Password"
                 />
                 <br />
@@ -161,7 +157,7 @@ class SignupForm extends React.Component {
 
             <div id="signup_form-right">
               <div id="signup_form-card_flip">
-                <CardFront className="signup_form-static_card" />
+                
                 {this.renderCards()}
               </div>
             </div>
