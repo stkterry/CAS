@@ -53,8 +53,8 @@
 }
 .card_front-front {
   @include card-front;
-  background-color: black;
-  box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.4); 
+  @include card-shadow-dark;
+  background-color: black; 
 }
 
 // CardBack

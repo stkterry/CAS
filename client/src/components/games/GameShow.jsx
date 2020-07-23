@@ -56,7 +56,7 @@ class GameShow extends React.Component {
       }
       return (
         cards.map(card => (
-          <CardLook className={"game_show-played_card"} key={card._id} card={card} />
+          <CardLook className={"game_show-played_card game_show-card"} key={card._id} card={card} />
         ))
       )
     }
@@ -67,7 +67,7 @@ class GameShow extends React.Component {
       const card = this.state.game.black[Math.floor(Math.random() * this.state.game.black.length)];
 
       return(
-        <CardLook className="game_show-player_cards" key={card._id} card={card} />
+        <CardLook className="game_show-player_cards game_show-card" key={card._id} card={card} />
       )
     }
   }
@@ -89,7 +89,7 @@ class GameShow extends React.Component {
 
       return (
         cards.map(card => (
-          <CardLook classes={"game_show-player_cards"} key={card._id} card={card} />
+          <CardLook className={"game_show-player_cards game_show-card"} key={card._id} card={card} />
         ))
       )
       
@@ -97,7 +97,6 @@ class GameShow extends React.Component {
   }
 
   render() {
-
     return (
       <div id="game_show">
         <h1>{this.state.game.name}</h1>
