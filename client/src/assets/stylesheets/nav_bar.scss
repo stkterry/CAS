@@ -1,15 +1,34 @@
-@import "./palettes";
+// @import "./palettes";
+
+#nav_bar-container {
+  width: 100%;
+  top: 0;
+  transition: all 1000ms;
+  height: 2.5rem;
+  position: absolute;
+
+  i {
+    position: absolute;
+    left: 50%;
+    top: -.5rem;
+    font-weight: bold;
+    color: rgba(233, 233, 233, 0.5);
+    font-size: 3rem;
+  }
+}
 
 #nav_bar {
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  @include shell-shadow;
 
   background-color: $palette_med;
 
+  position: absolute;
   height: 4.5rem;
+  width: 100%;
 }
 
 #nav_bar-left {
@@ -27,4 +46,27 @@
   padding-left: 1rem;
   color: $palette_text_med;
   font-size: 1.2rem;
+}
+
+.nav_bar-carats {
+  i {
+    color: white;
+    font-size: 1.2rem;
+  }
+}
+
+
+.nav_bar-enter {
+  top: -5rem;
+}
+.nav_bar-enter-active {
+  transition: all 500ms ease;
+  top: 0rem;
+}
+.nav_bar-exit {
+  top: 0rem;
+  transition: all 500ms ease;
+}
+.nav_bar-exit-active {
+  top: -4.5rem;
 }

@@ -5,9 +5,18 @@
   align-items: center;
 
   padding: .5rem;
+
+  h6 {
+    font-weight: 500;
+    color: $palette_light;
+  }
+
+  // border-radius: 50%;
 }
 
 .player_icon-ico {
   height: 6rem;
+  width: 6rem;
   border-radius: 50%;
+  @include card-shadow-white;
 }
