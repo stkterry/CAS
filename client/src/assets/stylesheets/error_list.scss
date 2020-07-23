@@ -27,47 +27,52 @@
   color: green;
 }
 
-@keyframes error_list_colorChange {
-  0% {
+
+@keyframes error_list_effectsF {
+  0%{
+    font-size: .5rem;
     color: black;
+    opacity: 0;
   }
-  50% {
+  50%{
     color: red;
   }
-  100% {
+  100%{
+    font-size: 1.2rem;
+    opacity: 1;
+    color: black;
+  }
+}
+
+@keyframes error_list_effectsB {
+  100%{
+    font-size: .5rem;
+    color: black;
+    opacity: 0;
+  }
+  50%{
+    color: red;
+  }
+  0%{
+    font-size: 1.2rem;
+    opacity: 1;
     color: black;
   }
 }
 
 .error_list-enter {
   h5 {
-    opacity: 0;
-    color: black;
-    font-size: 0;
+    animation: ease error_list_effectsF 1s forwards;
   }
 }
 
 .error_list-enter-active {
-  h5 {
-    opacity: 1;
-    font-size: 1.2rem;
-    // transition: all 1s;
-    animation: ease error_list_colorChange 2s forwards;
-  }
 }
 
 .error_list-exit {
   h5 {
-    opacity: 1;
-    transition: all 1s;
-    font-size: 1.2rem;
-    color: black;
+    animation: ease error_list_effectsB 1s forwards;
   }
 }
 .error_list-exit-active {
-  h5 {
-    color: black;
-    opacity: 0;
-    font-size: 0;
-  }
 }

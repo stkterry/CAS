@@ -37,8 +37,8 @@ export default class ErrorList extends React.Component {
       <TransitionGroup component="ul" className="error_list">
         {Object.keys(errors).map(error => (
           <CSSTransition
-            in={this.state.animNow}
-            timeout={500}
+            // in={this.state.animNow}
+            timeout={1000}
             classNames="error_list"
             key={error}
             unmountOnExit

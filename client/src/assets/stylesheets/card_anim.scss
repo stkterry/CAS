@@ -114,12 +114,17 @@
 .TEMP {
   position: absolute;
 }
+
+.card_flip-static_card {
+  position: absolute;
+  right: 0;
+}
+
 .card_flip-container {
   @include card-container;
   position: absolute;
   right: $card_flip-sep;
-  
-  // top: 0;
+ 
 }
 .card_flip-inner {
   @include card-inner;
@@ -191,19 +196,28 @@
   }
 }
 
+@keyframes card_flipRotTransLR {
+  0%{
+    right: 0px;
+    transform: rotateY(0deg) scale3d(1, 1, 1);
+  }
+  50%{
+    transform: rotateY(-90deg) scale3d(1.2, 1.2, 1.2);
+  }
+  100%{
+    right: $card_flip-sep;
+    transform: rotateY(-180deg) scale3d(1, 1, 1);
+  }
+}
+
 // Fires when element enters DOM
 .card_flip-transition-enter {
   right: 0px;
-  .card_flip-inner {
-    transform: rotateY(0deg)
-  }
 }
 // The transition itself
 .card_flip-transition-enter-active {
-  right: $card_flip-sep;
-  transition: all 1000ms;
   .card_flip-inner {
-    transform: rotateY(-180deg)
+    animation: ease-in-out card_flipRotTransLR 1000ms forwards;
   }
 
 }

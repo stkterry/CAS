@@ -14,24 +14,24 @@ class LoginForm extends React.Component {
       email: "",
       password: "",
       errors: {},
-      cards: []
+      cards: (this.props.cards) ? this.props.cards : []
     };
 
   }
 
   componentDidMount() {
-    if (!this.props.location.state) {
+    if (!this.state.cards.length) {
       this.props.getNRandColorCards(41, 'black');
-    } else if (!this.props.location.state.cards.length) {
-      this.props.getNRandColorCards(41, 'black');
-    } else {
-      this.setState({ cards: this.props.location.state.cards })
     }
   }
 
-  componentDidUpdate(prevProps, nextProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.errors !== this.props.errors) {
       this.setState({ errors: this.props.errors })
+    }
+
+    if (prevProps.cards !== this.props.cards) {
+      this.setState({ cards: this.props.cards })
     }
   }
 
@@ -39,12 +39,6 @@ class LoginForm extends React.Component {
     return event => this.setState({
       [field]: event.currentTarget.value
     });
-  }
-
-  renderCards() {
-    if (this.state.cards.length) {
-      return (<CardFlip content={this.state.cards.map(card => card.content)} />)
-    }
   }
 
   handleSubmit = (event) => {
@@ -98,7 +92,7 @@ class LoginForm extends React.Component {
             <div id="signup_form-right">
               <div id="signup_form-card_flip">
                 <CardFront className="signup_form-static_card" />
-                {this.renderCards()}
+                <CardFlip content={this.state.cards.map(card => card.content)} />
               </div>
             </div>
 
