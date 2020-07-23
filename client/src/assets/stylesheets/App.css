@@ -383,7 +383,7 @@ div::-webkit-scrollbar-thumb {
   color: white;
   background-color: black; }
   .card_flip_hover-front h3 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-family: "Luckiest Guy", cursive; }
 
 .card_flip_hover-back {
@@ -463,7 +463,7 @@ div::-webkit-scrollbar-thumb {
   box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
   background-color: black; }
   .card_front-front h3 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-family: "Luckiest Guy", cursive; }
 
 .card_back-container {
@@ -633,7 +633,7 @@ div::-webkit-scrollbar-thumb {
   color: white;
   background-color: black; }
   .card_flip-front h3 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-family: "Luckiest Guy", cursive; }
 
 .card_flip-back {
@@ -708,13 +708,30 @@ div::-webkit-scrollbar-thumb {
 .card_flip-transition-enter-active .card_flip-inner {
   animation: ease-in-out card_flipRotTransLR 1000ms forwards; }
 
+#nav_bar-container {
+  width: 100%;
+  top: 0;
+  transition: all 1000ms;
+  height: 2.5rem;
+  position: absolute; }
+  #nav_bar-container i {
+    position: absolute;
+    left: 50%;
+    top: -.5rem;
+    font-weight: bold;
+    color: rgba(233, 233, 233, 0.5);
+    font-size: 3rem; }
+
 #nav_bar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
   background-color: #1c2a38;
-  height: 4.5rem; }
+  position: absolute;
+  height: 4.5rem;
+  width: 100%; }
 
 .title-text {
   font-family: "Luckiest Guy", cursive;
@@ -726,6 +743,24 @@ div::-webkit-scrollbar-thumb {
   padding-left: 1rem;
   color: #818181;
   font-size: 1.2rem; }
+
+.nav_bar-carats i {
+  color: white;
+  font-size: 1.2rem; }
+
+.nav_bar-enter {
+  top: -5rem; }
+
+.nav_bar-enter-active {
+  transition: all 500ms ease;
+  top: 0rem; }
+
+.nav_bar-exit {
+  top: 0rem;
+  transition: all 500ms ease; }
+
+.nav_bar-exit-active {
+  top: -4.5rem; }
 
 #landing_games {
   min-height: 200px;
@@ -801,9 +836,20 @@ div::-webkit-scrollbar-thumb {
   min-width: 900px;
   max-width: 1200px;
   width: 90%;
-  height: 90%;
+  height: 100%;
   align-content: center;
-  background: #1c2a38;
+  background: #1c2a3844;
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
+  border-radius: 1.6rem;
+  height: 94.5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  #game_show h1 {
+    color: #ececec; }
+
+#game_show-header {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center; }
@@ -877,10 +923,15 @@ div::-webkit-scrollbar-thumb {
   flex-direction: column;
   align-items: center;
   padding: .5rem; }
+  .player_icon h6 {
+    font-weight: 500;
+    color: #ececec; }
 
 .player_icon-ico {
   height: 6rem;
-  border-radius: 50%; }
+  width: 6rem;
+  border-radius: 50%;
+  box-shadow: 0 0 1.6rem rgba(212, 211, 211, 0.5); }
 
 .card_look-container_white, .card_look-container_black {
   border-radius: 1rem;
@@ -1091,7 +1142,7 @@ div::-webkit-scrollbar-thumb {
   padding: 1.5rem;
   color: white; }
   .card_static-front h3 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-family: "Luckiest Guy", cursive; }
 
 .card_static-white {
@@ -1110,5 +1161,12 @@ div::-webkit-scrollbar-thumb {
   background-color: black;
   border: 0.1rem solid #424242;
   position: absolute; }
+
+#fs_modal-container {
+  margin-top: auto; }
+
+#fs_modal {
+  display: flex;
+  flex-direction: row; }
 
 /*# sourceMappingURL=App.css.map */

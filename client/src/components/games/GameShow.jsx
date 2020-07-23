@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from "react-router-dom";
+import { CSSTransitions } from "react-transition-group";
 
 import PlayerIcon from "./PlayerIcon";
 import CardLook from "../card_anims/CardLook";
+import FeatureSelectionModal from "../switch_modals/FeatureSelectionModal";
+
+import GameHeader from "./header/GameHeader";
 
 class GameShow extends React.Component {
 
@@ -12,7 +16,9 @@ class GameShow extends React.Component {
     this.state = {
       game: {},
       white: {},
-      black: {}
+      black: {},
+      players: [],
+      gameName: "...Loading"
     }
   }
 
@@ -34,22 +40,18 @@ class GameShow extends React.Component {
       });
     }
 
-  }
+    if (prevProps.players !== this.props.players) {
+      this.setState({ players: this.props.players })
+    }
 
-  renderPlayersIcons = () => {
-    return (this.isLoaded()) ? (
-      <div id="game_show-players">
-        {this.state.game.players.map(player =>
-          <PlayerIcon key={player._id} player={player} />)}
-      </div>
-    ) : (
-      <h1>Not Yet</h1>
-    );
+    if (prevProps.gameName !== this.props.gameName) {
+      this.setState({ gameName: this.props.gameName })
+    }
+
   }
 
   renderCardsTemp = () => {
     if (this.isLoaded()) {
-      console.log(this.state.white)
       let cards = [];
       for (let i = 0; i < 8; i++) {
         cards.push(this.state.game.white[Math.floor(Math.random() * this.state.game.white.length)]);
@@ -99,8 +101,7 @@ class GameShow extends React.Component {
   render() {
     return (
       <div id="game_show">
-        <h1>{this.state.game.name}</h1>
-          {this.renderPlayersIcons()}
+        <GameHeader players={this.state.players} gameName={this.state.gameName}/>
         <div id="game_show-content">
           <div id="game_show-left">
             <div id="game_show-current">
@@ -118,6 +119,7 @@ class GameShow extends React.Component {
         <div id="game_show-player_cards">
             {this.renderPlayerCardsTemp()}
         </div>
+        <FeatureSelectionModal />
       </div>
     )
   }

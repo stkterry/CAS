@@ -3,7 +3,10 @@ import { getActiveGame } from "../../actions/game_actions";
 import GameShow from "./GameShow";
 
 const mSP = state => ({
-  game: state.games.active
+  game: state.games.active,
+  players: state.games.active.players,
+  host: state.games.active.host,
+  gameName: state.games.active.name
 });
 
 
