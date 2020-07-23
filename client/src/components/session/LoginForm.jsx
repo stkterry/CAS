@@ -91,7 +91,6 @@ class LoginForm extends React.Component {
             </div>
             <div id="signup_form-right">
               <div id="signup_form-card_flip">
-                <CardFront className="signup_form-static_card" />
                 <CardFlip content={this.state.cards.map(card => card.content)} />
               </div>
             </div>

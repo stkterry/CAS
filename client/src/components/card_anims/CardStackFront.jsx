@@ -1,6 +1,4 @@
 import React from "react";
-const BLACK_125X188 = require("../../assets/images/125x188_black_4x.png");
-
 
 export default class CardFront extends React.Component {
 
@@ -10,19 +8,15 @@ export default class CardFront extends React.Component {
 
   state = {
     left: this.props.left || 0,
-    right: this.props.right || 0,
     top: this.props.top || 0,
-    bottom: this.props.bottom || 0,
     amt: this.props.amt || 1,
     className: (this.props.color) ? `card_static-${this.props.color}` : 'card_static-black',
     style: []
   }
-
   componentDidMount() {
     this.genStyle();
 
   }
-
   componentDidUpdate(prevProps) {
     if (prevProps.amt !== this.props.amt) {
       this.setState({ amt: this.props.amt })
@@ -64,8 +58,6 @@ export default class CardFront extends React.Component {
         <h3>Against</h3>
         <h3>Stupidity</h3>
       </div>
-      {/* <div className="card-inner" /> */}
-      {/* <img src={BLACK_125X188} /> */}
     </div>
   )
 }

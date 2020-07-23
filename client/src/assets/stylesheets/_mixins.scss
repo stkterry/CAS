@@ -27,8 +27,12 @@
 $card_flip-sep: 160px;
 @mixin card {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  // min-width: 100px;
+  // min-height: 150px;
+  // max-width: 150px;
+  // max-height: 225px;
+  width: 125px;
+  height: 188px;
 }
 
 @mixin card-container {
@@ -94,7 +98,16 @@ $card_flip-sep: 160px;
 }
 
 @mixin shell-shadow {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 .8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
+}
+@mixin card-shadow {
+  box-shadow: 0 .2rem .6rem 0 rgba(0,0,0,0.4);
+}
+@mixin card-shadow-dark {
+  box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.4);
+}
+@mixin card-shadow-large {
+   box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.4), 0 4.5rem 10rem rgba(0, 0, 0, 0.4);
 }
 
 @mixin shell-effects {

@@ -226,7 +226,7 @@ div::-webkit-scrollbar-thumb {
   padding: 2rem; }
 
 #splash-main-adv {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
   overflow: hidden;
   padding-top: 2rem;
   padding-bottom: 10rem;
@@ -335,8 +335,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_flip_hover-container {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -355,8 +355,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_flip_hover-inner {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   box-sizing: border-box;
   position: relative;
   text-align: center;
@@ -371,8 +371,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_flip_hover-front {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   box-sizing: border-box;
   text-align: left;
   position: absolute;
@@ -388,8 +388,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_flip_hover-back {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   box-sizing: border-box;
   text-align: left;
   position: absolute;
@@ -424,14 +424,14 @@ div::-webkit-scrollbar-thumb {
 
 .empty_card {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   background: none; }
 
 .card_front-container {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -450,8 +450,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_front-front {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   box-sizing: border-box;
   text-align: left;
   position: absolute;
@@ -460,16 +460,16 @@ div::-webkit-scrollbar-thumb {
   backface-visibility: hidden;
   padding: 1.5rem;
   color: white;
-  background-color: black;
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4); }
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
+  background-color: black; }
   .card_front-front h3 {
     font-size: 2.5rem;
     font-family: "Luckiest Guy", cursive; }
 
 .card_back-container {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -490,8 +490,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_back-back {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   box-sizing: border-box;
   text-align: left;
   position: absolute;
@@ -516,8 +516,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_back-inner {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   box-sizing: border-box;
   position: relative;
   text-align: center;
@@ -577,8 +577,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_flip-container {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -599,8 +599,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_flip-inner {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   box-sizing: border-box;
   position: relative;
   text-align: center;
@@ -612,8 +612,8 @@ div::-webkit-scrollbar-thumb {
   transform: rotateY(-180deg); }
   .card_flip-inner img {
     border-radius: 1rem;
-    width: 150px;
-    height: 225px;
+    width: 125px;
+    height: 188px;
     position: absolute;
     left: 0;
     top: 0;
@@ -621,8 +621,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_flip-front {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   box-sizing: border-box;
   text-align: left;
   position: absolute;
@@ -638,8 +638,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_flip-back {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   box-sizing: border-box;
   text-align: left;
   position: absolute;
@@ -798,7 +798,7 @@ div::-webkit-scrollbar-thumb {
 
 #game_show {
   margin: 2.5rem auto;
-  min-width: 725px;
+  min-width: 900px;
   max-width: 1200px;
   width: 90%;
   height: 90%;
@@ -818,19 +818,19 @@ div::-webkit-scrollbar-thumb {
 
 #game_show-left, #game_show-played_cards {
   margin: 1rem auto;
-  min-height: 175px;
-  max-height: 400px; }
+  min-height: 200px;
+  max-height: 470px; }
 
 #game_show-left {
   width: 30%;
-  max-width: 300px;
+  max-width: 250px;
   background: #ececec; }
 
 #game_show-played_cards {
   width: 70%;
-  max-width: 600px;
-  max-height: 400px;
-  min-width: 550px;
+  max-width: 800px;
+  max-height: 470px;
+  min-width: 650px;
   min-height: 325px;
   background: #ececec;
   display: flex;
@@ -840,14 +840,20 @@ div::-webkit-scrollbar-thumb {
 .game_show-played_card {
   margin: .5rem; }
 
+.game_show-card {
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4); }
+
+.game_show-card:hover {
+  box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.4), 0 4.5rem 10rem rgba(0, 0, 0, 0.4); }
+
 #game_show-players {
   display: flex;
   flex-direction: row; }
 
 #game_show-black {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   margin: 2.5rem auto;
   justify-content: center; }
   #game_show-black .game_show-current_turn {
@@ -878,8 +884,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_look-container_white, .card_look-container_black {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -911,8 +917,8 @@ div::-webkit-scrollbar-thumb {
     -webkit-box-orient: vertical; }
   .card_look-container_white img, .card_look-container_black img {
     border-radius: 1rem;
-    width: 150px;
-    height: 225px;
+    width: 125px;
+    height: 188px;
     z-index: -1;
     position: absolute;
     left: 0;
@@ -932,8 +938,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_look-sheen {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   position: absolute;
   left: 0;
   top: 0;
@@ -946,7 +952,7 @@ div::-webkit-scrollbar-thumb {
   margin-top: 8rem; }
 
 #signup_form {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
   min-width: 575px;
   max-width: 700px;
   width: 75vw;
@@ -1054,8 +1060,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_static-container {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -1074,8 +1080,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_static-front {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   box-sizing: border-box;
   text-align: left;
   position: absolute;
@@ -1099,8 +1105,8 @@ div::-webkit-scrollbar-thumb {
 
 .card_static-stack {
   border-radius: 1rem;
-  width: 150px;
-  height: 225px;
+  width: 125px;
+  height: 188px;
   background-color: black;
   border: 0.1rem solid #424242;
   position: absolute; }
