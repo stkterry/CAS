@@ -12,7 +12,9 @@
 }
 
 body {
-  background-color: $palette_dark;
+  background-image: url("../images/alphaTile1080.png");
+  background-repeat: repeat;
+  background-color: $palette_med;
 }
 
 #footer{

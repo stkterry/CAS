@@ -1,10 +1,7 @@
-@import "./palettes";
-@import "./mixins";
-
 #game_show {
   // padding: 1rem;
   margin: 2.5rem auto;
-  min-width: 650px;
+  min-width: 900px;
   max-width: 1200px;
   width: 90%;
   height: 90%;
@@ -13,8 +10,6 @@
   // background: $palette_light;
   // @include main-content-spacing;
   // min-height: 80vh;
-
-
 
   display: flex;
   flex-direction: column;
@@ -36,50 +31,93 @@
 
 #game_show-left, #game_show-played_cards {
   margin: 1rem auto;
-  min-height: 175px;
-  max-height: 400px;
-  // height: 400px;
+  min-height: 200px;
+  max-height: 470px;
 }
 
 #game_show-left {
   width: 30%;
-  max-width: 300px;
-  background: red;
+  max-width: 250px;
+  background: $palette_light;
 }
 
 #game_show-played_cards {
   width: 70%;
-  max-width: 600px;
-  max-height: 400px;
-  min-width: 450px;
+  max-width: 800px;
+  max-height: 470px;
+  min-width: 650px;
   min-height: 325px;
-  background: blue;
+  background: $palette_light;
 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.card_standin {
-  @include card;
+.game_show-played_card {
   margin: .5rem;
-  width: 100px;
-  height: 150px;
-  background: $palette_light;
 
 }
-
-.card_standin-inner {
-  width: 100%;
-  height: 100%;
+.game_show-card {
+  @include card-shadow;
 }
+.game_show-card:hover {
+  @include card-shadow-large;
+}
+
 
 #game_show-players {
-  
   display: flex;
   flex-direction: row;
 }
 
-
-#game_show-player_cards {
+#game_show-current {
 
 }
+
+#game_show-black {
+  @include card;
+
+  margin: 2.5rem auto;
+  justify-content: center;
+
+  h5 {
+    // padding-left: .75rem;
+    
+  }
+
+  .game_show-current_turn {
+    padding-left: .75rem;
+    font-weight: bold;
+  }
+}
+
+
+#game_show-player_cards {
+  width: 100%;
+  margin: 1rem auto;
+  padding: .75rem 0;
+  // max-width: 1200px;
+  // height: 10rem;
+  background: yellow;
+
+  display: grid;
+  grid-template-columns: repeat(9, 9.1%);
+  // grid-template-rows: 188px;
+  
+  justify-content: center;
+  // align-items: center;
+  // align-content: center;
+}
+
+.game_show-player_cards {
+  grid-row-start: 1;
+}
+// .game_show-player-cards:nth-child(1) { grid-column: 1 / 6; }
+// .game_show-player-cards:nth-child(2) { grid-column: 4 / 9; }
+// .game_show-player-cards:nth-child(3) { grid-column: 7 / 12; }
+// .game_show-player-cards:nth-child(4) { grid-column: 10 / 15; }
+// .game_show-player-cards:nth-child(5) { grid-column: 13 / 18; }
+// .game_show-player-cards:nth-child(6) { grid-column: 16 / 21; }
+// .game_show-player-cards:nth-child(7) { grid-column: 19 / 24; }
+// .game_show-player-cards:nth-child(8) { grid-column: 22 / 27; }
+// .game_show-player-cards:nth-child(9) { grid-column: 25 / 30; }
