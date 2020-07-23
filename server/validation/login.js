@@ -7,9 +7,9 @@ module.exports = ({ email, password }) => {
   password = toValidText(password);
 
   const errors = {
-    ...(!Validator.isEmail(email) && { email: "Email is invalid" }),
-    ...(Validator.isEmpty(email) && { email: "Email field is required" }),
-    ...(Validator.isEmpty(password) && { password: "Password field is required" })
+    ...(!Validator.isEmail(email) && { "Email valid: ": false }),
+    ...(Validator.isEmpty(email) && { "Email field is required: ": false }),
+    ...(Validator.isEmpty(password) && { "Password required: ": false })
   };
 
   return {

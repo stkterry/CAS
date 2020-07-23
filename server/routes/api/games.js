@@ -59,6 +59,24 @@ router.get("/:game_id", (req, res) => {
     .catch(err => eRes(res, 404, ERRORS.noIDgames))
 })
 
+// /active/:game_id
+router.get("/active/:game_id", (req, res) => {
+  Game.findById(req.params.game_id, '-__v')
+    .populate({
+      path: 'host players', select: 'handle _id'
+    })
+    // .populate({
+    //   path: 'cardPacks', populate: {
+    //     path: 'white black', select: '-date -__v'
+    //   }, select: '-date -__v -url_id'
+    // })
+    .populate({
+      path: 'white black', select: '-date -__v'
+    })
+    .then(game => res.json(game))
+    .catch(err => eRes(res, 404, ERRORS.noIDgames))
+})
+
 // Games POST ================================================================
 
 // /

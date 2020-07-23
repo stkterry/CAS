@@ -9,6 +9,7 @@ export const APICalls = {
   getUserGames: id => axios.get(`/api/games/user/${id}`),
   createGame: gameDat => axios.post("/api/games/", gameDat),
   getGame: game_id => axios.get(`/api/games/${game_id}`),
+  getActiveGame: game_id => axios.get(`/api/games/active/${game_id}`)
 }
 
 // Dispatch Labels ===========================================================
@@ -54,7 +55,7 @@ export const getGame = game_id => dispatch => APICalls.getGame(game_id)
   .then(game => dispatch(receiveGame(game)))
   .catch(err => console.log(err));
 
-export const getActiveGame = game_id => dispatch => APICalls.getGame(game_id)
+export const getActiveGame = game_id => dispatch => APICalls.getActiveGame(game_id)
   .then(game => dispatch(receiveActiveGame(game)))
   .catch(err => console.log(err));
 

@@ -21,20 +21,31 @@ router.get("/test", (req, res) => res.json({msg: "This is the CardPack route! "}
 router.get("/", (req, res) => {
   CardPack.find()
     .then(cardPacks => res.json(cardPacks))
-    .catch(err => console.log(err))
+    .catch(err => eRes(res, 404, ERRORS.noCardPacksFound))
 });
 
-// /pop
+// /popall
 router.get("/pop", (req, res) => {
   CardPack.find()
-    .populate('white black')
+    .populate('white black', '-date -__v -cardPack')
     .then(cardPacks => res.json(cardPacks))
-    .catch(err => console.log(err))
+    .catch(err => eRes(res, 404, ERRORS.noCardPacksFound))
+});
+
+// popone/:id
+router.get("/popone/:_id", (req, res) => {
+  CardPack.findById(req.params._id)
+    .select('-date -__v')
+    .populate('white black', '-date -__v -cardPack')
+    .then(cardPack => res.json(cardPack))
+    .catch(err => eRes(res, 404, ERRORS.noIDCardPacks))
 });
 
 // /:_id
 router.get("/:_id", (req, res) => {
   CardPack.findById(req.params._id)
+    .select('-date -__v')
+    .populate('white black', '-date -__v -cardPack')
     .then(cardPack => res.json(cardPack))
     .catch(err => eRes(res, 404, ERRORS.noIDCardPacks));
 })

@@ -1,0 +1,78 @@
+
+.error_list {
+  margin-top: 1rem;
+}
+
+.error_list-li {
+  display: inline;
+  align-content: center;
+
+  h5 {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+
+  i {
+    padding-left: .5rem;
+    font-style: normal;
+  }
+}
+.signup_times {
+  color: red;
+}
+.signup_check {
+  color: green;
+}
+
+
+@keyframes error_list_effectsF {
+  0%{
+    font-size: .5rem;
+    color: black;
+    opacity: 0;
+  }
+  50%{
+    color: red;
+  }
+  100%{
+    font-size: 1.2rem;
+    opacity: 1;
+    color: black;
+  }
+}
+
+@keyframes error_list_effectsB {
+  100%{
+    font-size: .5rem;
+    color: black;
+    opacity: 0;
+  }
+  50%{
+    color: red;
+  }
+  0%{
+    font-size: 1.2rem;
+    opacity: 1;
+    color: black;
+  }
+}
+
+.error_list-enter {
+  h5 {
+    animation: ease error_list_effectsF 1s forwards;
+  }
+}
+
+.error_list-enter-active {
+}
+
+.error_list-exit {
+  h5 {
+    animation: ease error_list_effectsB 1s forwards;
+  }
+}
+.error_list-exit-active {
+}

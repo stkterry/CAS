@@ -18,7 +18,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <div id="nav_bar">
-        <div>
+        <div id="nav_bar-left">
           <h1 className="title-text">Crimes Against Stupidity</h1>
           <h2 className="secondary-text">&#8627; {getPhrase()}</h2>
         </div>
