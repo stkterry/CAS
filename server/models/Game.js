@@ -55,17 +55,11 @@ const GameSchema = new Schema({
       cardsInPlay: {
         white: [{ type: Schema.Types.ObjectId, ref: "Card" }],
         black: { type: Schema.Types.ObjectId, ref: "Card" }
-      }
+      },
+      rounds: { type: Number }
     },
     _id: false,
-    default: {
-      playerStates: {},
-      currentTurn: null,
-      cardsInPlay: {
-        white: [],
-        black: null
-      }
-    },
+    typePojoToMixed: false
   },
 
   messages: [{
@@ -88,6 +82,7 @@ const cardPop = {
 const packPop = {
   path: 'cardPacks', select: 'name _id quantity'
 }
+
 
 GameSchema.statics.getAll = function() {
   
@@ -112,20 +107,9 @@ GameSchema.statics.getGame = function(game_id) {
     .populate(packPop)
 }
 
-GameSchema.statics.getPlayerState = function(game_id, user_id, res) {
-
-  // return this.findById(game_id, (err, game) => {
-  //   if (err) return err;
-  //   res.json(game.game_state.playerStates.id(user_id));
-  // })
-
+GameSchema.statics.getPlayerState = function(game_id, user_id) {
   return this.findById(game_id)
-    .then(game => game.select({
-      path: 'game_state'
-    }))
-    // .select({
-    //   path: 'game_state.playerStates', select: { '_id' : user_id }
-    // })
+    .then(game => game.game_state.playerStates.id(user_id))
 }
 
 // GameSchema.methods.getPlayerState = function (user_id, res) {
@@ -136,7 +120,7 @@ GameSchema.statics.getPlayerState = function(game_id, user_id, res) {
 
 GameSchema.statics.getActive = function(game_id, res) {
 
-  return this.findById(game_id, '__v')
+  return this.findById(game_id, '-__v')
     .populate(playerPop)
     .populate(cardPop)
     .then(game => res.json(game))

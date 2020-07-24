@@ -12,15 +12,15 @@ export default function GameHeader (props) {
   useEffect(() => {
     setPlayers(props.players)
     setGameName(props.gameName)
+    setTimeout(() => setAnimNow(false), 5000)
   }, [props.players, props.gameName]);
 
   useEffect(() => {
     setGameState(props.gameState)
   }, [props.gameState]);
 
-  useEffect(() => {
-    setTimeout(() => setAnimNow(false), 5000)
-  }, [props.gameName])
+  // useEffect(() => {
+  // }, [props.gameName])
   
   const animTitle = () => setAnimNow(!animNow);
 

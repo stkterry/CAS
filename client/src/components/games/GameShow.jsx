@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import { CSSTransitions } from "react-transition-group";
 
-import PlayerIcon from "./PlayerIcon";
 import CardLook from "../card_anims/CardLook";
 import FeatureSelectionModal from "../switch_modals/FeatureSelectionModal";
 
@@ -27,7 +26,7 @@ class GameShow extends React.Component {
 
   componentDidMount() {
     this.props.getGame(this.props.match.params.game_id);
-
+    console.log(this.props.game)
   }
 
   componentDidUpdate(prevProps) {
@@ -47,9 +46,11 @@ class GameShow extends React.Component {
 
     if (prevProps.gameName !== this.props.gameName) {
       this.setState({ gameName: this.props.gameName })
+      console.log(this.state.gameName)
     }
 
     if (prevProps.gameState !== this.props.gameState) {
+      console.log('here')
       this.setState({ gameState: this.props.gameState })
     }
 
