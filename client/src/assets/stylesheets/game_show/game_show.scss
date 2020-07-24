@@ -1,3 +1,6 @@
+@import './game_show-header';
+@import './player_icon';
+
 #game_show {
   // padding: 1rem;
   margin: 2.5rem auto;
@@ -23,14 +26,6 @@
     color: $palette_light;
   }
 }
-
-#game_show-header {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 
 #game_show-content {
   display: flex;

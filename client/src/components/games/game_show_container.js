@@ -6,7 +6,8 @@ const mSP = state => ({
   game: state.games.active,
   players: state.games.active.players,
   host: state.games.active.host,
-  gameName: state.games.active.name
+  gameName: state.games.active.name,
+  gameState: state.games.active.game_state
 });
 
 
