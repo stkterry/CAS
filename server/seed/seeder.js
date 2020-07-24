@@ -35,6 +35,7 @@ const registerGame = async data => {
       data,
       err => {if (err) throw err}
     );
+    // game.markModified('playerStates');
     await game.save();
     return game;
   } catch (err) { throw err }
@@ -92,13 +93,24 @@ const seedGames = async (amount) => {
     // I really can't figure out why this is necessary... maybe it's just that I'm really tired...
     players = [... new Set(players)];
 
-    // Clear the previous game and await successful game creation...
-
+    // Lets setup player states...
+    let playerStates = players.map(player => ({
+      _id: player._id,
+      white: [],
+      black: [],
+      score:0
+    }));
+    
     await registerGame({ 
         host: host_player._id, 
         players: players.map(player => player._id),
         name: host_player.handle + "'s Game",
-        cardPacks: chance.pickset(cardPacks, chance.integer(range))
+        cardPacks: chance.pickset(cardPacks, chance.integer(range)),
+        game_state: {
+          playerStates: playerStates,
+          cardsInPlay: { white: [], black: null },
+          currentTurn: null
+        }
       })
       .then(async game => {
 
@@ -106,6 +118,25 @@ const seedGames = async (amount) => {
           game.white.push(...pack.white);
           game.black.push(...pack.black);
         }
+
+        // Lets add some cards to the game_state!
+        game.game_state.playerStates = game.game_state.playerStates.map(playerState => {
+          let randArr = Array.from({length: 10}, () => {
+            let randIdx = Math.floor(Math.random() * game.white.length);
+            return game.white.splice(randIdx, 1)[0];
+          })
+          playerState.white = randArr;
+
+          randArr = Array.from({length: Math.floor(Math.random() * 7)}, () => {
+            let randIdx = Math.floor(Math.random() * game.black.length);
+            return game.black.splice(randIdx, 1)[0];
+          })
+
+          playerState.black = randArr;
+          playerState.score = randArr.length;
+
+          return playerState;
+        })
         await game.save();
 
         console.log(`Added Game - Host : ${host_player.handle}, Players: ${game.players.length}`);
@@ -170,8 +201,14 @@ const seedDB = () =>
       db.connection.close();
     });
 
+  const reseedDB = () => {
+    dropDBC()
+      .then(() => seedDB())
+  }
+
 module.exports = {
   dropDB,
   dropDBC,
-  seedDB
+  seedDB, 
+  reseedDB
 };

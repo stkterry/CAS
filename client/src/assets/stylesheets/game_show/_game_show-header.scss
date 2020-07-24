@@ -1,0 +1,32 @@
+
+
+#game_show-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1, h6 {
+    text-shadow: 0 0 .5rem black;
+  }
+
+
+}
+
+// CSS Transition game_show-header-title
+.game_show-header-title-enter {
+  font-size: 0rem;
+}
+.game_show-header-title-enter-active,
+.game_show-header-title-exit  {
+  transition: all 300ms ease;
+  font-size: 3.2rem;
+}
+// .game_show-header-title-exit {
+//   transition: all 500ms ease;
+//   font-size: 3.2rem;
+// }
+.game_show-header-title-exit-active {
+  font-size: 0rem;
+
+}

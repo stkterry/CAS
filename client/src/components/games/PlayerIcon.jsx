@@ -3,7 +3,6 @@ import { Link, withRouter } from "react-router-dom";
 
 const DEF_ICON = require("../../assets/images/user2.png");
 
-
 export default function PlayerIcons (props) {
   
   const genIcon = () => 

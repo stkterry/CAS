@@ -18,7 +18,8 @@ class GameShow extends React.Component {
       white: {},
       black: {},
       players: [],
-      gameName: "...Loading"
+      gameName: "...Loading",
+      gameState: null
     }
   }
 
@@ -46,6 +47,10 @@ class GameShow extends React.Component {
 
     if (prevProps.gameName !== this.props.gameName) {
       this.setState({ gameName: this.props.gameName })
+    }
+
+    if (prevProps.gameState !== this.props.gameState) {
+      this.setState({ gameState: this.props.gameState })
     }
 
   }

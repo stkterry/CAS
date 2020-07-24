@@ -14,6 +14,7 @@
     "dropDB": "node -e 'require(\"./server/seed/seeder.js\").dropDB()'",
     "dropDBC": "node -e 'require(\"./server/seed/seeder.js\").dropDBC()'",
     "seedDB": "node -e 'require(\"./server/seed/seeder.js\").seedDB()'",
+    "reseedDB": "node -e 'require(\"./server/seed/seeder.js\").reseedDB()'",
     "seedCards": "node -e 'require(\"./server/seed/seedCards.js\").seedCards()'"
   },
   "author": "Steven K Terry",
