@@ -63,7 +63,8 @@ router.get("/active/:game_id", (req, res) => {
 router.get("/getPlayerState/:game_id/:user_id", (req, res) => {
   const {game_id, user_id} = req.params;
 
-  Game.getPlayerState(game_id, user_id, res)
+  Game.getPlayerState(game_id, user_id)
+    .then(playerState => res.json(playerState))
     .catch(err => eRes(res, 404, ERRORS.noPlayerState))
     
 })
