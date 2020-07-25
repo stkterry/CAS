@@ -1,6 +1,6 @@
 const STATIC_USERS = [
   {
-    handle: "Cletus Deleteus",
+    handle: "Tina Careena",
     email: "a@b.com",
     password: "password"
   },
@@ -10,7 +10,7 @@ const STATIC_USERS = [
     password: "password"  
   },
   {
-    handle: "Tina Careena",
+    handle: "Cletus Deleteus",
     email: "c@d.com",
     password: "password"
   }

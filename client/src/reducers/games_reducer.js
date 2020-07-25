@@ -1,13 +1,21 @@
-import merge from "lodash/merge";
 import {
   RECEIVE_GAMES,
   RECEIVE_USER_GAMES,
   RECEIVE_NEW_GAME,
   RECEIVE_GAME,
-  RECEIVE_ACTIVE_GAME
+  RECEIVE_ACTIVE_GAME,
+  RECEIVE_PLAYER_STATE
 } from "../actions/game_actions";
 
-const GamesReducer = (state = { all: {}, user: {}, new: undefined, active: {} }, action) => {
+const initialState = { 
+  all: {}, 
+  user: {}, 
+  new: undefined, 
+  active: {},
+  playerState: {}
+}
+
+const GamesReducer = (state = initialState, action) => {
   Object.freeze(state);
   let newState = Object.assign({}, state);
   switch (action.type) {
@@ -18,7 +26,11 @@ const GamesReducer = (state = { all: {}, user: {}, new: undefined, active: {} },
       newState.all = [action.game.data].concat(state.all);
       return newState;
     case RECEIVE_ACTIVE_GAME:
+      console.log('receive game', action.game.data)
       newState.active = action.game.data;
+      return newState;
+    case RECEIVE_PLAYER_STATE:
+      newState.playerState = action.playerState.data;
       return newState;
     case RECEIVE_USER_GAMES:
       newState.user = action.games.data;

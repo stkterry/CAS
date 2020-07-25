@@ -42,30 +42,26 @@ router.get("/user/:user_id", (req, res) => {
 
 // /:id
 router.get("/:game_id", (req, res) => {
-  Game.findById(req.params.game_id)
-    .populate({
-      path: 'host players', select: 'handle _id'
-    })
-    .populate({
-      path: 'cardPacks', select: 'name _id quantity'
-    })
+  Game.getGame(req.params.game_id)
     .then(game => res.json(game))
     .catch(err => eRes(res, 404, ERRORS.noIDgames))
 })
 
 // /active/:game_id
-router.get("/active/:game_id", (req, res) => {
-    Game.getActive(req.params.game_id, res)
+router.get("/active/:game_id/:user_id", (req, res) => {
+    Game.getActive(req.params.game_id, req.params.user_id)
+    .then(game => res.json(game))
     .catch(err => eRes(res, 404, ERRORS.noIDgames))
 })
 
 // /getPlayerState/:game_id/:user_id
-router.get("/getPlayerState/:game_id/:user_id", (req, res) => {
+router.get("/playerState/:game_id/:user_id", (req, res) => {
   const {game_id, user_id} = req.params;
 
-  Game.getPlayerState(game_id, user_id)
+  Game.getPlayerState(game_id, user_id, res)
     .then(playerState => res.json(playerState))
-    .catch(err => eRes(res, 404, ERRORS.noPlayerState))
+    .catch(err => console.log(err))
+    // .catch(err => eRes(res, 404, ERRORS.noPlayerState))
     
 })
 
@@ -91,9 +87,3 @@ module.exports = router;
 
 
 
-/// YE OLDE JUNK CODE
- //   // .populate({
-  //   //   path: 'cardPacks', populate: {
-  //   //     path: 'white black', select: '-date -__v'
-  //   //   }, select: '-date -__v -url_id'
-  //   // })
