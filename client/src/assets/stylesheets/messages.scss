@@ -1,0 +1,58 @@
+@mixin message_box-height {
+  height: 350px;
+}
+
+#message_box-container {
+  // position: absolute;
+  // @include message_box-height;
+  // bottom: 0;
+  // width: 100%;
+  // background-color: rgba(0, 128, 0, 0.226);
+}
+
+#message_box {
+  position: absolute;
+  @include box-radius;
+  @include shell-shadow;
+  @include message_box-height;
+  width: 100%;
+  bottom: 0;
+  background-color: rgba(31, 31, 31, 0.589);
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+}
+
+#message_box-left {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#message_box-info {
+  height: 80px;
+  margin-bottom: 0; 
+}
+#message_box-users {
+  margin-top: auto;
+  height: 100%;
+}
+#message_box-right {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#message_box-body {
+  height: 100%;
+}
+
+#message_box-info, 
+#message_box-users,
+#message_box-body {
+  border: .1rem solid black;
+  @include box-radius-half;
+  margin: 1rem;
+  background: $palette_med_light;
+}

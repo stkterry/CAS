@@ -6,17 +6,16 @@
   margin: 2.5rem auto;
   min-width: 900px;
   max-width: 1200px;
+  min-height: 810px;
+  // max-height: 900px;
   width: 90%;
-  height: 100%;
   align-content: center;
   background: $palette_med_25o;
   @include shell-shadow;
-  border-radius: 1.6rem;
-  // background: $palette_light;
-  // @include main-content-spacing;
-  // min-height: 80vh;
+  @include box-radius;
+  position: relative;
 
-  height: 94.5vh;
+  height: 94vh;
 
   display: flex;
   flex-direction: column;
@@ -37,37 +36,30 @@
   border: .2rem solid rgba(61, 60, 42, 0.582);
   border-left-style: none;
   border-right-style: none;
-  // border: 1rem solid rgba(110, 107, 107, 0.514);
-
-  // background: rgba(161, 42, 42, 0.158);
-  // @include shell-shadow;
 }
 
-#game_show-left, #game_show-played_cards, #game_show-player_cards {
+#game_show-left, #game_show-right, #game_show-player_cards {
   @include shell-shadow;
-  border-radius: 1.6rem;
-  // background: $palette_light;
-  background: rgb(228, 228, 228);
+  @include box-radius;
+  background: $palette_med_light;
   margin: 1rem auto;
   min-height: 200px;
   max-height: 470px;
 }
 
-#game_show-left {
-  width: 30%;
-  max-width: 250px;
-  // background-color: rgba(204, 204, 13, 0.137);
-  // background: rgba(190, 26, 26, 0.082);
-
+#game_show-left, #game_show-right {
+  // padding: 0 1rem;
+  // box-sizing: border-box;
 }
 
-#game_show-played_cards {
-  // background-color: rgba(224, 28, 28, 0.308);
-  
-  width: 70%;
-  max-width: 800px;
+#game_show-left {
+  @include game_show-left_width;
+}
+
+#game_show-right {
+  @include game_show-right_width;
   min-width: 650px;
-  min-height: 325px;
+  min-height: 400px;
 
   display: flex;
   flex-wrap: wrap;
@@ -82,22 +74,30 @@
 .game_show-card:hover {
   @include card-shadow-large;
 }
+.game_show-player_cards {
+  grid-row-start: 1;
+}
+
+#game_show-bottom_buffer {
+  @include box-radius;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  // background-color: rgba(255, 230, 0, 0.267);
+}
 
 #game_show-player_cards {
   width: 100%;
-  margin: 1rem auto;
+  box-sizing: border-box;
+  margin-top: 1rem;
+  margin-bottom: 0;
   padding: .75rem 0;
   display: grid;
   grid-template-columns: repeat(9, 9.1%);
-  // grid-template-rows: 188px;
-  background-color: rgba(13, 26, 204, 0.137);
+  background-color: $palette_blue_15o;
 
   justify-content: center;
-}
-
-
-#game_show-current {
-
 }
 
 #game_show-black {
@@ -106,11 +106,6 @@
   margin: 2.5rem auto;
   justify-content: center;
 
-  h5 {
-    // padding-left: .75rem;
-    
-  }
-
   .game_show-current_turn {
     padding-left: .75rem;
     font-weight: bold;
@@ -118,17 +113,3 @@
 }
 
 
-
-
-.game_show-player_cards {
-  grid-row-start: 1;
-}
-// .game_show-player-cards:nth-child(1) { grid-column: 1 / 6; }
-// .game_show-player-cards:nth-child(2) { grid-column: 4 / 9; }
-// .game_show-player-cards:nth-child(3) { grid-column: 7 / 12; }
-// .game_show-player-cards:nth-child(4) { grid-column: 10 / 15; }
-// .game_show-player-cards:nth-child(5) { grid-column: 13 / 18; }
-// .game_show-player-cards:nth-child(6) { grid-column: 16 / 21; }
-// .game_show-player-cards:nth-child(7) { grid-column: 19 / 24; }
-// .game_show-player-cards:nth-child(8) { grid-column: 22 / 27; }
-// .game_show-player-cards:nth-child(9) { grid-column: 25 / 30; }

@@ -4,6 +4,7 @@ import { CSSTransitions } from "react-transition-group";
 
 import CardLook from "../card_anims/CardLook";
 import FeatureSelectionModal from "../switch_modals/FeatureSelectionModal";
+import MessageBoxContainer from "../messages/message_box_container";
 
 import GameHeader from "./header/GameHeader";
 
@@ -117,14 +118,17 @@ class GameShow extends React.Component {
               <h5 className="game_show-current_turn">{this.renderPlayerTurn()}</h5>
             </div>
           </div>
-          <div id="game_show-played_cards">
+          <div id="game_show-right">
             {this.renderWhiteCardsInPlay()}
           </div>
         </div>
-        <div id="game_show-player_cards">
-            {this.renderPlayerCards()}
-        </div>
-        <FeatureSelectionModal />
+          <div id="game_show-player_cards">
+              {this.renderPlayerCards()}
+          </div>
+          <div id="game_show-bottom_buffer">
+            <MessageBoxContainer />
+          </div>
+          <FeatureSelectionModal />
       </div>
     )
   }

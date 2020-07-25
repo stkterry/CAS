@@ -907,13 +907,14 @@ div::-webkit-scrollbar-thumb {
   margin: 2.5rem auto;
   min-width: 900px;
   max-width: 1200px;
+  min-height: 810px;
   width: 90%;
-  height: 100%;
   align-content: center;
   background: #1c2a3844;
   box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
   border-radius: 1.6rem;
-  height: 94.5vh;
+  position: relative;
+  height: 94vh;
   display: flex;
   flex-direction: column;
   align-items: center; }
@@ -930,7 +931,7 @@ div::-webkit-scrollbar-thumb {
   border-left-style: none;
   border-right-style: none; }
 
-#game_show-left, #game_show-played_cards, #game_show-player_cards {
+#game_show-left, #game_show-right, #game_show-player_cards {
   box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
   border-radius: 1.6rem;
   background: #e4e4e4;
@@ -942,11 +943,11 @@ div::-webkit-scrollbar-thumb {
   width: 30%;
   max-width: 250px; }
 
-#game_show-played_cards {
+#game_show-right {
   width: 70%;
   max-width: 800px;
   min-width: 650px;
-  min-height: 325px;
+  min-height: 400px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center; }
@@ -960,9 +961,21 @@ div::-webkit-scrollbar-thumb {
 .game_show-card:hover {
   box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.4), 0 4.5rem 10rem rgba(0, 0, 0, 0.4); }
 
+.game_show-player_cards {
+  grid-row-start: 1; }
+
+#game_show-bottom_buffer {
+  border-radius: 1.6rem;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0; }
+
 #game_show-player_cards {
   width: 100%;
-  margin: 1rem auto;
+  box-sizing: border-box;
+  margin-top: 1rem;
+  margin-bottom: 0;
   padding: .75rem 0;
   display: grid;
   grid-template-columns: repeat(9, 9.1%);
@@ -978,9 +991,6 @@ div::-webkit-scrollbar-thumb {
   #game_show-black .game_show-current_turn {
     padding-left: .75rem;
     font-weight: bold; }
-
-.game_show-player_cards {
-  grid-row-start: 1; }
 
 .card_look-container_white, .card_look-container_black {
   border-radius: 1rem;
@@ -1211,8 +1221,52 @@ div::-webkit-scrollbar-thumb {
   border: 0.1rem solid #424242;
   position: absolute; }
 
+#message_box {
+  position: absolute;
+  border-radius: 1.6rem;
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
+  height: 350px;
+  width: 100%;
+  bottom: 0;
+  background-color: rgba(31, 31, 31, 0.589);
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row; }
+
+#message_box-left {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column; }
+
+#message_box-info {
+  height: 80px;
+  margin-bottom: 0; }
+
+#message_box-users {
+  margin-top: auto;
+  height: 100%; }
+
+#message_box-right {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column; }
+
+#message_box-body {
+  height: 100%; }
+
+#message_box-info,
+#message_box-users,
+#message_box-body {
+  border: .1rem solid black;
+  border-radius: .8rem;
+  margin: 1rem;
+  background: #e4e4e4; }
+
 #fs_modal-container {
-  margin-top: auto; }
+  margin-top: 0; }
 
 #fs_modal {
   display: flex;

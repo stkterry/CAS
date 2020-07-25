@@ -1,7 +1,7 @@
 import React from "react"
 import { withRouter } from "react-router-dom";
 
-import GameBox from "../games/GameBox";
+import GameBox from "./GameBox";
 
 
 class Landing extends React.Component {

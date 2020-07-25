@@ -7,7 +7,23 @@
 }
 @mixin font-mont {
   font-family: 'Montserrat', sans-serif;
+}
 
+@mixin game_show-left_width {
+  width: 30%;
+  max-width: 250px;
+}
+@mixin game_show-right_width {
+  width: 70%;
+  max-width: 800px;
+}
+
+
+@mixin box-radius {
+  border-radius: 1.6rem;
+}
+@mixin box-radius-half {
+  border-radius: .8rem;
 }
 
 @mixin main-content-spacing {
