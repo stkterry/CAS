@@ -14,19 +14,27 @@ class GameShow extends React.Component {
 
     this.state = {
       game: {},
-      white: {},
-      black: {},
+      white: [],
+      black: [],
       players: [],
       gameName: "...Loading",
-      gameState: null
+      cardsInPlay: { white: [], black: [] },
+      rounds: null,
+      playerStates: [],
+      playerState: { white: [], black: [], score: null }
     }
+
+    this.mounted = false;
+    console.log('constructor', this.state.playerState)
   }
 
-  isLoaded = () => Object.entries(this.state.game).length > 0;
+
 
   componentDidMount() {
-    this.props.getGame(this.props.match.params.game_id);
-    console.log(this.props.game)
+    this.props.getActiveGame(this.props.match.params.game_id);
+    this.props.getPlayerState(this.props.match.params.game_id, this.props.user.id)
+    console.log('did mount', this.state.playerState)
+
   }
 
   componentDidUpdate(prevProps) {
@@ -35,49 +43,46 @@ class GameShow extends React.Component {
     }
 
     if (prevProps.game !== this.props.game) {
-      this.setState({ 
-        game: this.props.game
-      });
-    }
-
-    if (prevProps.players !== this.props.players) {
-      this.setState({ players: this.props.players })
-    }
-
-    if (prevProps.gameName !== this.props.gameName) {
-      this.setState({ gameName: this.props.gameName })
-      console.log(this.state.gameName)
-    }
-
-    if (prevProps.gameState !== this.props.gameState) {
-      console.log('here')
-      this.setState({ gameState: this.props.gameState })
-    }
-
-  }
-
-  renderCardsTemp = () => {
-    if (this.isLoaded()) {
-      let cards = [];
-      for (let i = 0; i < 8; i++) {
-        cards.push(this.state.game.white[Math.floor(Math.random() * this.state.game.white.length)]);
+      // Reconfigure playerStates
+      let playerStates = {};
+      for (let playerState of this.props.game.playerStates) {
+        playerStates[playerState._id] = playerState;
       }
-      return (
-        cards.map(card => (
-          <CardLook className={"game_show-played_card game_show-card"} key={card._id} card={card} />
-        ))
-      )
+      // Merge player data into playerStates!!!
+      for (let player of this.props.game.players) {
+        playerStates[player._id] = Object.assign(playerStates[player._id], player);
+      }
+
+      this.setState({
+        game: this.props.game,
+        white: this.props.game.white,
+        black: this.props.game.black,
+        cardsInPlay: this.props.game.cardsInPlay,
+        gameName: this.props.game.name,
+        players: this.props.game.players,
+        playerStates: playerStates,
+      })
+
     }
+
+    if (prevProps.playerState !== this.props.playerState) {
+      this.setState({ playerState: this.props.playerState });
+    }
+
   }
 
-  renderBlackCardTemp = () => {
-    if (this.isLoaded()) {
-      const card = this.state.game.black[Math.floor(Math.random() * this.state.game.black.length)];
+  renderWhiteCardsInPlay = () => {
+    const cards = this.state.cardsInPlay.white;
+    return cards.map(card => 
+      <CardLook className={"game_show-played_card game_show-card"} key={card._id} card={card} />
+    )
+  }
 
-      return(
-        <CardLook className="game_show-player_cards game_show-card" key={card._id} card={card} />
-      )
-    }
+  renderBlackCardInPlay = () => {
+    const card = this.state.cardsInPlay.black;
+    return (
+      <CardLook className="game_show-player_cards game_show-card" key={card._id} card={card} />
+    )
   }
 
   renderPlayerTurnTemp = () => {
@@ -85,26 +90,19 @@ class GameShow extends React.Component {
       const player = this.state.game.players[Math.floor(Math.random() * this.state.game.players.length)];
       return player.handle + "'s turn"
     }
-
   }
 
-  renderPlayerCardsTemp = () => {
-    if (this.isLoaded()) {
-      const cards = new Array(10);
-      for (let i = 0; i < 10; i++) {
-        cards[i] = this.state.game.white[Math.floor(Math.random() * this.state.game.white.length)];
-      }
-
-      return (
-        cards.map(card => (
-          <CardLook className={"game_show-player_cards game_show-card"} key={card._id} card={card} />
-        ))
-      )
-      
-    }
+  renderPlayerCards = () => {
+    const cards = this.state.playerState.white;
+    return (
+      cards.map(card => (
+        <CardLook className={"game_show-player_cards game_show-card"} key={card._id} card={card} />
+      ))
+    )
   }
 
   render() {
+
     return (
       <div id="game_show">
         <GameHeader players={this.state.players} gameName={this.state.gameName}/>
@@ -114,16 +112,16 @@ class GameShow extends React.Component {
 
             </div>
             <div id ="game_show-black">
-              {this.renderBlackCardTemp()}
+              {this.renderBlackCardInPlay()}
               <h5 className="game_show-current_turn">{this.renderPlayerTurnTemp()}</h5>
             </div>
           </div>
           <div id="game_show-played_cards">
-            {this.renderCardsTemp()}
+            {this.renderWhiteCardsInPlay()}
           </div>
         </div>
         <div id="game_show-player_cards">
-            {this.renderPlayerCardsTemp()}
+            {this.renderPlayerCards()}
         </div>
         <FeatureSelectionModal />
       </div>

@@ -21,9 +21,12 @@ const cardPacks = require("./server/routes/api/cardPacks");
 const cards = require("./server/routes/api/cards");
 
 mongoose
+  .set('debug', true)
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
+
+mongoose.Promise = global.Promise;
 
 app.use(passport.initialize());
 require('./server/config/passport')(passport);

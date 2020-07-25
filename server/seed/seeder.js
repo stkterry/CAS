@@ -71,18 +71,26 @@ const seedUsers = async (amount) => {
 };
 
 const seedGames = async (amount) => {
+
+
   const users = await User.find();
   const cardPacks = await CardPack.find();
+  const tina = await User.findOne({ 'handle' : 'Tina Careena' }).exec();
+
+
   const range = {
     min: cardPacks.length ? 3 : 0,
     max: cardPacks.length ? cardPacks.length : 0
   };
 
+
   for (let i = 0; i < amount; i++) {
     let host_player = chance.pickone(users);
     let players = [host_player];
 
-    let numPlayers = chance.integer({ min: 3, max: 8 });
+    if (String(host_player._id) != String(tina._id)) players.push(tina);
+
+    let numPlayers = chance.integer({ min: 3, max: 7 });
     while (players.length < numPlayers) {
       let tempPlayer = chance.pickone(users);
       if (String(tempPlayer._id) != String(host_player._id)) {
@@ -106,12 +114,10 @@ const seedGames = async (amount) => {
         players: players.map(player => player._id),
         name: host_player.handle + "'s Game",
         cardPacks: chance.pickset(cardPacks, chance.integer(range)),
-        game_state: {
-          playerStates: playerStates,
-          cardsInPlay: { white: [], black: null },
-          currentTurn: null,
-          rounds: 0
-        }
+        playerStates: playerStates,
+        cardsInPlay: { white: [], black: null },
+        currentTurn: null,
+        rounds: 0
       })
       .then(async game => {
 
@@ -121,10 +127,10 @@ const seedGames = async (amount) => {
         }
         game.white = chance.shuffle(game.white);
         game.black = chance.shuffle(game.black);
-        game.game_state.playerStates = chance.shuffle(game.game_state.playerStates);
+        game.playerStates = chance.shuffle(game.playerStates);
 
         // Lets add some cards to the game_state.playerStates!
-        game.game_state.playerStates = game.game_state.playerStates.map(playerState => {
+        game.playerStates = game.playerStates.map(playerState => {
 
           playerState.white = game.white.splice(0, 10);
 
@@ -138,23 +144,23 @@ const seedGames = async (amount) => {
         // Now lets fill up the cards in play...
         // First the white cards... we'll take from the player states' cards
         const numCardsInPlay = chance.integer({min: 1, max: game.players.length - 1}) // Exclude whoever is current player...
-        game.game_state.cardsInPlay.white = Array.from(
+        game.cardsInPlay.white = Array.from(
           {length: numCardsInPlay}, 
-          (_, idx) => game.game_state.playerStates[idx].white.pop()
+          (_, idx) => game.playerStates[idx].white.pop()
         )
 
         // Now lets get a random black card to be the one in play, also assign a person to currentTurn
-        game.game_state.cardsInPlay.black = game.black.pop();
-        game.game_state.currentTurn = game.game_state.playerStates[numCardsInPlay]['_id'];
+        game.cardsInPlay.black = game.black.pop();
+        game.currentTurn = game.playerStates[numCardsInPlay]['_id'];
 
         // Lastly, lets look at the total number of rounds played, and discard the appropriate number of cards
-        game.game_state.rounds = game.game_state.playerStates
+        game.rounds = game.playerStates
           .map(playerState => playerState.score)
           .reduce((score, cur) => score + cur);
 
 
         // We are just going to assume all players present for every round and no special draw x play y black cards
-        let totalCardsDiscarded = game.game_state.rounds * (game.players.length - 1);
+        let totalCardsDiscarded = game.rounds * (game.players.length - 1);
         game.discardedWhite = game.white.splice(0, totalCardsDiscarded);
 
         await game.save();
