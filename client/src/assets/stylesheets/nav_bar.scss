@@ -1,6 +1,7 @@
 // @import "./palettes";
 
 #nav_bar-container {
+  z-index: 2;
   width: 100%;
   top: 0;
   transition: all 1000ms;
@@ -14,7 +15,7 @@
     font-weight: bold;
     color: rgba(233, 233, 233, 0.5);
     font-size: 3rem;
-    text-shadow: 0 0 1rem rgba(172, 172, 172, 0.507);
+    @include small-text-shadow;
   }
 }
 
@@ -25,7 +26,8 @@
   align-items: center;
   @include shell-shadow;
 
-  background-color: $palette_med;
+  // background-color: $palette_med;
+  background: $palette_light;
 
   position: absolute;
   height: 4.5rem;
@@ -37,26 +39,27 @@
 }
 
 .title-text {
-  font-family: "Luckiest Guy", cursive;
+  @include font-luckiest;
   padding-left: .4rem;
   color: $palette_text_light;
-  font-size: 2.4rem;
+  color: $palette_text_dark;
+  font-size: 2.5rem;
 }
 
 .secondary-text {
+  @include font-mont_alt;
   padding-left: 1rem;
   color: $palette_text_med;
+  font-weight: bold;
   font-size: 1.2rem;
 }
 
-.nav_bar-carats {
-  i {
-    color: white;
-    font-size: 1.2rem;
-    box-shadow: 0 0 2px red;
-    // text-shadow: 4px 4px #ff0000;
-  }
-}
+// .nav_bar-carats {
+//   i {
+//     color: white;
+//     font-size: 1.2rem;
+//   }
+// }
 
 
 .nav_bar-enter {

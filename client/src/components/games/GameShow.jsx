@@ -20,12 +20,9 @@ class GameShow extends React.Component {
       gameName: "...Loading",
       cardsInPlay: { white: [], black: [] },
       rounds: null,
-      playerStates: [],
+      playerStates: {},
       playerState: { white: [], black: [], score: null }
     }
-
-    this.mounted = false;
-    console.log('constructor', this.state.playerState)
   }
 
 
@@ -33,8 +30,6 @@ class GameShow extends React.Component {
   componentDidMount() {
     this.props.getActiveGame(this.props.match.params.game_id);
     this.props.getPlayerState(this.props.match.params.game_id, this.props.user.id)
-    console.log('did mount', this.state.playerState)
-
   }
 
   componentDidUpdate(prevProps) {
@@ -55,6 +50,7 @@ class GameShow extends React.Component {
 
       this.setState({
         game: this.props.game,
+        currentTurn: this.props.game.currentTurn,
         white: this.props.game.white,
         black: this.props.game.black,
         cardsInPlay: this.props.game.cardsInPlay,
@@ -85,10 +81,11 @@ class GameShow extends React.Component {
     )
   }
 
-  renderPlayerTurnTemp = () => {
-    if (this.state.game.players) {
-      const player = this.state.game.players[Math.floor(Math.random() * this.state.game.players.length)];
-      return player.handle + "'s turn"
+  renderPlayerTurn = () => {
+    if (!this.state.currentTurn) return;
+    else {
+      const handle = this.state.playerStates[this.state.currentTurn].handle;
+      return handle + "'s turn"
     }
   }
 
@@ -105,7 +102,11 @@ class GameShow extends React.Component {
 
     return (
       <div id="game_show">
-        <GameHeader players={this.state.players} gameName={this.state.gameName}/>
+        <GameHeader 
+          playerStates={this.state.playerStates} 
+          gameName={this.state.gameName}
+          currentTurn={this.state.currentTurn}
+        />
         <div id="game_show-content">
           <div id="game_show-left">
             <div id="game_show-current">
@@ -113,7 +114,7 @@ class GameShow extends React.Component {
             </div>
             <div id ="game_show-black">
               {this.renderBlackCardInPlay()}
-              <h5 className="game_show-current_turn">{this.renderPlayerTurnTemp()}</h5>
+              <h5 className="game_show-current_turn">{this.renderPlayerTurn()}</h5>
             </div>
           </div>
           <div id="game_show-played_cards">
