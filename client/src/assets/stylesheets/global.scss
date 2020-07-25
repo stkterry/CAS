@@ -1,5 +1,5 @@
 @import "./_palettes.scss";
-
+@import "./mixins";
 
 
 .noselect {
@@ -27,6 +27,15 @@ body {
   width: 100%;
 }
 
+.btn-black-red {
+  background: $palette_dark !important;
+  border-color: $palette_dark !important;
+}
+.btn-black-red:hover {
+  background:$button_red !important;
+  border-color: $button_red !important;
+}
+
 .btn-default {
   font-size: 1.8rem;
   border: .5px solid $button_red;
@@ -51,8 +60,8 @@ body {
   background: $button_red;
   font-size: 1.8rem;
   font-weight: bold;
-  font-family: 'Montserrat Alternates', sans-serif;
-  // text-transform: uppercase;
+  @include font-mont_alt;
+  
   text-decoration: none;
   padding: .5rem 1rem;
   border-radius: .7rem;
@@ -74,7 +83,7 @@ transition: all 0.4s ease 0s;
   background: linear-gradient(to right, #67b26b, #4ca2cb) !important;
   border: none;
   color: $palette_dark;
-	font-family: 'Montserrat Alternates', sans-serif;
+	@include font-mont_alt;
   font-weight: bold;
   text-align: center;
   font-size: 1.8rem;

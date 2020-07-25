@@ -63,8 +63,11 @@ class NavBar extends React.Component {
               <h2 className="secondary-text">&#8627; {this.state.phrase}</h2>
             </div>
             <div>
-              <Link to={'/profile'}>Profile</Link>
-              <button onClick={this.logoutUser}>Logout</button>
+              <button className="btn-ghost btn-black-red" >Create New Game</button>
+              <Link className="btn-ghost btn-black-red" to={'/profile'}>
+                Profile
+              </Link>
+              <button className="btn-ghost " onClick={this.logoutUser}>Logout</button>
             </div>
           </div>
         </CSSTransition>

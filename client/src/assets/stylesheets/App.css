@@ -98,6 +98,14 @@ body {
   left: 0;
   width: 100%; }
 
+.btn-black-red {
+  background: #0d0f13 !important;
+  border-color: #0d0f13 !important; }
+
+.btn-black-red:hover {
+  background: #b50303 !important;
+  border-color: #b50303 !important; }
+
 .btn-default {
   font-size: 1.8rem;
   border: 0.5px solid #b50303;
@@ -709,6 +717,7 @@ div::-webkit-scrollbar-thumb {
   animation: ease-in-out card_flipRotTransLR 1000ms forwards; }
 
 #nav_bar-container {
+  z-index: 2;
   width: 100%;
   top: 0;
   transition: all 1000ms;
@@ -721,7 +730,7 @@ div::-webkit-scrollbar-thumb {
     font-weight: bold;
     color: rgba(233, 233, 233, 0.5);
     font-size: 3rem;
-    text-shadow: 0 0 1rem rgba(172, 172, 172, 0.507); }
+    text-shadow: 0 0 1rem rgba(172, 162, 172, 0.5); }
 
 #nav_bar {
   display: flex;
@@ -729,7 +738,7 @@ div::-webkit-scrollbar-thumb {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
-  background-color: #1c2a38;
+  background: #ececec;
   position: absolute;
   height: 4.5rem;
   width: 100%; }
@@ -738,17 +747,15 @@ div::-webkit-scrollbar-thumb {
   font-family: "Luckiest Guy", cursive;
   padding-left: .4rem;
   color: #ececec;
-  font-size: 2.4rem; }
+  color: #0d0f13;
+  font-size: 2.5rem; }
 
 .secondary-text {
+  font-family: 'Montserrat Alternates', sans-serif;
   padding-left: 1rem;
   color: #818181;
+  font-weight: bold;
   font-size: 1.2rem; }
-
-.nav_bar-carats i {
-  color: white;
-  font-size: 1.2rem;
-  box-shadow: 0 0 2px red; }
 
 .nav_bar-enter {
   top: -6rem; }
@@ -838,8 +845,12 @@ div::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   align-items: center; }
-  #game_show-header h1, #game_show-header h6 {
+  #game_show-header h1 {
     text-shadow: 0 0 .5rem black; }
+
+#game_show-header-players {
+  display: flex;
+  flex-direction: row; }
 
 .game_show-header-title-enter {
   font-size: 0rem; }
@@ -853,17 +864,38 @@ div::-webkit-scrollbar-thumb {
   font-size: 0rem; }
 
 .player_icon {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: .8rem;
   padding: .5rem;
   margin: .5rem .5rem;
   width: 8rem;
-  background-color: rgba(255, 0, 0, 0.342); }
-  .player_icon h6 {
-    font-weight: 500;
-    color: #ececec;
-    text-align: center; }
+  background-color: #ececec1c;
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4); }
+  .player_icon h5, .player_icon h6 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 1rem rgba(172, 162, 172, 0.5); }
+
+.player_icon-score-container {
+  width: 2rem;
+  right: .23rem;
+  top: 5rem;
+  position: absolute; }
+
+.player_icon-score {
+  color: white;
+  font-weight: bold;
+  text-align: center; }
+
+.player_icon-czar {
+  color: white;
+  position: absolute;
+  right: .2rem;
+  top: .2rem; }
 
 .player_icon-ico {
   height: 6rem;
@@ -894,25 +926,27 @@ div::-webkit-scrollbar-thumb {
   max-height: 1000px;
   max-width: 1200px;
   width: 100%;
-  border: 2px solid black; }
+  border: 0.2rem solid rgba(61, 60, 42, 0.582);
+  border-left-style: none;
+  border-right-style: none; }
 
-#game_show-left, #game_show-played_cards {
+#game_show-left, #game_show-played_cards, #game_show-player_cards {
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
+  border-radius: 1.6rem;
+  background: #e4e4e4;
   margin: 1rem auto;
   min-height: 200px;
   max-height: 470px; }
 
 #game_show-left {
   width: 30%;
-  max-width: 250px;
-  background: #ececec; }
+  max-width: 250px; }
 
 #game_show-played_cards {
   width: 70%;
   max-width: 800px;
-  max-height: 470px;
   min-width: 650px;
   min-height: 325px;
-  background: #ececec;
   display: flex;
   flex-wrap: wrap;
   justify-content: center; }
@@ -926,9 +960,14 @@ div::-webkit-scrollbar-thumb {
 .game_show-card:hover {
   box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.4), 0 4.5rem 10rem rgba(0, 0, 0, 0.4); }
 
-#game_show-players {
-  display: flex;
-  flex-direction: row; }
+#game_show-player_cards {
+  width: 100%;
+  margin: 1rem auto;
+  padding: .75rem 0;
+  display: grid;
+  grid-template-columns: repeat(9, 9.1%);
+  background-color: rgba(13, 26, 204, 0.137);
+  justify-content: center; }
 
 #game_show-black {
   border-radius: 1rem;
@@ -939,15 +978,6 @@ div::-webkit-scrollbar-thumb {
   #game_show-black .game_show-current_turn {
     padding-left: .75rem;
     font-weight: bold; }
-
-#game_show-player_cards {
-  width: 100%;
-  margin: 1rem auto;
-  padding: .75rem 0;
-  background: yellow;
-  display: grid;
-  grid-template-columns: repeat(9, 9.1%);
-  justify-content: center; }
 
 .game_show-player_cards {
   grid-row-start: 1; }

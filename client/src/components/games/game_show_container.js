@@ -5,6 +5,7 @@ import GameShow from "./GameShow";
 const mSP = state => ({
   user: state.session.user,
   game: state.games.active,
+  playerStates: state.games.active.playerStates,
   playerState: state.games.playerState,
   players: [],
   host: null,

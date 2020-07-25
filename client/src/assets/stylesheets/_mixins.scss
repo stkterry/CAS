@@ -1,4 +1,15 @@
 
+@mixin font-luckiest {
+  font-family: "Luckiest Guy", cursive;
+}
+@mixin font-mont_alt {
+  font-family: 'Montserrat Alternates', sans-serif;
+}
+@mixin font-mont {
+  font-family: 'Montserrat', sans-serif;
+
+}
+
 @mixin main-content-spacing {
   padding: 1rem;
   margin: 5rem auto;
@@ -96,6 +107,11 @@ $card_flip-sep: 160px;
   background: none;
   transform: rotateY(180deg);
 }
+
+@mixin small-text-shadow {
+  text-shadow: 0 0 1rem rgba(172, 162, 172, 0.5);
+}
+
 
 @mixin shell-shadow {
   box-shadow: 0 .8rem 1.6rem 0 rgba(0, 0, 0, 0.5);

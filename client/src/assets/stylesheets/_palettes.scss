@@ -1,12 +1,20 @@
 
-
+  
+$palette_blue: rgb(15, 19, 77);
+$palette_blue_15o: rgba(13, 26, 204, 0.137);
 $palette_dark: #0d0f13;
 $palette_med: #1c2a38;
+$palette_semi_med: #37526d;
 $palette_accent: #f2a365;
 $palette_light: #ececec;
 $palette_text_light: #ececec;
 $palette_text_med: #818181;
+$palette_text_semi_dark: #171c25;
+
+$palette_text_dark: #0d0f13;
+
 $button_red: rgb(181, 3, 3);
+$button_black: rgba(13, 13, 13, .75);
 
 
 $palette_dark_50o: #0d0f1380;
@@ -18,3 +26,9 @@ $palette_dark_25o: #0d0f1342;
 $palette_med_25o: #1c2a3844;
 $palette_accent_25o: #f2a26548;
 $palette_light_25o: #ececec48;
+
+
+$palette_dark_10o: #0d0f1318;
+$palette_med_10o: #1c2a381c;
+$palette_accent_10o: #f2a2651c;
+$palette_light_10o: #ececec1c;

@@ -26,7 +26,6 @@ const GamesReducer = (state = initialState, action) => {
       newState.all = [action.game.data].concat(state.all);
       return newState;
     case RECEIVE_ACTIVE_GAME:
-      console.log('receive game', action.game.data)
       newState.active = action.game.data;
       return newState;
     case RECEIVE_PLAYER_STATE:
