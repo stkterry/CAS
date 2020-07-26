@@ -110,9 +110,7 @@ class GameShow extends React.Component {
         />
         <div id="game_show-content">
           <div id="game_show-left">
-            <div id="game_show-current">
-
-            </div>
+            {/* <div id="game_show-current"></div> */}
             <div id ="game_show-black">
               {this.renderBlackCardInPlay()}
               <h5 className="game_show-current_turn">{this.renderPlayerTurn()}</h5>

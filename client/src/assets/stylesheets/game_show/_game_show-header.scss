@@ -17,19 +17,31 @@
 }
 
 // CSS Transition game_show-header-title
-.game_show-header-title-enter {
+.game_show-header-transitions-title-enter {
   font-size: 0rem;
 }
-.game_show-header-title-enter-active,
-.game_show-header-title-exit  {
+.game_show-header-transitions-title-enter-active,
+.game_show-header-transitions-title-exit  {
   transition: all 300ms ease;
   font-size: 3.2rem;
 }
-// .game_show-header-title-exit {
-//   transition: all 500ms ease;
-//   font-size: 3.2rem;
-// }
-.game_show-header-title-exit-active {
+.game_show-header-transitions-title-exit-active {
+  font-size: 0rem;
+}
+
+
+
+
+
+.game_show-header-transitions-handles-enter {
+  font-size: 0rem;
+}
+.game_show-header-transitions-handles-enter-active,
+.game_show-header-transitions-handles-exit {
+  font-size: 1.1rem;
+  transition: all 300ms ease;
+}
+.game_show-header-transitions-handles-exit-active {
   font-size: 0rem;
 
 }
