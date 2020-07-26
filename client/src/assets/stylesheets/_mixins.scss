@@ -105,9 +105,23 @@ $card_flip-sep: 160px;
   padding: 1.5rem;
   h3 {
     font-size: 2rem;
-    font-family: "Luckiest Guy", cursive;
+    @include font-luckiest;
   }
   color: white;
+}
+
+@mixin card-color-white {
+  background-color: $palette_light;
+  h1, h2, h3, h4, h5, h6 {
+    color: black;
+  }  
+}
+
+@mixin card-color-black {
+  background-color: rgb(10, 10, 10);
+  h1, h2, h3, h4, h5, h6 {
+    color: $palette_light;
+  }  
 }
 
 @mixin card-back {
@@ -123,6 +137,37 @@ $card_flip-sep: 160px;
   background: none;
   transform: rotateY(180deg);
 }
+
+////////////////////////////
+
+@mixin card-front-white {
+  @include card-front;
+  @include card-color-white;
+}
+@mixin card-front-black {
+  @include card-front;
+  @include card-color-black;
+}
+
+@mixin card-back-white {
+  @include card-back;
+  @include card-color-white;
+}
+@mixin card-back-black {
+  @include card-back;
+  @include card-color-black;
+}
+
+@mixin card-inner-white {
+  @include card-inner;
+  @include card-color-white;
+}
+
+@mixin card-inner-black {
+  @include card-inner;
+  @include card-color-black;
+}
+
 
 @mixin small-text-shadow {
   text-shadow: 0 0 1rem rgba(172, 162, 172, 0.5);

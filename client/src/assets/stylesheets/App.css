@@ -687,7 +687,7 @@ div::-webkit-scrollbar-thumb {
 .card_flip-transition-enter {
   right: 0px; }
 
-.card_flip-transition-enter-active .card_flip-inner {
+.card_flip-transition-enter-active .card-inner-black, .card_flip-transition-enter-active .card-inner-white {
   animation: ease-in-out card_flipRotTransLR 1000ms forwards; }
 
 #nav_bar-container {
@@ -1262,5 +1262,233 @@ div::-webkit-scrollbar-thumb {
 #fs_modal {
   display: flex;
   flex-direction: row; }
+
+.card-face {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+
+.card-front {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  padding: 1.5rem; }
+  .card-front h3 {
+    font-size: 2rem;
+    font-family: "Luckiest Guy", cursive; }
+
+.card-back {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 15;
+  /* number of lines to show */
+  -webkit-box-orient: vertical; }
+  .card-back h1, .card-back h2, .card-back h3, .card-back h4, .card-back h5, .card-back h6 {
+    padding: 1.35rem 1rem 1rem 1rem;
+    font-family: Aerial, sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem; }
+
+.card-container {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  box-sizing: border-box;
+  background: none;
+  perspective: 1000px; }
+
+.card-inner {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  background: none;
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4);
+  transform: rotateY(-180deg); }
+
+.card-front-white {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  padding: 1.5rem;
+  background-color: #ececec; }
+  .card-front-white h3 {
+    font-size: 2rem;
+    font-family: "Luckiest Guy", cursive; }
+  .card-front-white h1, .card-front-white h2, .card-front-white h3, .card-front-white h4, .card-front-white h5, .card-front-white h6 {
+    color: black; }
+
+.card-front-black {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  padding: 1.5rem;
+  background-color: #0a0a0a; }
+  .card-front-black h3 {
+    font-size: 2rem;
+    font-family: "Luckiest Guy", cursive; }
+  .card-front-black h1, .card-front-black h2, .card-front-black h3, .card-front-black h4, .card-front-black h5, .card-front-black h6 {
+    color: #ececec; }
+
+.card-back-white {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 15;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+  background-color: #ececec; }
+  .card-back-white h1, .card-back-white h2, .card-back-white h3, .card-back-white h4, .card-back-white h5, .card-back-white h6 {
+    padding: 1.35rem 1rem 1rem 1rem;
+    font-family: Aerial, sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem; }
+  .card-back-white h1, .card-back-white h2, .card-back-white h3, .card-back-white h4, .card-back-white h5, .card-back-white h6 {
+    color: black; }
+
+.card-back-black {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 15;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+  background-color: #0a0a0a; }
+  .card-back-black h1, .card-back-black h2, .card-back-black h3, .card-back-black h4, .card-back-black h5, .card-back-black h6 {
+    padding: 1.35rem 1rem 1rem 1rem;
+    font-family: Aerial, sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem; }
+  .card-back-black h1, .card-back-black h2, .card-back-black h3, .card-back-black h4, .card-back-black h5, .card-back-black h6 {
+    color: #ececec; }
+
+.card-inner-white {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  background: none;
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
+  background-color: #ececec;
+  transform: rotateY(-180deg); }
+  .card-inner-white h1, .card-inner-white h2, .card-inner-white h3, .card-inner-white h4, .card-inner-white h5, .card-inner-white h6 {
+    color: black; }
+
+.card-inner-black {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  background: none;
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
+  background-color: #0a0a0a;
+  transform: rotateY(-180deg); }
+  .card-inner-black h1, .card-inner-black h2, .card-inner-black h3, .card-inner-black h4, .card-inner-black h5, .card-inner-black h6 {
+    color: #ececec; }
+
+.card-shadow {
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4); }
+
+.card-shadow-dark {
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4); }
+
+.card-shadow-large {
+  box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.4), 0 4.5rem 10rem rgba(0, 0, 0, 0.4); }
+
+.card-abs {
+  border: 0.1rem solid #424242;
+  position: absolute; }
+
+.card-abs-sep {
+  position: absolute;
+  right: 160px; }
+
+.card-back-rot {
+  transform: rotateY(180deg); }
+
+@keyframes card_flipRotTransLR {
+  0% {
+    right: 0px;
+    transform: rotateY(0deg) scale3d(1, 1, 1); }
+  50% {
+    transform: rotateY(-90deg) scale3d(1.2, 1.2, 1.2); }
+  100% {
+    right: 160px;
+    transform: rotateY(-180deg) scale3d(1, 1, 1); } }
+.card-container-transition-enter {
+  right: 0px; }
+
+.card-container-transition-enter-active .card-inner-black, .card-container-transition-enter-active .card-inner-white {
+  animation: ease-in-out card_flipRotTransLR 1000ms forwards; }
 
 /*# sourceMappingURL=App.css.map */
