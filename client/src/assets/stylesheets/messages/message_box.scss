@@ -8,6 +8,7 @@
   // bottom: 0;
   // width: 100%;
   // background-color: rgba(0, 128, 0, 0.226);
+  // height: 100%;
 }
 
 #message_box {
@@ -18,11 +19,22 @@
   width: 100%;
   bottom: 0;
   background-color: rgba(31, 31, 31, 0.74);
-  padding: 1rem;
+  padding: 0rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
 }
+
+#message_box-info, 
+#message_box-users,
+#message_box-body {
+  @include box-radius-half;
+  box-sizing: border-box;
+  border: .25rem solid $palette_med;
+  margin: 1rem;
+  background: $palette_med_light;
+}
+
 
 #message_box-left {
   width: 30%;
@@ -35,24 +47,30 @@
   margin-bottom: 0; 
 }
 #message_box-users {
-  margin-top: auto;
   height: 100%;
+  @include inner-shell-shadow;
 }
 #message_box-right {
+  box-sizing: border-box;
   width: 70%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  // background-color: rgba(0, 128, 0, 0.651);
+
+
 }
 #message_box-body {
   height: 100%;
+  position: relative;
+  // background-color: rgba(255, 192, 203, 0.521);
+  @include inner-shell-shadow;
+
+
+  
 }
 
-#message_box-info, 
-#message_box-users,
-#message_box-body {
-  border: .1rem solid black;
-  @include box-radius-half;
-  margin: 1rem;
-  background: $palette_med_light;
-}
+
+
+
+///// Message Item ///////////////////////////////

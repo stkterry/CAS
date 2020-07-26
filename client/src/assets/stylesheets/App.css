@@ -87,7 +87,9 @@ table {
 body {
   background-image: url("../images/alphaTile1080.png");
   background-repeat: repeat;
-  background-color: #1c2a38; }
+  background-color: #1c2a38;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 #footer {
   margin-top: 1rem;
@@ -178,24 +180,19 @@ body {
   opacity: 1;
   right: 0; }
 
-div {
-  --scrollbarBG: #CFD8DC;
-  --thumbBG: #90A4AE; }
-
-div::-webkit-scrollbar {
-  width: 11px; }
-
-div {
+div, ul {
+  scrollbar-width: 8px;
   scrollbar-width: thin;
-  scrollbar-color: var(--thumbBG) var(--scrollbarBG); }
+  scrollbar-color: green !important; }
 
-div::-webkit-scrollbar-track {
-  background: var(--scrollbarBG); }
+ul::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+  border-radius: 8px; }
 
-div::-webkit-scrollbar-thumb {
-  background-color: var(--thumbBG);
-  border-radius: 6px;
-  border: 3px solid var(--scrollbarBG); }
+ul::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #1c2a38; }
 
 #splash-hero {
   padding: 2rem;
@@ -442,7 +439,6 @@ div::-webkit-scrollbar-thumb {
   backface-visibility: hidden;
   padding: 1.5rem;
   color: white;
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
   background-color: black; }
   .card_front-front h3 {
     font-size: 2rem;
@@ -820,7 +816,8 @@ div::-webkit-scrollbar-thumb {
   flex-direction: column;
   align-items: center; }
   #game_show-header h1 {
-    text-shadow: 0 0 .5rem black; }
+    text-shadow: 0 0 .5rem black;
+    color: #ececec; }
 
 #game_show-header-players {
   display: flex;
@@ -903,8 +900,6 @@ div::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: column;
   align-items: center; }
-  #game_show h1 {
-    color: #ececec; }
 
 #game_show-content {
   display: flex;
@@ -927,12 +922,12 @@ div::-webkit-scrollbar-thumb {
 
 #game_show-left {
   width: 30%;
-  max-width: 250px; }
+  max-width: 225px; }
 
 #game_show-right {
   width: 70%;
   max-width: 800px;
-  min-width: 650px;
+  min-width: 625px;
   min-height: 400px;
   display: flex;
   flex-wrap: wrap;
@@ -1220,10 +1215,19 @@ div::-webkit-scrollbar-thumb {
   width: 100%;
   bottom: 0;
   background-color: rgba(31, 31, 31, 0.74);
-  padding: 1rem;
+  padding: 0rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: row; }
+
+#message_box-info,
+#message_box-users,
+#message_box-body {
+  border-radius: .8rem;
+  box-sizing: border-box;
+  border: 0.25rem solid #1c2a38;
+  margin: 1rem;
+  background: #e4e4e4; }
 
 #message_box-left {
   width: 30%;
@@ -1236,25 +1240,77 @@ div::-webkit-scrollbar-thumb {
   margin-bottom: 0; }
 
 #message_box-users {
-  margin-top: auto;
-  height: 100%; }
+  height: 100%;
+  box-shadow: inset 0 0 0.5rem #141414; }
 
 #message_box-right {
+  box-sizing: border-box;
   width: 70%;
   height: 100%;
   display: flex;
   flex-direction: column; }
 
 #message_box-body {
-  height: 100%; }
+  height: 100%;
+  position: relative;
+  box-shadow: inset 0 0 0.5rem #141414; }
 
-#message_box-info,
-#message_box-users,
-#message_box-body {
-  border: .1rem solid black;
+#message_box-form-gutter {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; }
+
+#message_box-form {
+  z-index: 1;
+  margin: 1.1rem;
+  height: 5rem;
+  background-color: #ececec;
+  border: 0.1rem solid #1c2a38;
+  border-radius: .4rem;
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4); }
+  #message_box-form textarea {
+    box-sizing: border-box;
+    padding: .25rem 1rem;
+    width: 100%;
+    height: 100%;
+    background: none;
+    text-align: bottom;
+    resize: none;
+    outline: none;
+    border: none; }
+
+#message_box-messages_index {
   border-radius: .8rem;
-  margin: 1rem;
-  background: #e4e4e4; }
+  margin: 2px 2px 2px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  z-index: 0; }
+
+#message_box-messages_index-filler {
+  height: 7rem;
+  width: 100%; }
+
+.message-container {
+  padding: .25rem 1rem; }
+  .message-container h6 {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: bold;
+    padding-bottom: .1rem; }
+  .message-container h6 span {
+    padding: 0 .5rem;
+    font-size: .9rem;
+    color: darkslategray; }
+  .message-container p {
+    font-family: 'Lato', sans-serif; }
 
 #fs_modal-container {
   margin-top: 0; }

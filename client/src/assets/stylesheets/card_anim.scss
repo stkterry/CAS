@@ -53,7 +53,7 @@
 }
 .card_front-front {
   @include card-front;
-  @include card-shadow-dark;
+  // @include card-shadow-dark;
   background-color: black; 
 }
 

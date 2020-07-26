@@ -92,16 +92,16 @@ class CardFlip extends React.Component {
       <>
       <CardStack 
         className="card_flip-static_card"
-        left={-10}
-        top={-10}
+        left={-5}
+        top={-5}
         amt={5}
         color='black'
         face="front"
       />
       <CardStack
         className="card-abs-sep"
-        left={-10}
-        top={-10}
+        left={-5}
+        top={-5}
         amt={5}
         color='black'
         face="back"
