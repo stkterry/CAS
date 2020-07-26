@@ -44,15 +44,16 @@ export default class CardFront extends React.Component {
           key={idx}
           style={style}
           className={`card_static-stack ${this.className}`}  
-        />)
+        />
+      )
     )
   }
 
   render = () => (
     <div className={`card_static-container ${this.props.className}`}>
         {this.renderStack()}
-      <div className="card_static-stack_container">
-      </div>
+      {/* <div className="card_static-stack_container">
+      </div> */}
       <div className={`card_static-front ${this.className}`}>
         <h3>Crimes</h3>
         <h3>Against</h3>

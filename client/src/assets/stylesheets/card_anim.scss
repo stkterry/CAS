@@ -124,7 +124,6 @@
   @include card-container;
   position: absolute;
   right: $card_flip-sep;
- 
 }
 .card_flip-inner {
   @include card-inner;
@@ -216,23 +215,7 @@
 }
 // The transition itself
 .card_flip-transition-enter-active {
-  .card_flip-inner {
+  .card-inner-black, .card-inner-white {
     animation: ease-in-out card_flipRotTransLR 1000ms forwards;
   }
-
-}
-// Fires when this.state.show is false
-.card_flip-transition-exit {
-  // right: 135px;
-  // .card_flip-inner {
-  //   transform: rotateY(-180deg)
-  // }
-}
-// Fires as element leaves the DOM
-.card_flip-transition-exit-active {
-  // right: 0px;
-  // .card_flip-inner {
-  //   transform: rotateY(0deg)
-  // }
-  // transition: all 1000ms;
 }
