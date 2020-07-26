@@ -27,7 +27,6 @@ class GameShow extends React.Component {
   }
 
 
-
   componentDidMount() {
     this.props.getActiveGame(this.props.match.params.game_id);
     this.props.getPlayerState(this.props.match.params.game_id, this.props.user.id)

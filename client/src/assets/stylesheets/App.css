@@ -197,21 +197,7 @@ div::-webkit-scrollbar-thumb {
   border-radius: 6px;
   border: 3px solid var(--scrollbarBG); }
 
-#splash-main {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #0d0f13; }
-
-#splash-hero-main {
-  border-radius: 2.4rem;
-  display: flex;
-  flex-direction: row;
-  margin-top: 10%;
-  background-color: #ececec; }
-
-#splash-hero-left {
+#splash-hero {
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -219,22 +205,9 @@ div::-webkit-scrollbar-thumb {
 
 #splash-hero-tagline h1 {
   font-size: 3rem;
-  font-family: 'Luckiest Guy', cursive; }
-
-#splash-hero-log {
-  display: flex;
-  flex-direction: row;
-  align-items: center; }
-  #splash-hero-log span {
-    margin-right: .8rem; }
-  #splash-hero-log .default-btn {
-    margin-right: .8rem; }
-
-#splash-hero-right {
-  padding: 2rem; }
+  font-family: "Luckiest Guy", cursive; }
 
 #splash-main-adv {
-  box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
   overflow: hidden;
   padding-top: 2rem;
   padding-bottom: 10rem;
@@ -244,6 +217,7 @@ div::-webkit-scrollbar-thumb {
   justify-content: center; }
 
 #splash-hero-main-adv {
+  box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
   box-sizing: content-box;
   border-radius: 2.4rem;
   display: flex;
@@ -1245,7 +1219,7 @@ div::-webkit-scrollbar-thumb {
   height: 350px;
   width: 100%;
   bottom: 0;
-  background-color: rgba(31, 31, 31, 0.589);
+  background-color: rgba(31, 31, 31, 0.74);
   padding: 1rem;
   box-sizing: border-box;
   display: flex;

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { merge } from "lodash/merge";
 
 import CardFlipHover from "../card_anims/CardFlipHover";
 import Phase from "../card_anims/Phase";
@@ -79,7 +78,7 @@ class Splash extends React.Component {
     return (
       <div id="splash-main-adv">
         <div id="splash-hero-main-adv" className="splash_grid">
-          <div id="splash-hero-left">
+          <div id="splash-hero">
             <div id="splash-hero-tagline">
               <h1>Leave Humanity Behind</h1>
               <p>An online Cards Against Humanity clone</p>
