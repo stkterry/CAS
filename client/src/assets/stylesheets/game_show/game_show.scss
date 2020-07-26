@@ -20,10 +20,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  h1 {
-    color: $palette_light;
-  }
 }
 
 #game_show-content {
@@ -55,7 +51,7 @@
 
 #game_show-right {
   @include game_show-right_width;
-  min-width: 650px;
+  min-width: 625px;
   min-height: 400px;
 
   display: flex;

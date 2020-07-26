@@ -15,6 +15,8 @@ body {
   background-image: url("../images/alphaTile1080.png");
   background-repeat: repeat;
   background-color: $palette_med;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 #footer{
@@ -116,22 +118,24 @@ transition: all 0.4s ease 0s;
   right: 0;
 }
 
-div {
-  --scrollbarBG: #CFD8DC;
-  --thumbBG: #90A4AE;
-}
-div::-webkit-scrollbar {
-  width: 11px;
-}
-div {
+
+// Scrollbars....
+
+div, ul {
+  scrollbar-width: 8px;
   scrollbar-width: thin;
-  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  scrollbar-color: green !important;
 }
-div::-webkit-scrollbar-track {
-  background: var(--scrollbarBG);
+
+ul::-webkit-scrollbar {
+    // Width of vertical scroll bar
+    width: 8px;
+    // Height of horizontal scroll bar
+    height: 10px;
+    border-radius: 8px;
+  }
+ul::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: $palette_med;
 }
-div::-webkit-scrollbar-thumb {
-  background-color: var(--thumbBG);
-  border-radius: 6px;
-  border: 3px solid var(--scrollbarBG);
-}
+
