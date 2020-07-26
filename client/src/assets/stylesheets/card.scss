@@ -118,12 +118,14 @@ $card_flip-sep: 160px;
 
 .card-container {
   @include card-container;
+  
 }
 
 .card-inner {
   @include card-inner;
   @include card-shadow;
   transform: rotateY(-180deg);
+  
 }
 
 .card-front-white {
@@ -133,6 +135,7 @@ $card_flip-sep: 160px;
 .card-front-black {
   @include card-front;
   @include card-color-black;
+
 }
 
 .card-back-white {
@@ -142,6 +145,7 @@ $card_flip-sep: 160px;
 .card-back-black {
   @include card-back;
   @include card-color-black;
+
 
 }
 

@@ -13,9 +13,10 @@ class CardFlip extends React.Component {
     content: (this.props.content.length) ? this.props.content : ["...loading"],
     currentIdx: 0,
     currentContent: null,
-    pastContent: null,
+    pastContent: <h6>...loading</h6>,
     started: true,
-    renderStatic: false
+    renderStatic: false, 
+    count: 0
   }
 
   interval = null;
@@ -75,12 +76,14 @@ class CardFlip extends React.Component {
   setStatic = () => {
     this.setState({
       renderStatic: true,
+      pastContent: <h5>{this.state.currentContent}</h5>,
       prevCard: <Card 
         color="black" 
         face="back" 
         content={<h5>{this.state.currentContent}</h5>}   
       />
     })
+    console.log(this.state.count)
   }
 
   render() {
@@ -89,24 +92,30 @@ class CardFlip extends React.Component {
       <>
       <CardStack 
         className="card_flip-static_card"
-          left={-10}
-          top={-10}
-          amt={5}
-          color='black'
-          face="front"
+        left={-10}
+        top={-10}
+        amt={5}
+        color='black'
+        face="front"
       />
-      {this.state.prevCard}
+      <CardStack
+        className="card-abs-sep"
+        left={-10}
+        top={-10}
+        amt={5}
+        color='black'
+        face="back"
+        content={this.state.pastContent}
+      />
+      {/* {this.state.prevCard} */}
       <CSSTransition 
         in={this.state.animNow}
         timeout={1000}
         classNames="card-container-transition"
         unmountOnExit
         appear
-        // onEntered={this.setStatic}
         onEnter={this.getCurrentContent}
         onExiting={this.setStatic}
-        // onExit={this.getCurrentContent}
-        // onExiting={this.static}
       >
         <div 
           className="card-container card-abs-sep"
