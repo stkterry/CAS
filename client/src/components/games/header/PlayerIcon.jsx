@@ -23,7 +23,6 @@ export default function PlayerIcons (props) {
     if (props.czar) return <FontAwesomeIcon icon="crown" className="player_icon-czar" />
   }
 
-
   return (
     <div className="player_icon">
       <div className="player_icon-score-container">

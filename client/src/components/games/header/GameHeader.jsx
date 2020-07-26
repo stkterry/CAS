@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import PlayerIcon from "./PlayerIcon";
+import PlayerIcons from "./PlayerIcons";
 
 export default function GameHeader (props) {
-  const [playerStates, setPlayerStates] = useState({_id: { 'is': 'empty' }});
+  const [playerStates, setPlayerStates] = useState({});
   const [gameName, setGameName] = useState("...Loading");
   const [animNow, setAnimNow] = useState(true);
   const [currentTurn, setCurrentTurn] = useState(props.currentTurn)
+  const [showHandle, setShowHandle] = useState(true);
 
   useEffect(() => {
     setCurrentTurn(props.currentTurn)
@@ -24,34 +26,28 @@ export default function GameHeader (props) {
   // useEffect(() => {
   // }, [props.gameName])
 
-  
+  const renderPlayerIcons = () => (
+    <div component="div" id="game_show-header-players">
+      {Object.values(playerStates).map(playerState => 
+        <PlayerIcon key={playerState._id} playerState={playerState} czar={playerState._id === currentTurn} showHandle={showHandle}/>
+      )}
+    </div>
+  )
+
+  const showHandles = () => setShowHandle(true);
+  const hideHandles = () => setShowHandle(false);
   const animTitle = () => setAnimNow(!animNow);
-  
-  const renderPlayerIcons = () => {
-    return (
-      <div id="game_show-header-players">
-        {Object.values(playerStates).map(playerState =>
-          <PlayerIcon 
-            key={playerState._id} 
-            playerState={playerState} 
-            czar={currentTurn === playerState._id}
-          />
-        )}
-      </div>
-    )
-  }
   
   return (
     <div id="game_show-header" onMouseEnter={animTitle} onMouseLeave={animTitle}>
-      <div id="game_show-settings">
-        
-      </div>
       <CSSTransition
-        classNames="game_show-header-title"
+        classNames="game_show-header-transitions-title"
         in={animNow}
         timeout={300}
         unmountOnExit
         appear
+        onEnter={showHandles}
+        onExit={hideHandles}
       >
         <h1>{gameName}</h1>
       </CSSTransition>
