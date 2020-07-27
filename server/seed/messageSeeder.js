@@ -24,10 +24,10 @@ const seeder= async (min=5, max=20) => {
         content: chance.sentence(),
       })
 
-      await messages[i].save();
     }
-
-    // messages.forEach( async message => { await message.save().then(res => res) });
+    
+    await Message.insertMany(messages)
+      .catch(err => err);
     game.messages = messages.map(message => message._id);
     await game.save();
     console.log(`Game : ${game._id} : ${messages.length} messages `);
@@ -53,11 +53,9 @@ const dropMessages = () => {
     .then(async db =>{
       console.log("Dropping messages...")
       await Message.deleteMany()
-        // .then(res => console.log(res))
         .catch(err => console.log(err))
 
       await Game.updateMany({}, {$set: {"messages": []}} )
-        // .then(res => console.log(res))
         .catch(err => console.log(err))
 
       db.connection.close();

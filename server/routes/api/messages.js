@@ -5,6 +5,7 @@ const router = express.Router();
 
 const Message = require("../../models/Message");
 const { eRes } = require("../../validation/validation-util");
+const validateMessageInput = require("../../validation/message");
 
 
 const ERRORS = {
@@ -46,18 +47,26 @@ router.get("/game_id/:game_id", (req, res) => {
 })
 //************************************************ */
 
+// Get single message
+router.get("/:_id", (req, res) => {
+  Message.getOne(req.params._id)
+    .then(message => res.json(message))
+    .catch(err => console.log(err));
+})
 
 // POST ======================================================================
 
 router.post("/", passport.authenticate("jwt", { session: false }),
   (req, res) => {
 
+    const { errors, isValid } = validateMessageInput(req.body);
+    if (!isValid) eRes(res, 400, errors);
+
     Message.addNew(req.body)
       .then(message => res.json(message))
       .catch(err => console.log(err));
-    // const newMessage = new Message(messageObj(req));
-    // newMessage.save()
-    //   .then(message => res.json(message));
-  })
+})
+
+
 
 module.exports = router;

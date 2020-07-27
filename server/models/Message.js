@@ -37,6 +37,14 @@ const MessageSchema = new Schema({
 //   await message.model('Game').updateOne({ $pull: { messages: messageId }});
 // })
 
+MessageSchema.pre("save", async function() {
+  await mongoose.model("Game")
+    .updateOne(
+      { _id: this.game_id },
+      { $push: { messages: this._id }}
+    )
+    .catch(err => {throw new Error("Couldn't save to game messages")})
+})
 
 ////////// Statics //////////////
 
@@ -48,26 +56,16 @@ MessageSchema.statics.getAll = function () {
     })
 }
 
-
-MessageSchema.statics.addNew = function (dat) {
-  
-  const newMessage = new this({
-    user_id: dat.user_id,
-    game_id: dat.game_id,
-    content: dat.content
-  });
-
-  return newMessage.save()
-    .then(message => {
-      mongoose.model("Game").updateOne(
-        { _id: dat.game_id },
-        { $push: { messages: message._id }}
-      ).catch(err => console.log(err));
-
-      return message;
-    })
+MessageSchema.statics.addNew = function (message) {
+  return Message.create({
+    user_id: message.user_id,
+    game_id: message.game_id,
+    content: message.content   
+  })
 }
 
+
+//*************************** */
 MessageSchema.statics.getGameMessages = function (game_id) {
   return mongoose.model("Game").findById(game_id, 'messages')
     .populate({
@@ -81,6 +79,14 @@ MessageSchema.statics.getMessagesByGameId = function (game_id) {
   return this.find({ game_id: game_id }, 'user_id content date')
     .populate({
       path: 'user_id', model: 'User', select: 'handle'
+    })
+}
+//*************************** */
+
+MessageSchema.statics.getOne = function (_id) {
+  return this.findById(_id, '-__v')
+    .populate({
+      path: 'user_id', model: 'User', select: '_id handle'
     })
 }
 

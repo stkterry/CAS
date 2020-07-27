@@ -23,7 +23,7 @@ const GamesReducer = (state = initialState, action) => {
       newState.all = action.games.data;
       return newState;
     case RECEIVE_GAME:
-      newState.all = [action.game.data].concat(state.all);
+      newState.all.push(action.game.data); // Appropriate?!
       return newState;
     case RECEIVE_ACTIVE_GAME:
       newState.active = action.game.data;
