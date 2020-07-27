@@ -82,13 +82,6 @@ const playerStatesPop = {
   path: 'playerStates', select: '-white -black'
 }
 
-/// YE OLDE JUNK CODE
- //   // .populate({
-  //   //   path: 'cardPacks', populate: {
-  //   //     path: 'white black', select: '-date -__v'
-  //   //   }, select: '-date -__v -url_id'
-  //   // })
-
 const cardsInPlayPop = {
   path: 'cardsInPlay.white cardsInPlay.black', select: '-date -__v'
 }
@@ -160,13 +153,20 @@ GameSchema.statics.getActive = function(game_id, user_id) {
     .populate({
       path: 'playerStates', select: '-_id -score'
     })
-    // .populate(playerStatesPop)
-    // .populate({
-    //   path: 'game_state.playerStates', populate: {
-    //     path: 'white black', select: '-date -__v'
-    //   }
-    // })
 }
+
+
+GameSchema.statics.dropMessages = function (game_id = null) {
+
+  return this.findById(game_id, 'messages')
+    .then(async game => {
+      await mongoose.model('Message').deleteMany({ _id: { $in: game.messages }});
+      await game.updateOne({$set : { messages: [] }} );
+      return game;
+    })
+
+}
+
 
 
 

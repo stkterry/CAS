@@ -29,6 +29,17 @@ const MessageSchema = new Schema({
 
 })
 
+/// PRE ////////////
+
+// MessageSchema.pre('deleteOne', async function() {
+//   const messageId = await this.getQuery()["_id"];
+//   const message = this;
+//   await message.model('Game').updateOne({ $pull: { messages: messageId }});
+// })
+
+
+////////// Statics //////////////
+
 MessageSchema.statics.getAll = function () {
   return this.find()
     .sort({ date: -1 })
@@ -36,6 +47,7 @@ MessageSchema.statics.getAll = function () {
       path: 'user_id', select: 'handle'
     })
 }
+
 
 MessageSchema.statics.addNew = function (dat) {
   
