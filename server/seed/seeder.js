@@ -35,7 +35,7 @@ const registerGame = async data => {
       data,
       err => {if (err) throw err}
     );
-    // game.markModified('playerStates');
+
     await game.save();
     return game;
   } catch (err) { throw err }
@@ -71,7 +71,6 @@ const seedUsers = async (amount) => {
 };
 
 const seedGames = async (amount) => {
-
 
   const users = await User.find();
   const cardPacks = await CardPack.find();
