@@ -10,34 +10,54 @@ const db = require("../config/keys").mongoURI;
 
 
 // requires a pre seed of users and probably playerstates...
-const seedMessages = async (min, max) => {
+const seeder= async (min=5, max=20) => {
 
-  // const users = await User.find();
   const games = await Game.find();
-
+  let count = 0;
   for (let game of games) {
     let numMessages = chance.integer({min: min, max: max});
+    let messages = new Array(numMessages);
     for (let i = 0; i < numMessages; i++) {
-      await Message.addNew({
-        game: game.game_id,
-        user: chance.pickone(game.players)['_id'],
+      messages[i] = new Message({
+        game_id: game._id,
+        user_id: chance.pickone(game.players)['_id'],
         content: chance.sentence(),
       })
+
+      await messages[i].save();
     }
+
+    // messages.forEach( async message => { await message.save().then(res => res) });
+    game.messages = messages.map(message => message._id);
+    await game.save();
+    console.log(`Game : ${game._id} : ${messages.length} messages `);
   }
+  
 }
 
-const deleteMessages = () => {
+const seedMessages = () => {
+  mongoose
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(async db => {
+      console.log("Seeding messages...");
+      await seeder()
+        .catch(err => console.log(err));
+        
+    db.connection.close();
+  })
+}
+
+const dropMessages = () => {
   mongoose 
     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(async db =>{
       console.log("Dropping messages...")
       await Message.deleteMany()
-        .then(res => console.log(res))
+        // .then(res => console.log(res))
         .catch(err => console.log(err))
 
       await Game.updateMany({}, {$set: {"messages": []}} )
-        .then(res => console.log(res))
+        // .then(res => console.log(res))
         .catch(err => console.log(err))
 
       db.connection.close();
@@ -45,5 +65,6 @@ const deleteMessages = () => {
 };
 
 module.exports = {
-  deleteMessages
+  dropMessages,
+  seedMessages
 }
