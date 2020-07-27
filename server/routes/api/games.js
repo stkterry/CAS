@@ -79,6 +79,14 @@ router.post("/", passport.authenticate("jwt", { session: false }),
   }
 )
 
+// drop messages from game
+// drop all messages in a game!!!
+router.post("/dropmessages/:game_id", passport.authenticate("jwt", { session: false }),
+  (req, res) => Game.dropMessages(req.params.game_id)
+    .then(dat => res.json(dat))
+    .catch(err => console.log(err))
+)
+
 
 module.exports = router;
 
