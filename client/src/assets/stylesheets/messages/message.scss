@@ -49,6 +49,7 @@
     color: darkslategray;
   }
   p {
+    font-size:1.5rem;
     padding: .2rem;
     @include box-radius-quarter;
     @include font-lato;

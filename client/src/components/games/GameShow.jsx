@@ -121,13 +121,14 @@ class GameShow extends React.Component {
               {this.renderWhiteCardsInPlay()}
           </ul>
         </div>
-          <div id="game_show-player_cards">
+
+          {/* <div id="game_show-player_cards">
               {this.renderPlayerCards()}
-          </div>
+          </div> */}
           {/* <div id="game_show-bottom_buffer">
           </div> */}
-            {/* <MessageBoxContainer/>
-          <FeatureSelectionModal /> */}
+            <MessageBoxContainer/>
+          {/* <FeatureSelectionModal /> */}
       </div>
     )
   }
