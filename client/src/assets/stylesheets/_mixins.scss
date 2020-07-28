@@ -17,16 +17,6 @@
   font-family: 'Lato', sans-serif;
 }
 
-@mixin game_show-left_width {
-  width: 30%;
-  max-width: 225px;
-}
-@mixin game_show-right_width {
-  width: 70%;
-  max-width: 800px;
-}
-
-
 @mixin box-radius {
   border-radius: 1.6rem;
 }

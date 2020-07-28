@@ -1,13 +1,28 @@
 @import './game_show-header';
 @import './player_icon';
 
+
+$maxWidth: 1050px;
+@mixin game_show-left_width {
+  width: 33%;
+  min-width: 200px;
+  max-width: 275px;
+  min-height: 400px;
+}
+@mixin game_show-right_width {
+  width: 66%;
+  min-width: getMinWidth(125, 5)*1px;
+  max-width: getMaxWidth(125, 5)*1px;
+  min-height: 400px;
+}
+
+
 #game_show {
-  // padding: 1rem;
   margin: 2.5rem auto;
-  min-width: 900px;
-  max-width: 1200px;
+  min-width: 750px;
+  max-width: $maxWidth;
   min-height: 810px;
-  // max-height: 900px;
+  max-height: 900px;
   width: 90%;
   align-content: center;
   background: $palette_med_25o;
@@ -27,7 +42,7 @@
   flex-direction: row;
   align-content: space-between;
   max-height: 1000px;
-  max-width: 1200px;
+  max-width: $maxWidth;
   width: 100%;
   // margin: 0 1rem;
   border: .2rem solid rgba(61, 60, 42, 0.582);
@@ -51,12 +66,10 @@
 
 #game_show-right {
   @include game_show-right_width;
-  min-width: 625px;
-  min-height: 400px;
-
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(135px, max-content));
   justify-content: center;
+  padding: initial;
 }
 
 #game_show-left-content {
