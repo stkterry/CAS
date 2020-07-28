@@ -49,14 +49,14 @@ export default function CardStack (props) {
 
   genStyle();
   return (
-    <div className={`card-container card-shadow-dark ${props.className}`}>
+    <div className={`card-container card-shadow-stack ${props.className}`}>
       {renderStack()}
       <div
         key={style.amt}
         style={style.style[style.amt]}
-        className={style.genClassName + " card-shadow-large " + "card-abs"}
+        className={style.genClassName + "card-abs"}
       />
-      <div className={style.genClassName}>
+      <div className={style.genClassName }>
         {genContent()}
       </div>
     </div>
