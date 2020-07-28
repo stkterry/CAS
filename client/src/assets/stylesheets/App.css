@@ -1538,6 +1538,9 @@ ul::-webkit-scrollbar-thumb {
 .card-shadow-large {
   box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.4), 0 4.5rem 10rem rgba(0, 0, 0, 0.4); }
 
+.card-shadow-stack {
+  box-shadow: 1rem 1rem 0.5rem rgba(0, 0, 0, 0.4), 1.5rem 1.5rem 1.5rem rgba(0, 0, 0, 0.4); }
+
 .card-abs {
   border: 0.1rem solid #424242;
   position: absolute; }

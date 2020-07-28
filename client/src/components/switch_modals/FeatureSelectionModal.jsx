@@ -1,22 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-class FeatureSelectionModal extends React.Component {
+export default function FeatureSelectionModal (props) {
 
 
 
-  render = () => {
 
-    return (
-      <div id="fs_modal-container">
-        <div id="fs_modal">
-          <button>Messages</button>
-          <button>Game History</button>
-          <button>Black Cards</button>
-        </div>
+
+  return (
+    <div id="fs_modal-container">
+      <div id="fs_modal">
+        <button>Messages</button>
+        <button>Game History</button>
+        <button>Black Cards</button>
       </div>
-    )
-  }
+    </div>
+  )
 }
-
-
-export default FeatureSelectionModal;
