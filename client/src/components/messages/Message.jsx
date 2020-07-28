@@ -11,7 +11,7 @@ export default function Message(props) {
     <li className="message-container">
       <div className="message_header">
       </div>
-      <h6>{props.message.handle}<span>{genStamp()}</span></h6>
+      <h6>{props.message.user.handle}<span>{genStamp()}</span></h6>
       <p>{props.message.content}</p>
     </li>
   )

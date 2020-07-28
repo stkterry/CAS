@@ -12,13 +12,6 @@ const ERRORS = {
 
 }
 
-
-const messageObj = req => ({
-  user_id: req.body.user_id,
-  game_id: req.body.game_id,
-  content: req.body.content
-});
-
 // TEST
 router.get("/test", (req, res) => res.json({ msg: "This is the messages route!" }));
 
@@ -33,15 +26,15 @@ router.get("/", (req, res) => {
 
 //************************************************ */
 // These are the same.  Still working on which is technically better...
-// /game/:game_id - Get all messages for a game
-router.get("/game/:game_id", (req, res) => {
-  Message.getGameMessages(req.params.game_id)
+// /game/:gameId - Get all messages for a game
+router.get("/game/:gameId", (req, res) => {
+  Message.getGameMessages(req.params.gameId)
     .then(messages => res.json(messages))
     .catch(err => console.log(err));
 })
-// /game/game_id/:game_id Get all messages for a game
-router.get("/game_id/:game_id", (req, res) => {
-  Message.getMessagesByGameId(req.params.game_id)
+// /game/game_id/:gameId Get all messages for a game
+router.get("/game_id/:gameId", (req, res) => {
+  Message.getMessagesByGameId(req.params.gameId)
     .then(messages => res.json(messages))
     .catch(err => console.log(err));
 })
@@ -58,7 +51,6 @@ router.get("/:_id", (req, res) => {
 
 router.post("/", passport.authenticate("jwt", { session: false }),
   (req, res) => {
-
     const { errors, isValid } = validateMessageInput(req.body);
     if (!isValid) eRes(res, 400, errors);
 

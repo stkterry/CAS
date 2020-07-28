@@ -10,9 +10,18 @@ export default function MessageIndex(props) {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    setMessages(tempMessages())
+    props.getGameMessages(props.gameId);
+    // scrollToBottom();
+  }, [props.gameId])
+
+  useEffect(() => {
+    setMessages(props.messages)
   }, [props.messages]);
 
+  useEffect(() => {
+    if (props.new) setMessages(prevMessages => [...prevMessages, props.new]);
+  }, [props.new])  
+  
   useEffect(() => {
     scrollToBottom();
   }, [messages])
@@ -22,18 +31,6 @@ export default function MessageIndex(props) {
       .getElementById("bottom")
       .scrollIntoView({ block: "end", behavior: "smooth" });
   
-  const genDateTemp = () =>
-    new Date(+(new Date()) - Math.floor(Math.random() * 10000000000));
-
-  const tempMessages = () => {
-    let tempMessages = [];
-    for (let i = 0; i < 15; i++) {
-      tempMessages.push({
-        content: chance.sentence(50), _id: i, user_id: "12345", handle: chance.twitter(), date: genDateTemp()
-      })
-    }
-    return tempMessages.sort((m1, m2) => m1.date - m2.date);
-  }
 
   return (
     <ul id="message_box-messages_index">
