@@ -1299,18 +1299,31 @@ ul::-webkit-scrollbar-thumb {
   height: 7rem;
   width: 100%; }
 
-.message-container {
-  padding: .25rem 1rem; }
-  .message-container h6 {
-    font-family: 'Libre Baskerville', serif;
-    font-weight: bold;
-    padding-bottom: .1rem; }
-  .message-container h6 span {
-    padding: 0 .5rem;
-    font-size: .9rem;
-    color: darkslategray; }
-  .message-container p {
-    font-family: 'Lato', sans-serif; }
+.message-container-left {
+  padding: .25rem 3rem .25rem 1rem; }
+  .message-container-left p {
+    background-color: #f2a26534; }
+
+.message-container-right {
+  padding: .25rem 1rem .25rem 3rem; }
+  .message-container-right h6 {
+    text-align: right; }
+  .message-container-right p {
+    background-color: rgba(13, 26, 204, 0.137);
+    float: right; }
+
+.message-container-left h6, .message-container-right h6 {
+  font-family: 'Libre Baskerville', serif;
+  font-weight: bold;
+  padding-bottom: .1rem; }
+.message-container-left h6 span, .message-container-right h6 span {
+  padding-left: .5rem;
+  font-size: .9rem;
+  color: darkslategray; }
+.message-container-left p, .message-container-right p {
+  padding: .2rem;
+  border-radius: .4rem;
+  font-family: 'Lato', sans-serif; }
 
 #fs_modal-container {
   margin-top: 0; }

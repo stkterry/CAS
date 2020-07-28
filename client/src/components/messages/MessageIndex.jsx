@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react"
-import Message from "./Message";
-
-import { Chance } from "chance";
-const chance = new Chance();
+import MessageContainer from "./message_container";
 
 
 export default function MessageIndex(props) {
@@ -35,7 +32,7 @@ export default function MessageIndex(props) {
   return (
     <ul id="message_box-messages_index">
       {messages.map(message =>
-        <Message key={message._id} message={message} />)}
+        <MessageContainer key={message._id} message={message} />)}
       <li key={"teapot"} id="bottom">
         <div id="message_box-messages_index-filler"/>
       </li>

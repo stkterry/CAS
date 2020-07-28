@@ -1,6 +1,5 @@
 import React from "react";
 
-import MessageForm from "./MessageForm";
 import MessageIndexContainer from "./message_index_container";
 import MessageFormContainer from "./message_form_container";
 class MessageBox extends React.Component {
