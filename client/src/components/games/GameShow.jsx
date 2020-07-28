@@ -70,7 +70,9 @@ class GameShow extends React.Component {
   renderWhiteCardsInPlay = () => {
     const cards = this.state.cardsInPlay.white;
     return cards.map(card => 
-      <CardLook className={"game_show-played_card game_show-card"} key={card._id} card={card} />
+      <li key={card._id}>
+        <CardLook className={"game_show-played_card game_show-card"} card={card} />
+      </li>
     )
   }
 
@@ -115,9 +117,9 @@ class GameShow extends React.Component {
               <h5 className="game_show-current_turn">{this.renderPlayerTurn()}</h5>
             </div>
           </div>
-          <div id="game_show-right">
-            {this.renderWhiteCardsInPlay()}
-          </div>
+          <ul id="game_show-right">
+              {this.renderWhiteCardsInPlay()}
+          </ul>
         </div>
           <div id="game_show-player_cards">
               {this.renderPlayerCards()}
