@@ -9,10 +9,23 @@ import { logout } from "./actions/session_actions";
 
 import "./assets/stylesheets/App.css";
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab, fas } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee, faCrown } from '@fortawesome/free-solid-svg-icons'
-
-library.add(fab, faCheckSquare, faCoffee, faCrown)
+// import { fab} from '@fortawesome/free-brands-svg-icons'
+import { 
+  faCheckSquare, 
+  faCoffee, 
+  faCrown, 
+  faMehRollingEyes as faMehRollingEyesSolid 
+} from '@fortawesome/free-solid-svg-icons'
+import { 
+  faMehRollingEyes as faMehRollingEyesRegular 
+} from "@fortawesome/free-regular-svg-icons";
+library.add(
+  faCheckSquare, 
+  faCoffee, 
+  faCrown, 
+  faMehRollingEyesRegular, 
+  faMehRollingEyesSolid
+)
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
