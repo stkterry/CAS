@@ -123,7 +123,7 @@ class GameShow extends React.Component {
               {this.renderPlayerCards()}
           </div>
           <div id="game_show-bottom_buffer">
-            <MessageBoxContainer />
+            <MessageBoxContainer game_id={this.state.game._id}/>
           </div>
           <FeatureSelectionModal />
       </div>

@@ -1,10 +1,9 @@
 import React from "react";
 
 import MessageForm from "./MessageForm";
-import MessageIndex from "./MessageIndex";
+import MessageIndexContainer from "./message_index_container";
+import MessageFormContainer from "./message_form_container";
 class MessageBox extends React.Component {
-
-
 
   render = () => {
 
@@ -16,8 +15,8 @@ class MessageBox extends React.Component {
         </div>
         <div id="message_box-right">
           <div id="message_box-body">
-            <MessageForm />
-            <MessageIndex />
+            <MessageFormContainer />
+            <MessageIndexContainer />
           </div>
         </div>
       </div>

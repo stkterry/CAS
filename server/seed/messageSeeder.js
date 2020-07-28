@@ -19,8 +19,8 @@ const seeder= async (min=5, max=20) => {
     let messages = new Array(numMessages);
     for (let i = 0; i < numMessages; i++) {
       messages[i] = new Message({
-        game_id: game._id,
-        user_id: chance.pickone(game.players)['_id'],
+        game: game._id,
+        user: chance.pickone(game.players)['_id'],
         content: chance.sentence(),
       })
 

@@ -6,8 +6,8 @@ import axios from "axios";
 
 export const APICalls = {
   getAll: () => axios.get("/api/messages/"), // Not in use...
-  getGameMessages: game_id => axios.get(`/api/messages/game/${game_id}`), // This and the one below do the same thing, just differently
-  getMessagesByGameId: (game_id) => axios.get(`/api/messages/game_id/${game_id}`),
+  getGameMessages: gameId => axios.get(`/api/messages/game/${gameId}`), // This and the one below do the same thing, just differently
+  getMessagesByGameId: (gameId) => axios.get(`/api/messages/game_id/${gameId}`),
   getOne: _id => axios.get(`/api/messages/${_id}`),
   postMessage: messageDat => axios.post("/api/messages/", messageDat)
 }
@@ -44,7 +44,7 @@ export const receiveErrors = errors => ({
 })
 
 // Dispatch Functions ========================================================
-export const getGameMessages = game_id => dispatch => APICalls.getMessagesByGameId(game_id)
+export const getGameMessages = gameId => dispatch => APICalls.getMessagesByGameId(gameId)
   .then(messages => dispatch(receiveGameMessages(messages)))
   .catch(err => console.log(err));
 

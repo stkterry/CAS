@@ -4,13 +4,13 @@ const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
 
-  user_id: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true
   },
 
-  game_id: {
+  game: {
     type: Schema.Types.ObjectId,
     ref: "Game",
     required: true
@@ -40,11 +40,17 @@ const MessageSchema = new Schema({
 MessageSchema.pre("save", async function() {
   await mongoose.model("Game")
     .updateOne(
-      { _id: this.game_id },
+      { _id: this.game },
       { $push: { messages: this._id }}
     )
     .catch(err => {throw new Error("Couldn't save to game messages")})
 })
+
+// MessageSchema.post("save", async function() {
+//   await this.populate({
+//     path: 'user', model: ''
+//   })
+// })
 
 ////////// Statics //////////////
 
@@ -52,33 +58,33 @@ MessageSchema.statics.getAll = function () {
   return this.find()
     .sort({ date: -1 })
     .populate({
-      path: 'user_id', select: 'handle'
+      path: 'user', select: 'handle'
     })
 }
 
-MessageSchema.statics.addNew = function (message) {
-  return Message.create({
-    user_id: message.user_id,
-    game_id: message.game_id,
-    content: message.content   
-  })
+MessageSchema.statics.addNew = function (messageDat) {
+  return Message.create(messageDat)
+    .then(message => message.populate({
+      path: 'user', model:'User', select: 'handle'
+    }).execPopulate())
+
 }
 
 
 //*************************** */
-MessageSchema.statics.getGameMessages = function (game_id) {
-  return mongoose.model("Game").findById(game_id, 'messages')
+MessageSchema.statics.getGameMessages = function (gameId) {
+  return mongoose.model("Game").findById(gameId, 'messages')
     .populate({
       path: 'messages', populate: {
-        path: 'user_id', model: 'User', select: 'handle'
-      }, select: 'user_id content date'
+        path: 'user', model: 'User', select: 'handle'
+      }, select: 'user content date'
     })
 }
 
-MessageSchema.statics.getMessagesByGameId = function (game_id) {
-  return this.find({ game_id: game_id }, 'user_id content date')
+MessageSchema.statics.getMessagesByGameId = function (gameId) {
+  return this.find({ game: gameId }, 'user content date')
     .populate({
-      path: 'user_id', model: 'User', select: 'handle'
+      path: 'user', model: 'User', select: 'handle'
     })
 }
 //*************************** */
@@ -86,7 +92,7 @@ MessageSchema.statics.getMessagesByGameId = function (game_id) {
 MessageSchema.statics.getOne = function (_id) {
   return this.findById(_id, '-__v')
     .populate({
-      path: 'user_id', model: 'User', select: '_id handle'
+      path: 'user', model: 'User', select: '_id handle'
     })
 }
 
