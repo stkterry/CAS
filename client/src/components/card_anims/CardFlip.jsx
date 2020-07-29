@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 
 import Name from "../labels/Name";
 import CardStack from "../card_anims/CardStack";
@@ -15,8 +14,7 @@ class CardFlip extends React.Component {
     currentContent: null,
     pastContent: <h6>...loading</h6>,
     started: true,
-    renderStatic: false, 
-    count: 0
+    renderStatic: false
   }
 
   interval = null;
@@ -38,12 +36,8 @@ class CardFlip extends React.Component {
     this.startLoop();
   }
 
-  switch = () => {
-    this.setState(prevState => ({
-      animNow: !prevState.animNow
-    }))
-  }
-  
+  switch = () => this.setState(prevState => ({animNow: !prevState.animNow}))
+
   getCurrentContent = () => {
     let currentIdx = (this.state.currentIdx + 1) % this.state.content.length;
     this.setState({
@@ -66,13 +60,6 @@ class CardFlip extends React.Component {
     }, 2500)
   }
 
-  placeHolder = () => {
-    if (this.state.renderStatic) {
-      let content = (<h5>{this.state.pastContent}</h5>)
-      return (<Card color="black" face="back" content={content} />)
-    }
-  }
-
   setStatic = () => {
     this.setState({
       renderStatic: true,
@@ -83,7 +70,6 @@ class CardFlip extends React.Component {
         content={<h5>{this.state.currentContent}</h5>}   
       />
     })
-    console.log(this.state.count)
   }
 
   render() {
@@ -107,7 +93,6 @@ class CardFlip extends React.Component {
         face="back"
         content={this.state.pastContent}
       />
-      {/* {this.state.prevCard} */}
       <CSSTransition 
         in={this.state.animNow}
         timeout={1000}

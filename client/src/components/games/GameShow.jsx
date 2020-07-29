@@ -5,7 +5,7 @@ import { CSSTransitions } from "react-transition-group";
 import CardLook from "../card_anims/CardLook";
 import PlayerHandContainer from "./player_hand/player_hand_container";
 import MessageBoxContainer from "../messages/message_box_container";
-import IconButton from "../buttons/IconButton";
+import ImgButton from "../buttons/ImgButton";
 
 import GameHeader from "./header/GameHeader";
 
@@ -128,12 +128,12 @@ class GameShow extends React.Component {
 
           <div id="fs_modal-container">
             <div id="fs_modal">
-            <IconButton 
+            <ImgButton 
               src={BLACK_CARD_ICON} 
               tooltipText="Cards Won" 
               // onClick={() => this.setActiveFeature("showMessages")}
             />
-            <IconButton
+            <ImgButton
               src={WHITE_CARD_ICON}
               tooltipText="Player's Hand"
               onClick={() => this.setActiveFeature("showHand")}

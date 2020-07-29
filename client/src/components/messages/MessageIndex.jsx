@@ -20,7 +20,7 @@ export default function MessageIndex(props) {
   
   useEffect(() => {
     scrollToBottom();
-  }, [messages])
+  }, [messages, props.show])
 
   const scrollToBottom = () => 
     document
@@ -28,7 +28,7 @@ export default function MessageIndex(props) {
       .scrollIntoView({ block: "end", behavior: "smooth" });
   
 
-  return (
+  return (props.show) ? (
     <ul id="message_box-messages_index">
       {messages.map(message =>
         <MessageContainer key={message._id} message={message} />)}
@@ -36,5 +36,5 @@ export default function MessageIndex(props) {
         <div id="message_box-messages_index-filler"/>
       </li>
     </ul>
-  )
+  ) : (<div id='bottom' />)
 }
