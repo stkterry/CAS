@@ -1,14 +1,5 @@
 @mixin message_box-height {
-  height: 350px;
-}
-
-#message_box-container {
-  // position: absolute;
-  // @include message_box-height;
-  // bottom: 0;
-  // width: 100%;
-  // background-color: rgba(0, 128, 0, 0.226);
-  // height: 100%;
+  min-height: 225px;
 }
 
 #message_box {
@@ -18,8 +9,9 @@
   @include message_box-height;
   width: 100%;
   height: 100%;
-  bottom: 0;
-  background-color: rgba(31, 31, 31, 0.74);
+  top: 0;
+
+  background-color:$palette_blue_15o;
   padding: 0rem;
   box-sizing: border-box;
   display: flex;
@@ -33,7 +25,7 @@
   box-sizing: border-box;
   border: .25rem solid $palette_med;
   margin: 1rem;
-  background: $palette_med_light;
+  background: $palette_light;
 }
 
 
@@ -66,9 +58,6 @@
   position: relative;
   // background-color: rgba(255, 192, 203, 0.521);
   @include inner-shell-shadow;
-
-
-  
 }
 
 

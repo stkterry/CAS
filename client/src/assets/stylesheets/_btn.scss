@@ -94,14 +94,14 @@ transition: all 0.4s ease 0s;
 
 //////////////////////////////////////////////////////////////////////////////
 
-$btn-img-HW: 48px;
-$btn-img-img-HW: 36px;
-$btn-img-shadow-HW: 24px;
+$btn-img-HW: 4.8rem;
+$btn-img-img-HW: 3.6rem;
+$btn-img-shadow-HW: 2.4rem;
 $btn-img-diff: ($btn-img-HW - $btn-img-shadow-HW) / 2 ;
 
-.btn-img {
+.btn-icon, .btn-img {
   position: relative;
-  margin: 0 1rem;
+  margin: .5rem 1rem;
   text-align: center;
   padding: 0;
   height: $btn-img-HW;
@@ -109,11 +109,7 @@ $btn-img-diff: ($btn-img-HW - $btn-img-shadow-HW) / 2 ;
   border-radius: 50%;
   border: none;
   background: none;
-  img {
-    height: $btn-img-img-HW;
-    width: $btn-img-img-HW;
-  }
-  // transition: all ease-in-out 100ms;
+  // transition: all ease-in-out 100ms; 
 }
 
 .btn-img-shadow{
@@ -128,9 +124,29 @@ $btn-img-diff: ($btn-img-HW - $btn-img-shadow-HW) / 2 ;
   transition: all ease 500ms;
 }
 
-.btn-img:hover .btn-img-shadow {
+.btn-img:hover .btn-img-shadow,
+.btn-icon:hover .btn-img-shadow {
     box-shadow: 0 0 2rem rgb(53, 209, 144);
 }
+
+
+.btn-img {
+  img {
+    height: $btn-img-img-HW;
+    width: $btn-img-img-HW;
+  }
+}
+
+.btn-icon {
+   font-size: 3.2rem;
+   color: white;
+}
+
+//-----------------------------------------
+
+
+
+
 //////////////////////////////////////////////////////////////////////////////
 
 // Tool Tips

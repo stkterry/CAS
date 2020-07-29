@@ -33,25 +33,17 @@ body {
 // Scrollbars....
 
 div, ul,textarea {
-
   scrollbar-width: 8px;
   scrollbar-width: thin;
-  scrollbar-color: green !important;
+  scrollbar-color: $palette_med transparent;
 }
 
 ul::-webkit-scrollbar {
-    // Width of vertical scroll bar
-    width: 8px;
-    // Height of horizontal scroll bar
-    height: 10px;
-    border-radius: 8px;
-  }
-ul::-webkit-scrollbar-thumb {
+  width: 8px;
+  height: 10px;
   border-radius: 8px;
-  background: $palette_med;
 }
-
-::-webkit-scrollbar-thumb {
+ul::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background: $palette_med;
 }

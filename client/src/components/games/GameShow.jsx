@@ -6,6 +6,7 @@ import CardLook from "../card_anims/CardLook";
 import PlayerHandContainer from "./player_hand/player_hand_container";
 import MessageBoxContainer from "../messages/message_box_container";
 import ImgButton from "../buttons/ImgButton";
+import IconButton from "../buttons/IconButton";
 
 import GameHeader from "./header/GameHeader";
 
@@ -121,27 +122,35 @@ class GameShow extends React.Component {
               {this.renderWhiteCardsInPlay()}
           </ul>
         </div>
-          <div id="game_show-features">
-            {this.state.features.showHand && <PlayerHandContainer />}
-            <MessageBoxContainer show={this.state.features.showMessages}/>
-          </div>
+        <div id="game_show-features">
+          {this.state.features.showHand && <PlayerHandContainer />}
+          <MessageBoxContainer show={this.state.features.showMessages}/>
+        </div>
 
-          <div id="fs_modal-container">
-            <div id="fs_modal">
-            <ImgButton 
-              src={BLACK_CARD_ICON} 
-              tooltipText="Cards Won" 
-              // onClick={() => this.setActiveFeature("showMessages")}
-            />
-            <ImgButton
-              src={WHITE_CARD_ICON}
-              tooltipText="Player's Hand"
-              onClick={() => this.setActiveFeature("showHand")}
-            />
-            <button onClick={() => this.setActiveFeature("showMessages")}>Messages</button>
-              <button>Game History</button>
-            </div>
-          </div>
+        <div id="fs_modal">
+        <ImgButton 
+          src={BLACK_CARD_ICON} 
+          tooltipText="Cards Won" 
+          // onClick={() => this.setActiveFeature("showCardsWon")}
+        />
+        <ImgButton
+          src={WHITE_CARD_ICON}
+          tooltipText="Player's Hand"
+          onClick={() => this.setActiveFeature("showHand")}
+        />
+        <IconButton
+          icon="comment"
+          tooltipText="Chat"
+          onClick={() => this.setActiveFeature("showMessages")}
+        />
+        <IconButton
+          icon="scroll"
+          tooltipText="Game History"
+          // onClick={() => this.setActiveFeature("showHistory")}
+        />
+        </div>
+          {/* <div id="fs_modal-container">
+          </div> */}
       </div>
     )
   }

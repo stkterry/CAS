@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon as Fai } from '@fortawesome/react-fontawesome'
 
 const DEF_ICON = require("../../../assets/images/user2.png");
 
@@ -20,7 +20,7 @@ export default function PlayerIcons (props) {
   const img = () => {};
 
   const checkCzar = () => {
-    if (props.czar) return <FontAwesomeIcon icon="crown" className="player_icon-czar" />
+    if (props.czar) return <Fai icon="crown" className="player_icon-czar" />
   }
 
   return (
