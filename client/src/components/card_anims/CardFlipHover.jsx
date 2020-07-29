@@ -1,26 +1,22 @@
 import React from "react";
+import Name from "../labels/Name";
+
 const BLACK_125X188 = require("../../assets/images/125x188_black_4x.png");
 
-class CardFlipHover extends React.Component {
+export default function CardFlipHover (props) {
 
-  render() {
-    return (
-      <div className={`card_flip_hover-container ${this.props.className}`}>
-        <div className="card_flip_hover-inner">
-          <div className="card_flip_hover-front">
-            <h3>Crimes</h3>
-            <h3>Against</h3>
-            <h3>Stupidity</h3>
-          </div>
-          
-          <div className="card_flip_hover-back">
-            <h5>{this.props.content}</h5>
-          </div>
+  return (
+    <div className={`card_fh-container ${props.className}`}>
+      <div className="card_fh-inner-black">
+        <div className="card-front-black">
+          <Name />
         </div>
-      
+        
+        <div className="card_fh-back-black">
+          <h5>{props.content}</h5>
+        </div>
       </div>
-    )
-  }
+    
+    </div>
+  )
 }
-
-export default CardFlipHover;

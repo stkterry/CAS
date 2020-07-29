@@ -1,36 +1,7 @@
 @import "./mixins";
 @import "./funcs";
 
-// CardFlipHover ===================================
-.card_flip_hover-container {
-  @include card-container;
-  
-}
-.card_flip_hover-inner {
-  @include card-inner;
-  background-color: black;
-  // @include card-img;
-}
-.card_flip_hover-container:hover .card_flip_hover-inner {
-  transform: rotateY(180deg);
-}
-.card_flip_hover-front {
-  @include card-front;
-  background-color: black;
-}
-.card_flip_hover-back {
-  @include card-back;
 
-  background-color: black;
-}
-
-.card_flip-shadow_grow {
-  animation: ease shadow_grow 0.3s forwards;
-}
-
-.card_flip-hover-shadow_light .card_flip_hover-inner {
-   box-shadow: 0 .4rem .8rem 0 rgba(128, 122, 122, 0.4); 
-}
 
 // Splash page adjustments.....
 

@@ -122,15 +122,13 @@ $card_flip-sep: 160px;
 }
 
 .card-container {
-  @include card-container;
-  
+  @include card-container;  
 }
+
 
 .card-inner {
   @include card-inner;
-  @include card-shadow;
-  transform: rotateY(-180deg);
-  
+  @include card-shadow;  
 }
 
 .card-front-white {
@@ -140,7 +138,6 @@ $card_flip-sep: 160px;
 .card-front-black {
   @include card-front;
   @include card-color-black;
-
 }
 
 .card-back-white {
@@ -150,8 +147,6 @@ $card_flip-sep: 160px;
 .card-back-black {
   @include card-back;
   @include card-color-black;
-
-
 }
 
 .card-inner-white {
@@ -163,6 +158,7 @@ $card_flip-sep: 160px;
 .card-inner-black {
   @include card-inner;
   @include card-color-black;
+
   transform: rotateY(-180deg);
 }
 
@@ -224,3 +220,86 @@ $card_flip-sep: 160px;
 }
 
 // Card Stack ==============================
+
+
+
+// CardFlipHover =============================================================
+
+.card_fh-container {
+  @include card-container;
+}
+.card_fh-container:hover .card_fh-inner-black,
+.card_fh-container:hover .card_fh-inner-white {
+  transform: rotateY(180deg);
+} 
+.card_fh-inner-black {
+  @include card-inner;
+  @include card-color-black;
+}
+.card_fh-inner-white {
+  @include card-inner;
+  @include card-color-white;
+}
+.card_fh-back-white {
+  @include card-back;
+  @include card-color-white;
+  transform: rotateY(180deg);
+}
+.card_fh-back-black {
+  @include card-back;
+  @include card-color-black;
+  transform: rotateY(180deg);
+}
+
+
+// Card Look =============================================================
+
+
+.card_look-white, .card_look-black {
+  @include no-select;
+  @include card-front;
+  padding: .75rem;
+  position: relative;
+  z-index: 1;
+
+  img {
+    @include card;
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  } 
+}
+
+.card_look-white {
+  @include card-color-white;
+  background: none;
+}
+.card_look-black {
+  @include card-color-black;
+  background: none;
+}
+
+// Card Look Slide ===========================================================
+
+@keyframes slide-out {
+  0%{ right: 0px; }
+  50%{ right: 80px; }
+  100%{ right: 0px; }
+}
+@keyframes slide-out-R {
+  0%{ right: 0px; }
+  50%{ right: 80px; }
+  100%{ right: 0px; }
+}
+
+
+// Currently not in use... glitchy... needs work but a good idea
+// .card_look-anim-slide-out {
+//   animation: ease-in-out slide-out-R 200ms forwards;
+// }
+// .card_look-anim-slide-out:hover {
+//   animation: ease-in-out slide-out 200ms forwards;
+// }
