@@ -7,7 +7,8 @@ import {
   faTimesCircle,
   faCrown,
   faEnvelope,
-  faComment
+  faComment,
+  faScroll,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -20,6 +21,7 @@ library.add(
   faTimesCircle,
   faCrown,
   faEnvelope,
-  faComment
+  faComment,
+  faScroll,
 )
 

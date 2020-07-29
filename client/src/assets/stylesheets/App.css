@@ -103,7 +103,7 @@ body {
 div, ul, textarea {
   scrollbar-width: 8px;
   scrollbar-width: thin;
-  scrollbar-color: green !important; }
+  scrollbar-color: #1c2a38 transparent; }
 
 ul::-webkit-scrollbar {
   width: 8px;
@@ -111,10 +111,6 @@ ul::-webkit-scrollbar {
   border-radius: 8px; }
 
 ul::-webkit-scrollbar-thumb {
-  border-radius: 8px;
-  background: #1c2a38; }
-
-::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background: #1c2a38; }
 
@@ -728,8 +724,8 @@ ul::-webkit-scrollbar-thumb {
   margin: 2.5rem auto;
   min-width: 750px;
   max-width: 1050px;
-  min-height: 810px;
-  max-height: 900px;
+  min-height: 825px;
+  max-height: 1000px;
   width: 90%;
   align-content: center;
   background: #1c2a3844;
@@ -757,7 +753,7 @@ ul::-webkit-scrollbar-thumb {
   border-radius: 1.6rem;
   background: #e4e4e4;
   margin: 1rem auto;
-  min-height: 200px;
+  min-height: 195.5px;
   max-height: 470px; }
 
 #game_show-left {
@@ -804,10 +800,12 @@ ul::-webkit-scrollbar-thumb {
   top: 0;
   bottom: 0;
   padding-top: .75rem;
+  margin-bottom: 0;
   display: grid;
   grid-template-columns: repeat(9, 9.1%);
-  background-color: rgba(13, 26, 204, 0.137);
-  justify-content: center; }
+  background-color: #0f134d;
+  justify-content: center;
+  z-index: 1; }
 
 #game_show-black {
   border-radius: 1rem;
@@ -822,7 +820,8 @@ ul::-webkit-scrollbar-thumb {
 #game_show-features {
   position: relative;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  min-height: 225px; }
 
 .card_look-container_white, .card_look-container_black {
   border-radius: 1rem;
@@ -1047,11 +1046,11 @@ ul::-webkit-scrollbar-thumb {
   position: absolute;
   border-radius: 1.6rem;
   box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
-  height: 350px;
+  min-height: 225px;
   width: 100%;
   height: 100%;
-  bottom: 0;
-  background-color: rgba(31, 31, 31, 0.74);
+  top: 0;
+  background-color: rgba(13, 26, 204, 0.137);
   padding: 0rem;
   box-sizing: border-box;
   display: flex;
@@ -1064,7 +1063,7 @@ ul::-webkit-scrollbar-thumb {
   box-sizing: border-box;
   border: 0.25rem solid #1c2a38;
   margin: 1rem;
-  background: #e4e4e4; }
+  background: #ececec; }
 
 #message_box-left {
   width: 30%;
@@ -1174,7 +1173,9 @@ ul::-webkit-scrollbar-thumb {
   font-family: 'Lato', sans-serif; }
 
 #fs_modal-container {
-  margin-top: 0; }
+  margin-top: 0;
+  height: 8rem;
+  background: red; }
 
 #fs_modal {
   display: flex;
@@ -1659,33 +1660,39 @@ ul::-webkit-scrollbar-thumb {
   opacity: 1;
   right: 0; }
 
-.btn-img {
+.btn-icon, .btn-img {
   position: relative;
-  margin: 0 1rem;
+  margin: .5rem 1rem;
   text-align: center;
   padding: 0;
-  height: 48px;
-  width: 48px;
+  height: 4.8rem;
+  width: 4.8rem;
   border-radius: 50%;
   border: none;
   background: none; }
-  .btn-img img {
-    height: 36px;
-    width: 36px; }
 
 .btn-img-shadow {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  height: 24px;
-  width: 24px;
+  top: 1.2rem;
+  left: 1.2rem;
+  height: 2.4rem;
+  width: 2.4rem;
   border-radius: 50%;
   box-shadow: 0 0 2rem white;
   z-index: -1;
   transition: all ease 500ms; }
 
-.btn-img:hover .btn-img-shadow {
+.btn-img:hover .btn-img-shadow,
+.btn-icon:hover .btn-img-shadow {
   box-shadow: 0 0 2rem #35d190; }
+
+.btn-img img {
+  height: 3.6rem;
+  width: 3.6rem; }
+
+.btn-icon {
+  font-size: 3.2rem;
+  color: white; }
 
 .tooltip {
   position: relative;
