@@ -64,12 +64,13 @@ $maxWidth: 1050px;
   @include game_show-left_width;
 }
 
+
 #game_show-right {
   @include game_show-right_width;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(135px, max-content));
-  justify-content: center;
-  padding: initial;
+  // justify-content: center;
+  // padding: initial;
 }
 
 #game_show-left-content {
@@ -102,11 +103,14 @@ $maxWidth: 1050px;
 }
 
 #game_show-player_cards {
+  position: absolute;
+  // height: 100%;
   width: 100%;
-  box-sizing: border-box;
-  margin-top: 1rem;
-  margin-bottom: 0;
-  padding: .75rem 0;
+  // box-sizing: border-box;
+  top: 0;
+  bottom: 0;
+  padding-top: .75rem;
+  // padding: .75rem 0;
   display: grid;
   grid-template-columns: repeat(9, 9.1%);
   background-color: $palette_blue_15o;
@@ -127,3 +131,8 @@ $maxWidth: 1050px;
 }
 
 
+#game_show-features {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}

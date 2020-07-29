@@ -3,7 +3,8 @@ import { Link, withRouter } from "react-router-dom";
 import { CSSTransitions } from "react-transition-group";
 
 import CardLook from "../card_anims/CardLook";
-import FeatureSelectionModal from "../switch_modals/FeatureSelectionModal";
+import PlayerHandContainer from "./player_hand/player_hand_container";
+// import FeatureSelectionModal from "../switch_modals/FeatureSelectionModal";
 import MessageBoxContainer from "../messages/message_box_container";
 
 import GameHeader from "./header/GameHeader";
@@ -14,15 +15,13 @@ class GameShow extends React.Component {
     super(props);
 
     this.state = {
-      game: {},
-      white: [],
-      black: [],
-      players: [],
-      gameName: "...Loading",
       cardsInPlay: { white: [], black: [] },
-      rounds: null,
       playerStates: {},
-      playerState: { white: [], black: [], score: null }
+      features: {
+        showHand: true,
+        showMessages: false,
+        showWon: false
+      }
     }
   }
 
@@ -58,7 +57,6 @@ class GameShow extends React.Component {
         players: this.props.game.players,
         playerStates: playerStates,
       })
-
     }
 
     if (prevProps.playerState !== this.props.playerState) {
@@ -91,14 +89,14 @@ class GameShow extends React.Component {
     }
   }
 
-  renderPlayerCards = () => {
-    const cards = this.state.playerState.white;
-    return (
-      cards.map(card => (
-        <CardLook className={"game_show-player_cards game_show-card"} key={card._id} card={card} />
-      ))
-    )
-  }
+  setActiveFeature = feature => this.setState({
+    features: {
+      showHand: feature === "showHand",
+      showMessages: feature === "showMessages",
+      showWon: feature === "showWon"
+    }
+  })
+
 
   render() {
 
@@ -111,7 +109,6 @@ class GameShow extends React.Component {
         />
         <div id="game_show-content">
           <div id="game_show-left">
-            {/* <div id="game_show-current"></div> */}
             <div id ="game_show-black">
               {this.renderBlackCardInPlay()}
               <h5 className="game_show-current_turn">{this.renderPlayerTurn()}</h5>
@@ -121,14 +118,19 @@ class GameShow extends React.Component {
               {this.renderWhiteCardsInPlay()}
           </ul>
         </div>
+          <div id="game_show-features">
+            {this.state.features.showHand && <PlayerHandContainer />}
+            <MessageBoxContainer show={this.state.features.showMessages}/>
+          </div>
 
-          {/* <div id="game_show-player_cards">
-              {this.renderPlayerCards()}
-          </div> */}
-          {/* <div id="game_show-bottom_buffer">
-          </div> */}
-            <MessageBoxContainer/>
-          {/* <FeatureSelectionModal /> */}
+          <div id="fs_modal-container">
+            <div id="fs_modal">
+            <button onClick={_ => this.setActiveFeature("showMessages")}>Messages</button>
+            <button onClick={_ => this.setActiveFeature("showHand")}>Hand</button>
+              <button>Game History</button>
+              <button>Black Cards</button>
+            </div>
+          </div>
       </div>
     )
   }

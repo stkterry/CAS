@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import TextareaAutosize from "react-textarea-autosize";
 import { Picker, Emoji } from "emoji-mart";
 
 const textRef = React.createRef();
@@ -51,24 +51,22 @@ export default function MessageForm(props) {
 
   return (
     <div id="message_box-form-gutter">
-
       {showPicker()}
       <form id="message_box-form">
         <div
           onClick={() => setShowEmoji(!showEmoji)}
         >
-          <Emoji emoji={{ id: 'smile', skin: 3 }} size={36} />
+          <Emoji emoji={{ id: 'smile', skin: 3 }} size={18} />
         </div>
-          <textarea
-            type="text"
-            onChange={event => setContent(event.target.value)}
-            onKeyDown={event => onEnterPress(event)}
-            value={content}
-            placeholder={'Type your shit here!'}
-            ref={textRef}
-          />
+        <TextareaAutosize
+          type="text"
+          onChange={event => setContent(event.target.value)}
+          onKeyDown={event => onEnterPress(event)}
+          value={content}
+          placeholder={'Type your shit here!'}
+          ref={textRef}
+        />
       </form>
     </div>
   )
-
 }

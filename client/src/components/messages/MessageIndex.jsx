@@ -3,7 +3,6 @@ import MessageContainer from "./message_container";
 
 
 export default function MessageIndex(props) {
-
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
