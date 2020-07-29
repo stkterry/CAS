@@ -8,24 +8,7 @@ import { setAuthToken } from "./util/session_api_util";
 import { logout } from "./actions/session_actions";
 
 import "./assets/stylesheets/App.css";
-import { library } from '@fortawesome/fontawesome-svg-core'
-// import { fab} from '@fortawesome/free-brands-svg-icons'
-import { 
-  faCheckSquare, 
-  faCoffee, 
-  faCrown, 
-  faMehRollingEyes as faMehRollingEyesSolid 
-} from '@fortawesome/free-solid-svg-icons'
-import { 
-  faMehRollingEyes as faMehRollingEyesRegular 
-} from "@fortawesome/free-regular-svg-icons";
-library.add(
-  faCheckSquare, 
-  faCoffee, 
-  faCrown, 
-  faMehRollingEyesRegular, 
-  faMehRollingEyesSolid
-)
+import "./assets/fontawesome_lib/fontawesome";
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;

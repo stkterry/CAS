@@ -118,6 +118,48 @@ transition: all 0.4s ease 0s;
   right: 0;
 }
 
+.btn-featureButton {
+  margin: 0 1rem;
+  text-align: center;
+  padding: 0;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  // border: none;
+  border: 1px solid rgba(138, 138, 138, 0.438);
+  // background-color: rgba(126, 41, 53, 0.582);
+  box-shadow: 0 0 1rem black;
+  background-color: rgba(114, 114, 114, 0.308);
+  img {
+    height: 36px;
+    width: 36px;
+  }
+}
+
+
+// Tool Tips
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+/* Tooltip text */
+.tooltip .tooltiptext {
+  pointer-events: none;
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  bottom: 48px;
+  z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 
 // Scrollbars....
 

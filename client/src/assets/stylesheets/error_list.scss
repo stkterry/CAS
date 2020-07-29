@@ -14,17 +14,16 @@
     align-items: center;
     font-size: 1.2rem;
   }
-
-  i {
-    padding-left: .5rem;
-    font-style: normal;
-  }
 }
 .signup_times {
   color: red;
 }
 .signup_check {
   color: green;
+}
+.signup_times, .signup_check {
+  font-size: 1.6rem;
+  padding-left: .5rem;
 }
 
 
