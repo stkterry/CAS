@@ -141,33 +141,33 @@ $card_flip-sep: 160px;
 
 ////////////////////////////
 
-@mixin card-front-white {
-  @include card-front;
-  @include card-color-white;
-}
-@mixin card-front-black {
-  @include card-front;
-  @include card-color-black;
-}
+// @mixin card-front-white {
+//   @include card-front;
+//   @include card-color-white;
+// }
+// @mixin card-front-black {
+//   @include card-front;
+//   @include card-color-black;
+// }
 
-@mixin card-back-white {
-  @include card-back;
-  @include card-color-white;
-}
-@mixin card-back-black {
-  @include card-back;
-  @include card-color-black;
-}
+// @mixin card-back-white {
+//   @include card-back;
+//   @include card-color-white;
+// }
+// @mixin card-back-black {
+//   @include card-back;
+//   @include card-color-black;
+// }
 
-@mixin card-inner-white {
-  @include card-inner;
-  @include card-color-white;
-}
+// @mixin card-inner-white {
+//   @include card-inner;
+//   @include card-color-white;
+// }
 
-@mixin card-inner-black {
-  @include card-inner;
-  @include card-color-black;
-}
+// @mixin card-inner-black {
+//   @include card-inner;
+//   @include card-color-black;
+// }
 
 
 @mixin small-text-shadow {
