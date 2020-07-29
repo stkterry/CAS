@@ -180,7 +180,7 @@ body {
   opacity: 1;
   right: 0; }
 
-div, ul {
+div, ul, textarea {
   scrollbar-width: 8px;
   scrollbar-width: thin;
   scrollbar-color: green !important; }
@@ -191,6 +191,10 @@ ul::-webkit-scrollbar {
   border-radius: 8px; }
 
 ul::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #1c2a38; }
+
+::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background: #1c2a38; }
 
@@ -933,9 +937,7 @@ ul::-webkit-scrollbar-thumb {
   max-width: 25000px;
   min-height: 400px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(135px, max-content));
-  justify-content: center;
-  padding: initial; }
+  grid-template-columns: repeat(auto-fit, minmax(135px, max-content)); }
 
 #game_show-left-content {
   box-sizing: content-box;
@@ -962,11 +964,11 @@ ul::-webkit-scrollbar-thumb {
   margin: 0; }
 
 #game_show-player_cards {
+  position: absolute;
   width: 100%;
-  box-sizing: border-box;
-  margin-top: 1rem;
-  margin-bottom: 0;
-  padding: .75rem 0;
+  top: 0;
+  bottom: 0;
+  padding-top: .75rem;
   display: grid;
   grid-template-columns: repeat(9, 9.1%);
   background-color: rgba(13, 26, 204, 0.137);
@@ -981,6 +983,11 @@ ul::-webkit-scrollbar-thumb {
   #game_show-black .game_show-current_turn {
     padding-left: .75rem;
     font-weight: bold; }
+
+#game_show-features {
+  position: relative;
+  width: 100%;
+  height: 100%; }
 
 .card_look-container_white, .card_look-container_black {
   border-radius: 1rem;
@@ -1217,6 +1224,7 @@ ul::-webkit-scrollbar-thumb {
   box-shadow: 0 0.8rem 1.6rem 0 rgba(0, 0, 0, 0.5);
   height: 350px;
   width: 100%;
+  height: 100%;
   bottom: 0;
   background-color: rgba(31, 31, 31, 0.74);
   padding: 0rem;
@@ -1270,7 +1278,7 @@ ul::-webkit-scrollbar-thumb {
 #message_box-form {
   z-index: 1;
   margin: 1.1rem;
-  height: 4.8rem;
+  min-height: 3.2rem;
   background-color: #ececec;
   border: 0.1rem solid #1c2a38;
   border-radius: .4rem;
@@ -1287,10 +1295,9 @@ ul::-webkit-scrollbar-thumb {
     #message_box-form div * {
       margin: 0 auto; }
   #message_box-form textarea {
-    box-sizing: border-box;
     padding: .25rem 1rem;
     width: 100%;
-    height: 100%;
+    max-height: 10rem;
     background: none;
     text-align: bottom;
     resize: none;

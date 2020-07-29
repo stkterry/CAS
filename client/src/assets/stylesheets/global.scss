@@ -121,7 +121,8 @@ transition: all 0.4s ease 0s;
 
 // Scrollbars....
 
-div, ul {
+div, ul,textarea {
+
   scrollbar-width: 8px;
   scrollbar-width: thin;
   scrollbar-color: green !important;
@@ -139,3 +140,7 @@ ul::-webkit-scrollbar-thumb {
   background: $palette_med;
 }
 
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: $palette_med;
+}

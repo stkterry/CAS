@@ -12,7 +12,7 @@ const initialState = {
   user: {}, 
   new: undefined, 
   active: {},
-  playerState: {}
+  playerState: { white: [], black: [], score: null }
 }
 
 const GamesReducer = (state = initialState, action) => {
