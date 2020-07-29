@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import _ from "lodash";
 
 import CardFlip from "../card_anims/CardFlip";
-import CardFront from "../card_anims/CardFront";
 import ErrorList from "../errors/ErrorList";
 import InputEntry from "./InputEntry";
 import * as ValidAPI from "../../util/soft_validation";

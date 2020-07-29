@@ -1,4 +1,9 @@
-
+@function getMinWidth($card-size, $card-margin) {
+  @return $card-size * 4 + $card-margin * 8;
+}
+@function getMaxWidth($card-size, $card-margin) {
+  @return $card-size * 5 * $card-margin * 8;
+}
 
 .rise {
   position: relative;

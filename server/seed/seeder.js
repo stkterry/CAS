@@ -35,6 +35,7 @@ const registerGame = async data => {
       data,
       err => {if (err) throw err}
     );
+
     await game.save();
     return game;
   } catch (err) { throw err }
@@ -70,19 +71,26 @@ const seedUsers = async (amount) => {
 };
 
 const seedGames = async (amount) => {
+
   const users = await User.find();
   const cardPacks = await CardPack.find();
+  const tina = await User.findOne({ 'handle' : 'Tina Careena' }).exec();
+
+
   const range = {
     min: cardPacks.length ? 3 : 0,
     max: cardPacks.length ? cardPacks.length : 0
   };
 
+
   for (let i = 0; i < amount; i++) {
     let host_player = chance.pickone(users);
     let players = [host_player];
 
-    let numPlayers = chance.integer({ min: 2, max: 7 }); // Range excludes host_player
-    while (players.length <= numPlayers) {
+    if (String(host_player._id) != String(tina._id)) players.push(tina);
+
+    let numPlayers = chance.integer({ min: 3, max: 7 });
+    while (players.length < numPlayers) {
       let tempPlayer = chance.pickone(users);
       if (String(tempPlayer._id) != String(host_player._id)) {
         players.push(tempPlayer);
@@ -92,13 +100,23 @@ const seedGames = async (amount) => {
     // I really can't figure out why this is necessary... maybe it's just that I'm really tired...
     players = [... new Set(players)];
 
-    // Clear the previous game and await successful game creation...
-
+    // Lets setup player states...
+    let playerStates = players.map(player => ({
+      _id: player._id,
+      white: [],
+      black: [],
+      score:0
+    }));
+    
     await registerGame({ 
         host: host_player._id, 
         players: players.map(player => player._id),
         name: host_player.handle + "'s Game",
-        cardPacks: chance.pickset(cardPacks, chance.integer(range))
+        cardPacks: chance.pickset(cardPacks, chance.integer(range)),
+        playerStates: playerStates,
+        cardsInPlay: { white: [], black: null },
+        currentTurn: null,
+        rounds: 0
       })
       .then(async game => {
 
@@ -106,6 +124,44 @@ const seedGames = async (amount) => {
           game.white.push(...pack.white);
           game.black.push(...pack.black);
         }
+        game.white = chance.shuffle(game.white);
+        game.black = chance.shuffle(game.black);
+        game.playerStates = chance.shuffle(game.playerStates);
+
+        // Lets add some cards to the game_state.playerStates!
+        game.playerStates = game.playerStates.map(playerState => {
+
+          playerState.white = game.white.splice(0, 10);
+
+          let numRoundsWon = chance.integer({ min: 0, max: 7 });
+          playerState.score = numRoundsWon;
+          playerState.black = game.black.splice(0, numRoundsWon);
+
+          return playerState;
+        })
+
+        // Now lets fill up the cards in play...
+        // First the white cards... we'll take from the player states' cards
+        const numCardsInPlay = chance.integer({min: 1, max: game.players.length - 1}) // Exclude whoever is current player...
+        game.cardsInPlay.white = Array.from(
+          {length: numCardsInPlay}, 
+          (_, idx) => game.playerStates[idx].white.pop()
+        )
+
+        // Now lets get a random black card to be the one in play, also assign a person to currentTurn
+        game.cardsInPlay.black = game.black.pop();
+        game.currentTurn = game.playerStates[numCardsInPlay]['_id'];
+
+        // Lastly, lets look at the total number of rounds played, and discard the appropriate number of cards
+        game.rounds = game.playerStates
+          .map(playerState => playerState.score)
+          .reduce((score, cur) => score + cur);
+
+
+        // We are just going to assume all players present for every round and no special draw x play y black cards
+        let totalCardsDiscarded = game.rounds * (game.players.length - 1);
+        game.discardedWhite = game.white.splice(0, totalCardsDiscarded);
+
         await game.save();
 
         console.log(`Added Game - Host : ${host_player.handle}, Players: ${game.players.length}`);
@@ -170,8 +226,14 @@ const seedDB = () =>
       db.connection.close();
     });
 
+  const reseedDB = () => {
+    dropDBC()
+      .then(() => seedDB())
+  }
+
 module.exports = {
   dropDB,
   dropDBC,
-  seedDB
+  seedDB, 
+  reseedDB
 };

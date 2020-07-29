@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 
 import InputEntry from "./InputEntry";
 import ErrorList from "../errors/ErrorList";
-import CardFront from "../card_anims/CardFront";
 import CardFlip from "../card_anims/CardFlip";
 
 class LoginForm extends React.Component {

@@ -8,6 +8,7 @@ import { setAuthToken } from "./util/session_api_util";
 import { logout } from "./actions/session_actions";
 
 import "./assets/stylesheets/App.css";
+import "./assets/fontawesome_lib/fontawesome";
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
