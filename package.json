@@ -11,10 +11,12 @@
     "client": "npm start --prefix client",
     "sass": "sass --watch client/src/assets/stylesheets/input.scss:client/src/assets/stylesheets/App.css",
     "dev": "concurrently \"npm run server:debug\" \"npm run client\" \"npm run sass\"",
-    "dropDB": "node -e 'require(\"./server/seed/seeder.js\").dropDB()'",
     "dropDBC": "node -e 'require(\"./server/seed/seeder.js\").dropDBC()'",
     "seedDB": "node -e 'require(\"./server/seed/seeder.js\").seedDB()'",
-    "seedCards": "node -e 'require(\"./server/seed/seedCards.js\").seedCards()'"
+    "seedCards": "node -e 'require(\"./server/seed/seedCards.js\").seedCards()'",
+    "seedMessages": "node -e 'require(\"./server/seed/messageSeeder.js\").seedMessages()'",
+    "dropMessages": "node -e 'require(\"./server/seed/messageSeeder.js\").dropMessages()'"
+
   },
   "author": "Steven K Terry",
   "license": "ISC",
@@ -24,8 +26,10 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.19",
+    "moment": "^2.27.0",
     "mongoose": "^5.9.22",
     "mongoose-simple-random": "^0.4.1",
+    "node-sass": "^4.14.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react-fittext": "^1.0.0",
@@ -37,7 +41,6 @@
     "chance": "^1.1.6",
     "concurrently": "^5.2.0",
     "node-fetch": "^2.6.0",
-    "node-sass": "^4.14.1",
     "nodemon": "^2.0.4"
   }
 }

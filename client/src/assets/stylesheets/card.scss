@@ -1,0 +1,226 @@
+
+@mixin card-lim {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 15; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+$card_flip-sep: 160px;
+@mixin card {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+}
+
+@mixin card-container {
+  @include card;
+  @include no-select;
+  box-sizing: border-box;
+  background: none;
+  perspective: 1000px;
+}
+@mixin card-inner {
+  @include card;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  background: none;
+  box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.4); 
+}
+
+@mixin card-img {
+  img {
+    @include card;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+}
+
+@mixin card-face {
+  @include card;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+@mixin card-front {
+  @include card-face;
+  padding: 1.5rem;
+  h3 {
+    font-size: 2rem;
+    @include font-luckiest;
+  }
+}
+
+@mixin card-color-white {
+  background-color: $palette_light;
+  h1, h2, h3, h4, h5, h6 {
+    color: black;
+  }  
+}
+
+@mixin card-color-black {
+  background-color: rgb(10, 10, 10);
+  h1, h2, h3, h4, h5, h6 {
+    color: $palette_light;
+  }  
+}
+
+@mixin card-back {
+  @include card-face;
+  @include card-lim;
+  h1, h2, h3, h4, h5, h6 {
+    padding: 1.35rem 1rem 1rem 1rem;
+    font-family: Aerial, sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+
+}
+
+////// SHADOWS ///////////////////////////////////////////////
+@mixin card-shadow {
+  box-shadow: 0 .2rem .6rem 0 rgba(0,0,0,0.4);
+}
+@mixin card-shadow-dark {
+  box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.4);
+}
+@mixin card-shadow-large {
+   box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.4), 0 4.5rem 10rem rgba(0, 0, 0, 0.4);
+}
+
+@mixin card-shadow-stack {
+  box-shadow: 1rem 1rem .5rem rgba(0, 0, 0, 0.4), 1.5rem 1.5rem 1.5rem rgba(0, 0, 0, 0.4);
+
+}
+
+@mixin card-shadow-white {
+  box-shadow: 0 0 1.6rem rgba(212, 211, 211, 0.5);
+}
+
+////// CLASSES ///////////////////////////////////////////////////////////////
+
+
+.card-face {
+  @include card-face;
+}
+
+.card-front {
+  @include card-front;
+}
+
+.card-back {
+  @include card-back;
+}
+
+.card-container {
+  @include card-container;
+  
+}
+
+.card-inner {
+  @include card-inner;
+  @include card-shadow;
+  transform: rotateY(-180deg);
+  
+}
+
+.card-front-white {
+  @include card-front;
+  @include card-color-white;
+}
+.card-front-black {
+  @include card-front;
+  @include card-color-black;
+
+}
+
+.card-back-white {
+  @include card-back;
+  @include card-color-white;
+}
+.card-back-black {
+  @include card-back;
+  @include card-color-black;
+
+
+}
+
+.card-inner-white {
+  @include card-inner;
+  @include card-color-white;
+  transform: rotateY(-180deg);
+}
+
+.card-inner-black {
+  @include card-inner;
+  @include card-color-black;
+  transform: rotateY(-180deg);
+}
+
+///// SHADOW CLASSES ///////////////
+.card-shadow {
+  @include card-shadow;
+}
+.card-shadow-dark {
+  @include card-shadow-dark
+}
+.card-shadow-large {
+  @include card-shadow-large
+}
+
+.card-shadow-stack {
+  @include card-shadow-stack;
+}
+
+
+//card_static replacers
+///////////////////////////////////////////////////////////////////////////////
+.card-abs {
+  border: .1rem solid rgb(66, 66, 66);
+  position: absolute;
+}
+.card-abs-sep {
+  position: absolute;
+  right: $card_flip-sep;
+}
+
+.card-back-rot {
+  transform: rotateY(180deg);
+}
+
+
+@keyframes card_flipRotTransLR {
+  0%{
+    right: 0px;
+    transform: rotateY(0deg) scale3d(1, 1, 1);
+  }
+  50%{
+    transform: rotateY(-90deg) scale3d(1.2, 1.2, 1.2);
+  }
+  100%{
+    right: $card_flip-sep;
+    transform: rotateY(-180deg) scale3d(1, 1, 1);
+  }
+}
+
+// Fires when element enters DOM
+.card-container-transition-enter {
+  right: 0px;
+}
+// The transition itself
+.card-container-transition-enter-active {
+  .card-inner-black, .card-inner-white {
+    animation: ease-in-out card_flipRotTransLR 1000ms forwards;
+  }
+}
+
+// Card Stack ==============================

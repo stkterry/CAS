@@ -11,4 +11,3 @@ export const CATCH_PHRASES = [
 
 export const getPhrase = () => 
   CATCH_PHRASES[Math.floor(Math.random() * CATCH_PHRASES.length)];
-

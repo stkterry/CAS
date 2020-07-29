@@ -1,0 +1,49 @@
+
+
+#game_show-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    text-shadow: 0 0 .5rem black;
+    color: $palette_light;
+
+  }
+
+}
+
+#game_show-header-players {
+  display: flex;
+  flex-direction: row;
+}
+
+// CSS Transition game_show-header-title
+.game_show-header-transitions-title-enter {
+  font-size: 0rem;
+}
+.game_show-header-transitions-title-enter-active,
+.game_show-header-transitions-title-exit  {
+  transition: all 300ms ease;
+  font-size: 3.2rem;
+}
+.game_show-header-transitions-title-exit-active {
+  font-size: 0rem;
+}
+
+
+
+
+
+.game_show-header-transitions-handles-enter {
+  font-size: 0rem;
+}
+.game_show-header-transitions-handles-enter-active,
+.game_show-header-transitions-handles-exit {
+  font-size: 1.1rem;
+  transition: all 300ms ease;
+}
+.game_show-header-transitions-handles-exit-active {
+  font-size: 0rem;
+
+}

@@ -9,7 +9,8 @@ const { eRes } = require("../../validation/validation-util");
 const ERRORS = {
   noGamesFound: { game: "No games found" },
   noUserGames: { game: "No games found from that user"},
-  noIDGames: { game: "No games found with that ID" }
+  noIDGames: { game: "No games found with that ID" },
+  noPlayerState: { game: "No player state found for that user"}
 };
 
 // Game Creation =============================================================
@@ -27,54 +28,41 @@ router.get("/test", (req, res) => res.json({ msg: "This is the games route!" }))
 
 // /
 router.get("/", (req, res) => {
-  Game.find()
-    .sort({ date: -1 })
-    .populate({
-      path: 'host players', select: 'handle _id'
-    })
-    .populate({
-      path: 'cardPacks', select: 'name _id quantity'
-    })
+  Game.getAll()
     .then(games => res.json(games))
     .catch(err => console.log(err))
 })
 
 // /user/:user_id
 router.get("/user/:user_id", (req, res) => {
-  Game.find({ user: req.params.user_id })
+  Game.getUserGames(req.params.user_id)
     .then(games => res.json(games))
     .catch(err => eRes(res, 404, ERRORS.noUserGames))
 })
 
 // /:id
 router.get("/:game_id", (req, res) => {
-  Game.findById(req.params.game_id)
-    .populate({
-      path: 'host players', select: 'handle _id'
-    })
-    .populate({
-      path: 'cardPacks', select: 'name _id quantity'
-    })
+  Game.getGame(req.params.game_id)
     .then(game => res.json(game))
     .catch(err => eRes(res, 404, ERRORS.noIDgames))
 })
 
 // /active/:game_id
-router.get("/active/:game_id", (req, res) => {
-  Game.findById(req.params.game_id, '-__v')
-    .populate({
-      path: 'host players', select: 'handle _id'
-    })
-    // .populate({
-    //   path: 'cardPacks', populate: {
-    //     path: 'white black', select: '-date -__v'
-    //   }, select: '-date -__v -url_id'
-    // })
-    .populate({
-      path: 'white black', select: '-date -__v'
-    })
+router.get("/active/:game_id/:user_id", (req, res) => {
+    Game.getActive(req.params.game_id, req.params.user_id)
     .then(game => res.json(game))
     .catch(err => eRes(res, 404, ERRORS.noIDgames))
+})
+
+// /getPlayerState/:game_id/:user_id
+router.get("/playerState/:game_id/:user_id", (req, res) => {
+  const {game_id, user_id} = req.params;
+
+  Game.getPlayerState(game_id, user_id, res)
+    .then(playerState => res.json(playerState))
+    .catch(err => console.log(err))
+    // .catch(err => eRes(res, 404, ERRORS.noPlayerState))
+    
 })
 
 // Games POST ================================================================
@@ -91,5 +79,19 @@ router.post("/", passport.authenticate("jwt", { session: false }),
   }
 )
 
+// drop messages from game
+// drop all messages in a game!!!
+router.post("/dropmessages/:game_id", passport.authenticate("jwt", { session: false }),
+  (req, res) => Game.dropMessages(req.params.game_id)
+    .then(dat => res.json(dat))
+    .catch(err => console.log(err))
+)
+
 
 module.exports = router;
+
+
+
+
+
+

@@ -1,3 +1,4 @@
+
 @import './reset.scss';
 @import './global.scss';
 @import './splash.scss';
@@ -6,9 +7,17 @@
 @import './landing.scss';
 @import './game_box.scss';
 @import './funcs';
-@import './game_show.scss';
-@import './player_icon.scss';
+@import './game_show/game_show.scss';
+// @import './game_show/player_icon.scss';
 @import './card_look.scss';
 @import './session.scss';
 @import './error_list.scss';
 @import './card_static.scss';
+@import './messages/message_box.scss';
+@import './messages/message_form.scss';
+@import './messages/message.scss';
+@import './modals.scss';
+@import './card.scss';
+@import './btn';
+// Emoji-Mart CSS modified
+@import './emoji-mart/emoji-mart.scss';

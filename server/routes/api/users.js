@@ -10,7 +10,6 @@ const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 const keys = require("../../config/keys");
 const User = require("../../models/User");
-const { create } = require("../../models/User");
 
 //User default errors
 const ERRORS = {
@@ -44,7 +43,7 @@ const genToken = (user, res) => {
   jwt.sign(
     {id: user.id, handle: user.handle, email: user.email },
     keys.secretOrKey,
-    { expiresIn: 3600 },
+    // { expiresIn: 3600 }, // Disable expiry
     (err, token) => res.json({ success: true, token: "Bearer " + token })
   )
 }

@@ -1,5 +1,5 @@
 @import "./_palettes.scss";
-
+@import "./mixins";
 
 
 .noselect {
@@ -15,6 +15,8 @@ body {
   background-image: url("../images/alphaTile1080.png");
   background-repeat: repeat;
   background-color: $palette_med;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 #footer{
@@ -27,102 +29,29 @@ body {
   width: 100%;
 }
 
-.btn-default {
-  font-size: 1.8rem;
-  border: .5px solid $button_red;
-  border-radius: .7rem;
-  background:$button_red;
-  color: white;
-  text-decoration: none;
-  padding: .5rem 1rem;
-  width: 85px;
-  height: 25px;
-  text-align: center;
-    line-height: 2.5rem;
-}
-.btn-default:hover {
-  border: .05rem solid white;
-  background:rgba(13, 13, 13, .75);
-}
 
-.btn-ghost {
-  margin: 0 1rem;
-  color: $palette_text_light;
-  background: $button_red;
-  font-size: 1.8rem;
-  font-weight: bold;
-  font-family: 'Montserrat Alternates', sans-serif;
-  // text-transform: uppercase;
-  text-decoration: none;
-  padding: .5rem 1rem;
-  border-radius: .7rem;
-  border: .5px solid $button_red;
-  display: inline-block;
-  transition: all 0.4s ease 0s;
-}
+// Scrollbars....
 
-.btn-ghost:hover {
-color: $palette_text_light;
-background: $palette_dark;
-border-color: $palette_dark;
-transition: all 0.4s ease 0s;
-}
+div, ul,textarea {
 
-
-.btn-exp {
-  border-radius: .35rem;
-  background: linear-gradient(to right, #67b26b, #4ca2cb) !important;
-  border: none;
-  color: $palette_dark;
-	font-family: 'Montserrat Alternates', sans-serif;
-  font-weight: bold;
-  text-align: center;
-  font-size: 1.8rem;
-  padding: .35rem 1rem .35rem 1rem;
-  transition: all 0.4s;
-  cursor: pointer;
-  margin: 5px;  
-}
-
-.btn-exp span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.4s;
-}
-
-.btn-exp span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -2rem;
-  transition: 0.5s;
-}
-.btn-exp:hover span {
-  padding-right: 2.5rem;
-}
-.btn-exp:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-div {
-  --scrollbarBG: #CFD8DC;
-  --thumbBG: #90A4AE;
-}
-div::-webkit-scrollbar {
-  width: 11px;
-}
-div {
+  scrollbar-width: 8px;
   scrollbar-width: thin;
-  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  scrollbar-color: green !important;
 }
-div::-webkit-scrollbar-track {
-  background: var(--scrollbarBG);
+
+ul::-webkit-scrollbar {
+    // Width of vertical scroll bar
+    width: 8px;
+    // Height of horizontal scroll bar
+    height: 10px;
+    border-radius: 8px;
+  }
+ul::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: $palette_med;
 }
-div::-webkit-scrollbar-thumb {
-  background-color: var(--thumbBG);
-  border-radius: 6px;
-  border: 3px solid var(--scrollbarBG);
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: $palette_med;
 }
