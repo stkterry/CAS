@@ -1,24 +1,22 @@
-import React, { Component } from 'react'
-import { findDOMNode } from 'react-dom';
+import React from 'react'
 
+const defaultSettings = {
+  reverse: false,
+  max: 40,
+  perspective: 750,
+  easing: 'cubic-bezier(.03,.98,.52,.99)',
+  scale: '1.1',
+  speed: '1000',
+  transition: true,
+};
 
-class Phase extends Component {
+class Phase extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      style: {}
-    };
-    
-    const defaultSettings = {
-      reverse: false,
-      max: 35,
-      perspective: 1000,
-      easing: 'cubic-bezier(.03,.98,.52,.99)',
-      scale: '1.1',
-      speed: '1000',
-      transition: true,
-      axis: null,
-      reset: true
+      style: {
+        ...this.props.anim
+      }
     };
     
     this.width = null;
@@ -27,26 +25,26 @@ class Phase extends Component {
     this.top = null;
     this.transitionTimeout = null;
     this.updateCall = null;
-    this.element = null;
+    this.phase = null;
     this.settings = {
       ...defaultSettings,
       ...this.props.options,
     };
-
+    this.settings.defTransition = `${this.settings.speed}ms ${this.settings.easing}`;
     this.reverse = this.settings.reverse ? -1 : 1;
-
+    this.phaseRef = React.createRef();
   } 
   
   componentDidMount() {
-    this.element = findDOMNode(this);
+    this.phase = this.phaseRef.current;
   } 
   
   componentWillUnmount() {
     clearTimeout(this.transitionTimeout);
     cancelAnimationFrame(this.updateCall);
   } 
-  handleMouseEnter = event =>  {
-    this.updateElementPosition();
+  mouseEnter = () =>  {
+    this.updatePos();
     this.setTransition();
     this.setState(prevState => ({
       style: {
@@ -68,7 +66,7 @@ class Phase extends Component {
     })
   } 
   
-  handleMouseMove = event => {
+  mouseMove = event => {
     event.persist()    
     
     if (this.updateCall !== null) {
@@ -84,7 +82,7 @@ class Phase extends Component {
     this.setState(prevState => ({
       style: {
         ...prevState.style,
-        transition: `${this.settings.speed}ms ${this.settings.easing}`,
+        transition: this.settings.defTransition,
       }
     }))    
     
@@ -98,11 +96,9 @@ class Phase extends Component {
     }, this.settings.speed)
   } 
   
-  handleMouseLeave = event => {
+  mouseLeave = () => {
     this.setTransition()
-    if (this.settings.reset) {
-      this.reset()
-    }
+    this.reset()
   } 
   
   getValues(event) {
@@ -126,10 +122,10 @@ class Phase extends Component {
     }
   } 
   
-  updateElementPosition() {
-    const rect = this.element.getBoundingClientRect()
-    this.width = this.element.offsetWidth
-    this.height = this.element.offsetHeight
+  updatePos() {
+    const rect = this.phase.getBoundingClientRect()
+    this.width = this.phase.offsetWidth
+    this.height = this.phase.offsetHeight
     this.left = rect.left
     this.top = rect.top
   } 
@@ -139,7 +135,7 @@ class Phase extends Component {
     this.setState(prevState => ({
       style: {
         ...prevState.style,
-        transform: `perspective(${this.settings.perspective}px) rotateX(${this.settings.axis === 'x' ? 0 : values.tiltY}deg) rotateY(${this.settings.axis === 'y' ? 0 : values.tiltX}deg) scale3d(${this.settings.scale}, ${this.settings.scale}, ${this.settings.scale})`
+        transform: `perspective(${this.settings.perspective}px) rotateX(${values.tiltY}deg) rotateY(${values.tiltX}deg) scale(${this.settings.scale})`
         
       }
     }))    
@@ -153,12 +149,13 @@ class Phase extends Component {
       ...this.state.style
     }
     return (
-      <div 
+      <div
+        ref={this.phaseRef}
         className={this.props.className}
         style={style}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseMove={this.handleMouseMove}
-        onMouseLeave={this.handleMouseLeave}
+        onMouseEnter={this.mouseEnter}
+        onMouseMove={this.mouseMove}
+        onMouseLeave={this.mouseLeave}
       >
         {this.props.children}
       </div>
