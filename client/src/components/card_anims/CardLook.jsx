@@ -2,7 +2,7 @@ import React from "react";
 
 import Phase from "./Phase";
 
-const FitText = require("react-fittext");
+
 const WHITE_125X188 = require("../../assets/images/125x188_white_4x.png");
 const BLACK_125X188 = require("../../assets/images/125x188_black_4x.png");
 
@@ -42,19 +42,12 @@ class CardLook extends React.Component {
     
     return (
       <Phase className={className} condStyle={this.condStyle} >
-        {/* <div className="card_look-sheen"></div> */}
-
           <h5>{content}</h5>
-          {/* <FitText >
-          </FitText> */}
-        
-        {/* <h5 className="card_look-pack"></h5> */}
         <div className='card_look-draw_count'>
           <h6>{draw}</h6>
           <h6>{pick}</h6>
         </div>
         <img src={src}/>
-        {/* <div className="card_look-bottom"></div> */}
       </Phase>
     )
   }

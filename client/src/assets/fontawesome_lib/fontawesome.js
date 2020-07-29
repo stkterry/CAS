@@ -6,6 +6,8 @@ import {
   faCheckCircle,
   faTimesCircle,
   faCrown,
+  faEnvelope,
+  faComment
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -17,5 +19,7 @@ library.add(
   faCheckCircle,
   faTimesCircle,
   faCrown,
+  faEnvelope,
+  faComment
 )
 

@@ -36,7 +36,6 @@ export default function CardStack (props) {
       </>
     )
   }
-  console.log(style.amt)
   const renderStack = () => (
     style.style.map((generatedStyle, idx) => (
       <div 
