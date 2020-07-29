@@ -26,7 +26,6 @@ export default function MessageForm(props) {
   const showPicker = () => showEmoji ? 
     <Picker 
       style={pickerStyle} 
-      // native={true}
       onSelect={emoji => addEmoji(emoji)}
       emojiTooltip={true}
     /> : null

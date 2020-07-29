@@ -236,91 +236,6 @@ ul::-webkit-scrollbar-thumb {
   transform: translate(0, -2%);
   box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.5); }
 
-.card_flip_hover-container {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-  box-sizing: border-box;
-  background: none;
-  perspective: 1000px; }
-
-.card_flip_hover-inner {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  box-sizing: border-box;
-  position: relative;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  background: none;
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
-  background-color: black; }
-
-.card_flip_hover-container:hover .card_flip_hover-inner {
-  transform: rotateY(180deg); }
-
-.card_flip_hover-front {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  box-sizing: border-box;
-  text-align: left;
-  position: absolute;
-  background: none;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  padding: 1.5rem;
-  color: white;
-  background-color: black; }
-  .card_flip_hover-front h3 {
-    font-size: 2rem;
-    font-family: "Luckiest Guy", cursive; }
-
-.card_flip_hover-back {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  box-sizing: border-box;
-  text-align: left;
-  position: absolute;
-  background: none;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 15;
-  /* number of lines to show */
-  -webkit-box-orient: vertical;
-  color: white;
-  background: none;
-  transform: rotateY(180deg);
-  background-color: black; }
-  .card_flip_hover-back h1, .card_flip_hover-back h2, .card_flip_hover-back h3, .card_flip_hover-back h4, .card_flip_hover-back h5, .card_flip_hover-back h6 {
-    padding: 1.35rem 1rem 1rem 1rem;
-    font-family: Aerial, sans-serif;
-    font-weight: bold;
-    font-size: 1.3rem; }
-
-.card_flip-shadow_grow {
-  animation: ease shadow_grow 0.3s forwards; }
-
-.card_flip-hover-shadow_light .card_flip_hover-inner {
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(128, 122, 122, 0.4); }
-
 .card_flip-splash {
   padding: 0 !important;
   box-sizing: border-box; }
@@ -928,7 +843,6 @@ ul::-webkit-scrollbar-thumb {
   box-sizing: border-box;
   background: none;
   perspective: 1000px;
-  box-sizing: border-box;
   padding: .75rem;
   position: relative;
   transform-style: preserve-3d; }
@@ -957,20 +871,10 @@ ul::-webkit-scrollbar-thumb {
 
 .card_look-draw_count {
   display: flex;
-  flex-direction: row;
-  position: absolute; }
+  flex-direction: row; }
   .card_look-draw_count h6 {
     padding-left: 1rem;
     padding-top: 3rem; }
-
-.card_look-sheen {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: inherit; }
 
 #signup_form-container {
   display: flex;
@@ -1352,8 +1256,7 @@ ul::-webkit-scrollbar-thumb {
   transform-style: preserve-3d;
   background: none;
   box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4);
-  transform: rotateY(-180deg); }
+  box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4); }
 
 .card-front-white {
   border-radius: 1rem;
@@ -1507,6 +1410,175 @@ ul::-webkit-scrollbar-thumb {
 .card-container-transition-enter-active .card-inner-black, .card-container-transition-enter-active .card-inner-white {
   animation: ease-in-out card_flipRotTransLR 1000ms forwards; }
 
+.card_fh-container {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  box-sizing: border-box;
+  background: none;
+  perspective: 1000px; }
+
+.card_fh-container:hover .card_fh-inner-black,
+.card_fh-container:hover .card_fh-inner-white {
+  transform: rotateY(180deg); }
+
+.card_fh-inner-black {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  background: none;
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
+  background-color: #0a0a0a; }
+  .card_fh-inner-black h1, .card_fh-inner-black h2, .card_fh-inner-black h3, .card_fh-inner-black h4, .card_fh-inner-black h5, .card_fh-inner-black h6 {
+    color: #ececec; }
+
+.card_fh-inner-white {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  background: none;
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
+  background-color: #ececec; }
+  .card_fh-inner-white h1, .card_fh-inner-white h2, .card_fh-inner-white h3, .card_fh-inner-white h4, .card_fh-inner-white h5, .card_fh-inner-white h6 {
+    color: black; }
+
+.card_fh-back-white {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 15;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+  background-color: #ececec;
+  transform: rotateY(180deg); }
+  .card_fh-back-white h1, .card_fh-back-white h2, .card_fh-back-white h3, .card_fh-back-white h4, .card_fh-back-white h5, .card_fh-back-white h6 {
+    padding: 1.35rem 1rem 1rem 1rem;
+    font-family: Aerial, sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem; }
+  .card_fh-back-white h1, .card_fh-back-white h2, .card_fh-back-white h3, .card_fh-back-white h4, .card_fh-back-white h5, .card_fh-back-white h6 {
+    color: black; }
+
+.card_fh-back-black {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 15;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+  background-color: #0a0a0a;
+  transform: rotateY(180deg); }
+  .card_fh-back-black h1, .card_fh-back-black h2, .card_fh-back-black h3, .card_fh-back-black h4, .card_fh-back-black h5, .card_fh-back-black h6 {
+    padding: 1.35rem 1rem 1rem 1rem;
+    font-family: Aerial, sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem; }
+  .card_fh-back-black h1, .card_fh-back-black h2, .card_fh-back-black h3, .card_fh-back-black h4, .card_fh-back-black h5, .card_fh-back-black h6 {
+    color: #ececec; }
+
+.card_look-white, .card_look-black {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  box-sizing: border-box;
+  text-align: left;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  padding: 1.5rem;
+  padding: .75rem;
+  position: relative;
+  z-index: 1; }
+  .card_look-white h3, .card_look-black h3 {
+    font-size: 2rem;
+    font-family: "Luckiest Guy", cursive; }
+  .card_look-white img, .card_look-black img {
+    border-radius: 1rem;
+    width: 125px;
+    height: 188px;
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0; }
+
+.card_look-white {
+  background-color: #ececec;
+  background: none; }
+  .card_look-white h1, .card_look-white h2, .card_look-white h3, .card_look-white h4, .card_look-white h5, .card_look-white h6 {
+    color: black; }
+
+.card_look-black {
+  background-color: #0a0a0a;
+  background: none; }
+  .card_look-black h1, .card_look-black h2, .card_look-black h3, .card_look-black h4, .card_look-black h5, .card_look-black h6 {
+    color: #ececec; }
+
+@keyframes slide-out {
+  0% {
+    right: 0px; }
+  50% {
+    right: 80px; }
+  100% {
+    right: 0px; } }
+@keyframes slide-out-R {
+  0% {
+    right: 0px; }
+  50% {
+    right: 80px; }
+  100% {
+    right: 0px; } }
 .btn-black-red {
   background: #0d0f13 !important;
   border-color: #0d0f13 !important; }
