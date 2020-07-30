@@ -127,6 +127,8 @@ class GameShow extends React.Component {
           <MessageBoxContainer show={this.state.features.showMessages}/>
         </div>
 
+          <div id="fs_modal-container">
+          </div>
         <div id="fs_modal">
         <ImgButton 
           src={BLACK_CARD_ICON} 
@@ -149,8 +151,6 @@ class GameShow extends React.Component {
           // onClick={() => this.setActiveFeature("showHistory")}
         />
         </div>
-          {/* <div id="fs_modal-container">
-          </div> */}
       </div>
     )
   }

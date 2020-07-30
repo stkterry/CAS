@@ -16,7 +16,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  game_ids: [{
+  games: [{
     type: Schema.Types.ObjectId,
     ref: "Game"
   }],
@@ -26,32 +26,32 @@ const UserSchema = new Schema({
   },
 });
 
-UserSchema.statics.addGame = function (user_id, game_id) {
+UserSchema.statics.addGame = function (userId, gameId) {
   const uAdd = this.findByIdAndUpdate(
-    user_id,
-    { $addToSet: { game_ids: game_id }},
+    userId,
+    { $addToSet: { games: gameId }},
     { new: true }
   )
 
   const gAdd = Game.findByIdAndUpdate(
-    game_id,
-    { $addToSet: { players: user_id }},
+    gameId,
+    { $addToSet: { players: userId }},
     { new: true }
   )
 
   return (uAdd, gAdd);
 };
 
-UserSchema.statics.removeGame = function (user_id, game_id) {
+UserSchema.statics.removeGame = function (userId, gameId) {
   const uRemove = this.findByIdAndUpdate(
-    user_id,
-    { $pull: { game_ids: game_id } },
+    userId,
+    { $pull: { games: gameId } },
     { new: true }
   )
 
   const gRemove = Game.findByIdAndUpdate(
-    game_id,
-    { $pull: { players: user_id } },
+    gameId,
+    { $pull: { players: userId } },
     { new: true }
   )
 

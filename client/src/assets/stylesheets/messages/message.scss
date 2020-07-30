@@ -39,11 +39,14 @@
   }
 .message-container-left, .message-container-right {
   h6 {
-    @include font-libre_basker;
+    // @include font-libre_basker;
+    @include font-lato;
+    font-size: 1.4rem;
     font-weight: bold;
     padding-bottom: .1rem;
   }
   h6 span {
+    @include font-lato;
     padding-left: .5rem;
     font-size: .9rem;
     color: darkslategray;
