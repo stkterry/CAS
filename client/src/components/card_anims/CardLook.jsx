@@ -31,10 +31,10 @@ export default function CardLook (props) {
   return (
     <Phase className={className} condStyle={condStyle} anim={props.anim || null}>
         <h5>{props.card.content}</h5>
-        <div className='card_look-draw_count'>
+        {/* <div className='card_look-draw_count'>
           <h6>{draw}</h6>
           <h6>{pick}</h6>
-        </div>
+        </div> */}
         <img src={src} />
     </Phase>
   )

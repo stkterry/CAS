@@ -89,7 +89,7 @@ const seedGames = async (amount) => {
 
     if (String(host_player._id) != String(tina._id)) players.push(tina);
 
-    let numPlayers = chance.integer({ min: 3, max: 7 });
+    let numPlayers = chance.integer({ min: 4, max: 7 });
     while (players.length < numPlayers) {
       let tempPlayer = chance.pickone(users);
       if (String(tempPlayer._id) != String(host_player._id)) {
@@ -142,7 +142,7 @@ const seedGames = async (amount) => {
 
         // Now lets fill up the cards in play...
         // First the white cards... we'll take from the player states' cards
-        const numCardsInPlay = chance.integer({min: 1, max: game.players.length - 1}) // Exclude whoever is current player...
+        const numCardsInPlay = chance.integer({min: 3, max: game.players.length - 1}) // Exclude whoever is current player...
         game.cardsInPlay.white = Array.from(
           {length: numCardsInPlay}, 
           (_, idx) => game.playerStates[idx].white.pop()
@@ -166,7 +166,7 @@ const seedGames = async (amount) => {
 
         console.log(`Added Game - Host : ${host_player.handle}, Players: ${game.players.length}`);
         for (let player of players) {
-          player.game_ids.push(game._id);
+          player.games.push(game._id);
           await player.save();
         }
       })

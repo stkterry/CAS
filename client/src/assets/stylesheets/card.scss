@@ -29,7 +29,8 @@ $card_flip-sep: 160px;
   transition: transform 0.6s;
   transform-style: preserve-3d;
   background: none;
-  box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.4); 
+  // box-shadow: 0 .4rem .8rem 0 rgba(0,0,0,0.4); 
+  box-shadow: 0 .4rem .8rem 0 rgba(146, 143, 143, 0.4); 
 }
 
 @mixin card-img {

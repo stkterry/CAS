@@ -11,7 +11,6 @@ export default function CardFlipHover (props) {
         <div className="card-front-black">
           <Name />
         </div>
-        
         <div className="card_fh-back-black">
           <h5>{props.content}</h5>
         </div>
