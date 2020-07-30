@@ -87,7 +87,7 @@ table {
 body {
   background-image: url("../images/alphaTile1080.png");
   background-repeat: repeat;
-  background-color: #1c2a38;
+  background-color: #37526d;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -724,7 +724,7 @@ ul::-webkit-scrollbar-thumb {
   margin: 2.5rem auto;
   min-width: 750px;
   max-width: 1050px;
-  min-height: 825px;
+  min-height: 828px;
   max-height: 1000px;
   width: 90%;
   align-content: center;
@@ -796,6 +796,8 @@ ul::-webkit-scrollbar-thumb {
 
 #game_show-player_cards {
   position: absolute;
+  box-sizing: border-box;
+  min-height: 225px;
   width: 100%;
   top: 0;
   bottom: 0;
@@ -803,7 +805,7 @@ ul::-webkit-scrollbar-thumb {
   margin-bottom: 0;
   display: grid;
   grid-template-columns: repeat(9, 9.1%);
-  background-color: #0f134d;
+  background-color: rgba(13, 26, 204, 0.137);
   justify-content: center;
   z-index: 1; }
 
@@ -820,8 +822,7 @@ ul::-webkit-scrollbar-thumb {
 #game_show-features {
   position: relative;
   width: 100%;
-  height: 100%;
-  min-height: 225px; }
+  height: 100%; }
 
 .card_look-container_white, .card_look-container_black {
   border-radius: 1rem;
@@ -1049,6 +1050,7 @@ ul::-webkit-scrollbar-thumb {
   min-height: 225px;
   width: 100%;
   height: 100%;
+  min-height: 235px;
   top: 0;
   background-color: rgba(13, 26, 204, 0.137);
   padding: 0rem;
@@ -1113,7 +1115,7 @@ ul::-webkit-scrollbar-thumb {
     border: none;
     border-radius: .4rem;
     border-right: 1px solid black;
-    width: 4.8rem;
+    width: 4.2rem;
     display: flex;
     align-items: center; }
     #message_box-form div * {
@@ -1159,10 +1161,12 @@ ul::-webkit-scrollbar-thumb {
     float: right; }
 
 .message-container-left h6, .message-container-right h6 {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.4rem;
   font-weight: bold;
   padding-bottom: .1rem; }
 .message-container-left h6 span, .message-container-right h6 span {
+  font-family: 'Lato', sans-serif;
   padding-left: .5rem;
   font-size: .9rem;
   color: darkslategray; }
@@ -1173,7 +1177,6 @@ ul::-webkit-scrollbar-thumb {
   font-family: 'Lato', sans-serif; }
 
 #fs_modal-container {
-  margin-top: 0;
   height: 8rem;
   background: red; }
 
@@ -1256,7 +1259,7 @@ ul::-webkit-scrollbar-thumb {
   transition: transform 0.6s;
   transform-style: preserve-3d;
   background: none;
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(146, 143, 143, 0.4);
   box-shadow: 0 0.2rem 0.6rem 0 rgba(0, 0, 0, 0.4); }
 
 .card-front-white {
@@ -1351,7 +1354,7 @@ ul::-webkit-scrollbar-thumb {
   transition: transform 0.6s;
   transform-style: preserve-3d;
   background: none;
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(146, 143, 143, 0.4);
   background-color: #ececec;
   transform: rotateY(-180deg); }
   .card-inner-white h1, .card-inner-white h2, .card-inner-white h3, .card-inner-white h4, .card-inner-white h5, .card-inner-white h6 {
@@ -1367,7 +1370,7 @@ ul::-webkit-scrollbar-thumb {
   transition: transform 0.6s;
   transform-style: preserve-3d;
   background: none;
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(146, 143, 143, 0.4);
   background-color: #0a0a0a;
   transform: rotateY(-180deg); }
   .card-inner-black h1, .card-inner-black h2, .card-inner-black h3, .card-inner-black h4, .card-inner-black h5, .card-inner-black h6 {
@@ -1445,7 +1448,7 @@ ul::-webkit-scrollbar-thumb {
   transition: transform 0.6s;
   transform-style: preserve-3d;
   background: none;
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(146, 143, 143, 0.4);
   background-color: #0a0a0a; }
   .card_fh-inner-black h1, .card_fh-inner-black h2, .card_fh-inner-black h3, .card_fh-inner-black h4, .card_fh-inner-black h5, .card_fh-inner-black h6 {
     color: #ececec; }
@@ -1460,7 +1463,7 @@ ul::-webkit-scrollbar-thumb {
   transition: transform 0.6s;
   transform-style: preserve-3d;
   background: none;
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0.4rem 0.8rem 0 rgba(146, 143, 143, 0.4);
   background-color: #ececec; }
   .card_fh-inner-white h1, .card_fh-inner-white h2, .card_fh-inner-white h3, .card_fh-inner-white h4, .card_fh-inner-white h5, .card_fh-inner-white h6 {
     color: black; }

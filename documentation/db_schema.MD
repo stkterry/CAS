@@ -1,53 +1,74 @@
-# Database Schema
+# Database Schema (MongoDB)
 
-## `users`
+
+## `User`
 | column name       | data type | details                   |
-|:------------------|:---------:|:--------------------------|
-| `id`              | hash      | not null, primary key     |
-| `handle`          | string    | not null, indexed, unique |
-| `email`           | string    | not null, indexed, unique |
-| `password`        | string    | not null                  |
-| `game_ids`        | array     |                           |
+|:------------------|:----------|:--------------------------|
+| `_id`             | ObjectID  | not null, primary key     |
+| `handle`          | String    | not null, unique          |
+| `email`           | String    | not null, unique          |
+| `password`        | String    | not null                  |
+| `games`           | Array(`Game` ObjectId)     | array                    |
 | `date`            | Date      | not null, default Now     |
 
-+ index on `handle, unique: true`
-+ index on `email, unique: true`
 
-<!-- has many messages (shared with characters) -->
-
-
-## `games`
+# `Game`
 | column name       | data type | details                   |
-|:------------------|:---------:|:--------------------------|
-| `id`              | hash      | not null, primary key     |
-| `host`            | ObjectID  | not null                  |
-| `players`         | array     | not null                  |
-| `rules`           | object    | not null                  |
-| `card_state`      | object    | not null                  |
-| `game_state`      | object    | not null                  |
+|:------------------|:----------|:--------------------------|
+| `_id`             | ObjectID  | not null, primary key     |
+| `host`            | `User` ObjectID  | not null, game owner                  |
+| `players`         | Array(`User` ObjectId)     | players, includes owner                  |
+| `rules`           | Object    | game rules                  |
+| `cardPacks `      | Array(`CardPack` ObjectId)    | expansions/card packs in use                  |
+| `white`      | Array(ObjectId `Card`)    | all white cards in game                  |
+| `black`      | Array(ObjectId `Card`)    | all black cards in game                  |
+| `discardedWhite`      | Array(ObjectId `Card`)    | previously used white cards                  |
+| `name`      | String    | game name, not fixed                  |
+| `playerStates`      | Array(Object)    | player hands, scores, see `Note 1: playerState` |
+| `currentTurn`      | 'User' ObjectId    | id of current card czar |
+| `cardsInPlay`      | Array(Object)    | cards up for selection, see `Note 2: cardsInPlay` |
+| `rounds`          | Number    | Total czar turns in game so far |
+| `messages`          | Array(`Message` ObjectId)    | in game chat messages |
 | `date`            | Date      | not null, default Now     |
 
-## `card_state object example`
-```json
-{
-  "played_black_cards": [cardID1, cardID2, cardID3,...],
-  "played_white_cards": [cardID1, cardID2, cardID3,...],
-  "shuffled_white_cards": [...],
-  "shuffled_black_cards": [...],
-}
-```
+### `Note 1: playerState`
 
-## `game_state object example`
-```json
-{
-  "player_turn": "player_handle",,
-  "player_rotation": [playerID1, playerID2, playerID3,...]
-  "active_black_card" cardIDx,
-  "active_white_cards": [...],
-  "player_states" : {
-    playerID1: {"white_cards": [...], "black_cards": [...]},
-    playerID2: {"white_cards": [...], "black_cards": [...]},
-    playerID3: {"white_cards": [...], "black_cards": [...]}
-  }
-}
-```
+| column name       | data type | details                   |
+|:------------------|:----------|:--------------------------|
+| `_id`             | ObjectID  | not null, primary key     |
+| `white`           | Array(`Card` ObjectID)  | cards in player's hand     |
+| `black`           | Array(`Card` ObjectID)  | cards player has one this game     |
+| `score`           | Number  | points/total cards player has accrued this game     |
+
+
+### `Note 2: cardsInPlay`
+
+| column name       | data type | details                   |
+|:------------------|:----------|:--------------------------|
+| `_id`             | ObjectID  | not null, primary key     |
+| `white`           | Array(`Card` ObjectID)  | white cards up for selection this round     |
+| `black`           | `Card` ObjectID  | card czar's card this round     |
+
+
+# `CardPack`
+| column name       | data type | details                   |
+|:------------------|:----------|:--------------------------|
+| `_id`             | ObjectID  | not null, primary key     |
+| `url_id`          | String    | url friendly card pack name          |
+| `name`           | String    | card pack name          |
+| `quantity`        | Object    | no. of white, black, and total cards
+| `white`           | Array(`Game` ObjectId)     | white cards in pack    |
+| `black`           | Array(`Game` ObjectId)     | black cards in pack    |
+| `date`            | Date      | not null, default Now     |
+
+## `Card`
+| column name       | data type | details                   |
+|:------------------|:----------|:--------------------------|
+| `_id`             | ObjectID  | not null, primary key     |
+| `color`          | String    | card color, 'white'/'black'          |
+| `content`           | String    | card phrase          |
+| `pick`        | Number    | no. of cards to pick from hand (black only)
+| `draw`        | Number    | no. of cards to draw before picking (black only)
+| `cardPack`           | `CardPack` ObjectId    | associated cardPack    |
+| `date`            | Date      | not null, default Now     |
+

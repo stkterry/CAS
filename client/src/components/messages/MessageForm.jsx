@@ -55,14 +55,14 @@ export default function MessageForm(props) {
         <div
           onClick={() => setShowEmoji(!showEmoji)}
         >
-          <Emoji emoji={{ id: 'smile', skin: 3 }} size={18} />
+          <Emoji emoji={{ id: 'smile', skin: 3 }} size={28} />
         </div>
         <TextareaAutosize
           type="text"
           onChange={event => setContent(event.target.value)}
           onKeyDown={event => onEnterPress(event)}
           value={content}
-          placeholder={'Type your shit here!'}
+          placeholder={'Chat!'}
           ref={textRef}
         />
       </form>

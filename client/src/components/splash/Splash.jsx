@@ -81,7 +81,7 @@ class Splash extends React.Component {
           <div id="splash-hero">
             <div id="splash-hero-tagline">
               <h1>Leave Humanity Behind</h1>
-              <p>An online Cards Against Humanity clone</p>
+              <p>An online Cards Against Humanity game</p>
             </div>
             {this.getNav()}
           </div>
