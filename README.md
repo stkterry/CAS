@@ -7,7 +7,7 @@ Crimes Against Stupidity is an online version of the game
 'a party game in which players complete fill-in-the-blank statements using words
 or phrases typically deemed as offensive, risque, or politically incorrect.'
 
-When complete, users be able to start a profile and create or join persistent,
+When complete, users will be able to start a profile and create or join persistent,
 real-time games with other players online.  Users will have access to in-game
 chats, game history, and even player stats/leaderboards.  Games can be made
 private, and a password set for sessions with close friends.  Alternatively,
