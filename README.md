@@ -67,7 +67,7 @@ This is a WIP of the game page.  When complete it will contain
 several features, such as on-screen history, collapsible navigation, settings, 
 active game rules, message notifications, etc.  The bottom icons activate different
 feature sets, such as displaying the game's history, the cards you've won, or
-in-game group messaging. Every card can be inspected is interactive.
+in-game group messaging. Every card can be inspected and is interactive.
 
 &nbsp;
 
@@ -136,7 +136,7 @@ including other react transforms, pure CSS, and CSSTransitions.
 
 &nbsp;
 
-One such example that's can be wrapped by the *Phase* component is the card flip animation.
+One such example that can be wrapped by the *Phase* component is the card flip animation.
 It's represented by a stateless functional component and operates on pure CSS.
 While not depicted here, some functions such as the the card-stack effect seen
 on the signup page utilize CSSTransitions via the `react-transition-group` module to
