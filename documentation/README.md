@@ -31,6 +31,7 @@ React, Redux, Axios, Mongoose,
 
 &nbsp;
 
+
 The main splash gives you directions to sign in or sign up.  You can see
 from the start that even the landing page, while simple, is interactive.
 Every card element and notification that appears on the site will have a 
