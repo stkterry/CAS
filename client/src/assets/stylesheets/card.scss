@@ -262,6 +262,16 @@ $card_flip-sep: 160px;
   padding: .75rem;
   position: relative;
   z-index: 1;
+  
+  h5 {
+    width: 100%;
+    height: 100%;
+  }
+
+  div {
+    position: absolute;
+    bottom: 1rem;
+  }
 
   img {
     @include card;
@@ -282,6 +292,8 @@ $card_flip-sep: 160px;
   @include card-color-black;
   background: none;
 }
+
+
 
 // Card Look Slide ===========================================================
 
@@ -304,3 +316,4 @@ $card_flip-sep: 160px;
 // .card_look-anim-slide-out:hover {
 //   animation: ease-in-out slide-out 200ms forwards;
 // }
+

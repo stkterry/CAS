@@ -6,7 +6,7 @@ export default function MessageIndex(props) {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    props.getGameMessages(props.gameId);
+    if (props.gameId) props.getGameMessages(props.gameId);
     // scrollToBottom();
   }, [props.gameId])
 
@@ -14,9 +14,9 @@ export default function MessageIndex(props) {
     setMessages(props.messages)
   }, [props.messages]);
 
-  useEffect(() => {
-    if (props.new) setMessages(prevMessages => [...prevMessages, props.new]);
-  }, [props.new])  
+  // useEffect(() => {
+  //   if (props.new) setMessages(prevMessages => [...prevMessages, props.new]);
+  // }, [props.new])  
   
   useEffect(() => {
     scrollToBottom();
@@ -30,8 +30,8 @@ export default function MessageIndex(props) {
 
   return (props.show) ? (
     <ul id="message_box-messages_index">
-      {messages.map(message =>
-        <MessageContainer key={message._id} message={message} />)}
+      {messages.map((message, idx) =>
+        <MessageContainer key={idx} message={message} />)}
       <li key={"teapot"} id="bottom">
         <div id="message_box-messages_index-filler"/>
       </li>

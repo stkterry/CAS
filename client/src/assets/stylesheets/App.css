@@ -21,7 +21,7 @@ time, mark, audio, video, input {
   font: inherit;
   font-size: 1.6rem;
   vertical-align: baseline;
-  font-family: 'Montserrat', sans-serif; }
+  font-family: "Lato", sans-serif; }
 
 h1 {
   font-size: 3.2rem; }
@@ -824,58 +824,6 @@ ul::-webkit-scrollbar-thumb {
   width: 100%;
   height: 100%; }
 
-.card_look-container_white, .card_look-container_black {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-  box-sizing: border-box;
-  background: none;
-  perspective: 1000px;
-  padding: .75rem;
-  position: relative;
-  transform-style: preserve-3d; }
-  .card_look-container_white h5, .card_look-container_white h6, .card_look-container_black h5, .card_look-container_black h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 1.3rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 15;
-    /* number of lines to show */
-    -webkit-box-orient: vertical; }
-  .card_look-container_white img, .card_look-container_black img {
-    border-radius: 1rem;
-    width: 125px;
-    height: 188px;
-    z-index: -1;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: #ececec; }
-
-.card_look-container_black h5, .card_look-container_black h6 {
-  color: #ececec; }
-
-.card_look-draw_count {
-  display: flex;
-  flex-direction: row; }
-  .card_look-draw_count h6 {
-    padding-left: 1rem;
-    padding-top: 3rem; }
-
 #signup_form-container {
   display: flex;
   flex-direction: column;
@@ -1546,6 +1494,12 @@ ul::-webkit-scrollbar-thumb {
   .card_look-white h3, .card_look-black h3 {
     font-size: 2rem;
     font-family: "Luckiest Guy", cursive; }
+  .card_look-white h5, .card_look-black h5 {
+    width: 100%;
+    height: 100%; }
+  .card_look-white div, .card_look-black div {
+    position: absolute;
+    bottom: 1rem; }
   .card_look-white img, .card_look-black img {
     border-radius: 1rem;
     width: 125px;

@@ -1,7 +1,6 @@
 import React from "react";
 import Name from "../labels/Name";
 
-
 export default function Card(props) {
 
   // const container = `card-container card-abs-sep ${props.className}`;

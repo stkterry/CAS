@@ -43,7 +43,7 @@ router.get("/game_id/:gameId", (req, res) => {
 // Get single message
 router.get("/:_id", (req, res) => {
   Message.getOne(req.params._id)
-    .then(message => res.json(message))
+    .then(message => {console.log(message); res.json(message)})
     .catch(err => console.log(err));
 })
 

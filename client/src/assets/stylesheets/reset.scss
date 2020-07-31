@@ -23,7 +23,9 @@ time, mark, audio, video, input {
 	font: inherit;
 	font-size: 1.6rem;
 	vertical-align: baseline;
-	font-family: 'Montserrat', sans-serif;
+	// font-family: 'Montserrat', sans-serif;
+			// @include font-lato;
+	font-family: 'Lato', sans-serif
 }
 
 
