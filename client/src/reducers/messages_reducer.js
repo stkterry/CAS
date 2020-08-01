@@ -8,7 +8,7 @@ import {
 const initialState = {
   all: [],
   user: [],
-  new: undefined,
+  new: {user: {}},
   active: [],
 }
 
@@ -20,7 +20,8 @@ export default (state = initialState, action) => {
       newState.active = action.messages.data;
       return newState;
     case RECEIVE_MESSAGE:
-      newState.new = action.message.data;
+      newState.new = action.message || {user: {}};
+      newState.active.push(action.message);
       return newState;
     case RECEIVE_MESSAGES: 
       newState.all = action.messages.data;

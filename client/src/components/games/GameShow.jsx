@@ -4,7 +4,7 @@ import { CSSTransitions } from "react-transition-group";
 
 import CardLook from "../card_anims/CardLook";
 import PlayerHandContainer from "./player_hand/player_hand_container";
-import MessageBoxContainer from "../messages/message_box_container";
+import MessageBox from "../messages/MessageBox";
 import ImgButton from "../buttons/ImgButton";
 import IconButton from "../buttons/IconButton";
 
@@ -32,7 +32,13 @@ class GameShow extends React.Component {
 
   componentDidMount() {
     this.props.getActiveGame(this.props.match.params.game_id);
-    this.props.getPlayerState(this.props.match.params.game_id, this.props.user.id)
+    this.props.getPlayerState(this.props.match.params.game_id, this.props.user.id);
+
+    this.props.connectSocket();
+  }
+
+  componentWillUnmount() {
+    this.props.disconnectSocket();
   }
 
   componentDidUpdate(prevProps) {
@@ -124,9 +130,8 @@ class GameShow extends React.Component {
         </div>
         <div id="game_show-features">
           {this.state.features.showHand && <PlayerHandContainer />}
-          <MessageBoxContainer show={this.state.features.showMessages}/>
+          <MessageBox show={this.state.features.showMessages}/>
         </div>
-
           <div id="fs_modal-container">
           </div>
         <div id="fs_modal">

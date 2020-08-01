@@ -4,6 +4,11 @@ import MessageContainer from "./message_container";
 
 export default function MessageIndex(props) {
   const [messages, setMessages] = useState([]);
+  const [gameId, setGameId] = useState(props.gameId);
+
+  useEffect(() => {
+    props.watchMessages();
+  }, [])
 
   useEffect(() => {
     if (props.gameId) props.getGameMessages(props.gameId);
@@ -11,13 +16,10 @@ export default function MessageIndex(props) {
   }, [props.gameId])
 
   useEffect(() => {
-    setMessages(props.messages)
-  }, [props.messages]);
+    setMessages(props.messages);
+    if (props.new.user._id === props.userId || nearBottom()) scrollToBottom();
+  }, [props.messages, props.new]);
 
-  // useEffect(() => {
-  //   if (props.new) setMessages(prevMessages => [...prevMessages, props.new]);
-  // }, [props.new])  
-  
   useEffect(() => {
     scrollToBottom();
   }, [messages, props.show])
@@ -26,7 +28,12 @@ export default function MessageIndex(props) {
     document
       .getElementById("bottom")
       .scrollIntoView({ block: "end", behavior: "smooth" });
-  
+
+  const nearBottom = () => 
+    document
+      .getElementById("bottom")
+      .getBoundingClientRect().bottom <= (window.innerHeight - 20);
+
 
   return (props.show) ? (
     <ul id="message_box-messages_index">

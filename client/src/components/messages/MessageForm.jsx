@@ -8,23 +8,29 @@ const fontIconStyle = {
   color: 'black',
   transform: "grow-2.5"
 }
-const pickerStyle={
+const pickerStyle= {
   zIndex: 1,
   marginLeft: '1rem'
 }
 
 export default function MessageForm(props) {
 
+  const newMessage = {
+    user: props.user,
+    game: props.gameId,
+    content: ""
+  }
   const [content, setContent] = useState("")
   const [showEmoji, setShowEmoji] = useState(false);
-  
+
 
   const addEmoji = emoji => {
     setContent(prev => prev + emoji.native);
     textRef.current.focus();
   }
+
   const showPicker = () => showEmoji ? 
-    <Picker 
+    <Picker
       style={pickerStyle} 
       onSelect={emoji => addEmoji(emoji)}
       emojiTooltip={true}
@@ -33,11 +39,10 @@ export default function MessageForm(props) {
   const handleSubmit = event => {
     event.preventDefault();
     if (event.target.value.length > 0) {
-      props.postMessage({
-        user: props.userId,
-        game: props.gameId,
-        content: content
-      });
+      newMessage.content = content;
+      props.sendMessage(newMessage)
+        .then(() => props.receiveMessage(newMessage));
+
       if (showEmoji) setShowEmoji(false);
       setContent("")
     }

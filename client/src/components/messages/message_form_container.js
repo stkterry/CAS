@@ -1,16 +1,21 @@
 import { connect } from "react-redux";
 
-import { postMessage } from "../../actions/message_actions";
+import { receiveMessage } from "../../actions/message_actions";
+import { sendMessage } from "../../actions/socket_actions";
 import MessageForm from "./MessageForm";
 
 const mSP = state => ({
   gameId: state.games.active._id,
-  userId: state.session.user.id
+  user: {
+    _id: state.session.user.id,
+    handle: state.session.user.handle
+  }
 })
 
 
 const mDP = dispatch => ({
-  postMessage: messageDat => dispatch(postMessage(messageDat))
+  sendMessage: messageDat => dispatch(sendMessage(messageDat)),
+  receiveMessage: messageDat => dispatch(receiveMessage(messageDat))
 })
 
 

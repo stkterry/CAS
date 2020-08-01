@@ -63,10 +63,15 @@ MessageSchema.statics.getAll = function () {
 }
 
 MessageSchema.statics.addNew = function (messageDat) {
-  return Message.create(messageDat)
-    .then(message => message.populate({
-      path: 'user', model:'User', select: 'handle'
-    }).execPopulate())
+  let newMessage = {
+    user: messageDat.user._id,
+    game: messageDat.game,
+    content: messageDat.content
+  }
+  return Message.create(newMessage)
+    // .then(message => message.populate({
+    //   path: 'user', model:'User', select: 'handle'
+    // }).execPopulate())
 
 }
 
@@ -77,12 +82,12 @@ MessageSchema.statics.getGameMessages = function (gameId) {
     .populate({
       path: 'messages', populate: {
         path: 'user', model: 'User', select: 'handle'
-      }, select: 'user content date'
+      }, select: 'user content date -_id'
     })
 }
 
 MessageSchema.statics.getMessagesByGameId = function (gameId) {
-  return this.find({ game: gameId }, 'user content date')
+  return this.find({ game: gameId }, 'user content date -_id')
     .populate({
       path: 'user', model: 'User', select: 'handle'
     })

@@ -7,6 +7,8 @@ import configureStore from "./store/store";
 import { setAuthToken } from "./util/session_api_util";
 import { logout } from "./actions/session_actions";
 
+import SocketAPI from "./sockets/SocketAPI";
+
 import "./assets/stylesheets/App.css";
 import "./assets/fontawesome_lib/fontawesome";
 
@@ -19,8 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const decodeUser = jwt_decode(localStorage.jwtToken)
     const preloadedState = { session: { isAuthenticated: true, user: decodeUser } };
+    const socketClient = new SocketAPI();
 
-    store = configureStore(preloadedState);
+    store = configureStore(preloadedState, socketClient);
 
     // Check if existing user token is expired
     if (decodeUser.exp < Date.now() / 1000) {
