@@ -16,7 +16,7 @@ export const CONNECT_FAILURE = "CONNECT_FAILURE";
 
 export const DISCONNECT = "DISCONNECT";
 
-export const SOCKET_WATCH_MESSAGES = "SOCKET_WATCH_MESSAGES";
+export const WATCH_MESSAGES = "WATCH_MESSAGES";
 
 // Dispatch Functions ===============================================
 export const connectSocket = () => ({
@@ -39,6 +39,6 @@ export const sendMessage = message => ({
 
 export const watchMessages = dispatch => ({
   type: "SOCKET",
-  types: [SOCKET_WATCH_MESSAGES, null, null],
+  types: [WATCH_MESSAGES, null, null],
   promise: client => client.on("receiveMessage", message => dispatch(receiveMessage(message)))
 });
