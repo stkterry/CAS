@@ -1,0 +1,62 @@
+// @import "./palettes.scss";
+// @import "./mixins";
+
+@mixin main-content-spacing {
+  margin: 4rem auto;
+  width: 90%;
+  align-content: center;
+}
+
+#landing_games {
+  height: 90vh;
+  min-height: 200px;
+  min-width: 400px;
+  color: black;
+  @include main-content-spacing;
+}
+
+#landing_games-box-container {
+  width: 100%;
+  height: 100%;
+  @include box-radius;
+  border: 1rem solid $palette_med;
+  background: $palette_light;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 .75rem black;
+  // @include shell-shadow;
+}
+
+.landing_games-box {
+  width: inherit;
+  height: inherit;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-right: 2.6rem;
+  scrollbar-width: auto;
+  scrollbar-color: $palette_dark rgba(0, 0, 0, 0.144);
+  h3 {
+    text-align: center;
+  }
+}
+
+.landing_games-box>* {
+  flex: 1 1 33.3333%;
+  margin: 10px;
+}
+
+
+#landing_games-heading {
+  padding-bottom: .5rem;
+  background: none;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+
+  button {
+    margin: 0 1rem;
+  }
+}

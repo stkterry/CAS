@@ -4,6 +4,7 @@ import { CSSTransitions } from "react-transition-group";
 
 import CardLook from "../card_anims/CardLook";
 import PlayerHandContainer from "./player_hand/player_hand_container";
+import WonCardsContainer from "./won_cards/won_cards_container";
 import MessageBox from "../messages/MessageBox";
 import ImgButton from "../buttons/ImgButton";
 import IconButton from "../buttons/IconButton";
@@ -24,7 +25,7 @@ class GameShow extends React.Component {
       features: {
         showHand: true,
         showMessages: false,
-        showWon: false
+        showWonCards: false
       }
     }
   }
@@ -34,7 +35,7 @@ class GameShow extends React.Component {
     this.props.getActiveGame(this.props.match.params.game_id);
     this.props.getPlayerState(this.props.match.params.game_id, this.props.user.id);
 
-    this.props.connectSocket();
+    this.props.connectSocket({room: this.props.match.params.game_id});
   }
 
   componentWillUnmount() {
@@ -103,7 +104,7 @@ class GameShow extends React.Component {
     features: {
       showHand: feature === "showHand",
       showMessages: feature === "showMessages",
-      showWon: feature === "showWon"
+      showWonCards: feature === "showWonCards"
     }
   })
 
@@ -130,6 +131,7 @@ class GameShow extends React.Component {
         </div>
         <div id="game_show-features">
           {this.state.features.showHand && <PlayerHandContainer />}
+          {this.state.features.showWonCards && <WonCardsContainer />}
           <MessageBox show={this.state.features.showMessages}/>
         </div>
           <div id="fs_modal-container">
@@ -138,7 +140,7 @@ class GameShow extends React.Component {
         <ImgButton 
           src={BLACK_CARD_ICON} 
           tooltipText="Cards Won" 
-          // onClick={() => this.setActiveFeature("showCardsWon")}
+          onClick={() => this.setActiveFeature("showWonCards")}
         />
         <ImgButton
           src={WHITE_CARD_ICON}

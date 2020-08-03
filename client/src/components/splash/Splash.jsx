@@ -59,7 +59,7 @@ class Splash extends React.Component {
       return this.state.cards.map((card, idx) => 
         <Phase 
           key={card._id} 
-          className={"card_look-container_black card_flip-hover-shadow_light card_flip-splash splash-grid_card fade-in"} 
+          className={"splash-grid_card fade-in"} 
           condStyle={{off:{zIndex:'auto'}, on:{zIndex:'100'}}}
           options={{scale: '1.2'}}
           >

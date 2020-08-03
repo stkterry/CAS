@@ -12,27 +12,23 @@ module.exports = socketServer = app => {
   const io = socketIo(server);
 
   io.on("connection", (socket) => {
-    // console.log("New client picked up");
+
+    socket.on('join', room => socket.join(room));
 
     socket.on("disconnect", () => {
       console.log("Client disconnected");
     });
 
-    socket.on("game_message", msg => {
-      console.log(msg);
-    })
-
-    socket.on("sendMessage", (msg, cb) => {
-      Message.addNew(msg)
+    socket.on("sendMessage", ({message, room}, cb) => {
+      Message.addNew(message)
         .then(() => 
-          socket.broadcast.emit("receiveMessage", msg)
+          socket.to(room).emit("receiveMessage", message)
         )
       
       cb('received');
     });
 
   });
-
 
   server.listen(socketPort, () => console.log(`Socket listening on port ${socketPort}`)); 
 }

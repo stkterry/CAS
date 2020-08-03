@@ -27,14 +27,6 @@
   border-radius: .4rem;
 }
 
-@mixin main-content-spacing {
-  padding: 1rem;
-  margin: 5rem auto;
-  width: 90%;
-  align-content: center;
-  background: $palette_light;
-}
-
 @mixin no-select {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */

@@ -4,10 +4,12 @@
 @import './splash.scss';
 @import './card_anim.scss';
 @import './nav_bar.scss';
-@import './landing.scss';
-@import './game_box.scss';
+@import './landing/landing.scss';
+@import './landing/game_box.scss';
 @import './funcs';
 @import './game_show/game_show.scss';
+@import './game_show/won_cards.scss';
+@import './game_show/player_hand.scss';
 // @import './game_show/player_icon.scss';
 // @import './card_look.scss';
 @import './session.scss';

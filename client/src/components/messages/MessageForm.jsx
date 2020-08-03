@@ -10,7 +10,7 @@ const fontIconStyle = {
 }
 const pickerStyle= {
   zIndex: 1,
-  marginLeft: '1rem'
+  marginLeft: '1rem',
 }
 
 export default function MessageForm(props) {
@@ -34,6 +34,7 @@ export default function MessageForm(props) {
       style={pickerStyle} 
       onSelect={emoji => addEmoji(emoji)}
       emojiTooltip={true}
+      native={true}
     /> : null
   
   const handleSubmit = event => {

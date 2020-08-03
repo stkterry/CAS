@@ -7,10 +7,6 @@ const condStyle = {
   on: { zIndex: '100' }
 }
 
-// const anim = {
-//   animation: 'ease-in-out slide-out 1000ms forwards'
-// }
-
 export default function PlayerHand(props) {
 
 

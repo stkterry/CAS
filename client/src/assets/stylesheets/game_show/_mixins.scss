@@ -1,0 +1,8 @@
+@mixin game_show-feat {
+  @include shell-shadow;
+  @include box-radius;
+  background: $palette_med_light;
+  margin: 1rem auto;
+  min-height: 195.5px;
+  max-height: 470px;
+}

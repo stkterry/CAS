@@ -1,51 +1,36 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { withRouter } from "react-router-dom";
 
 import GameBox from "./GameBox";
 
 
-class Landing extends React.Component {
+export default withRouter(function Landing(props) {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      games: []
-    }
-  }
+  const [games, setGames] = useState([]);
+  const [errors, setErrors] = useState({});
 
-  componentWillMount() {
-    this.props.getGames();
-  }
+  useEffect(() => { props.getGames() }, [])
+  useEffect(() => setGames(props.games), [props.games])
+  useEffect(() => setErrors(props.errors), [props.errors])
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.errors !== this.props.errors) {
-      this.setState({errors: this.props.errors })
-    }
+  return (
+    <div id="landing_games">
+      <div id="landing_games-heading">
+        <button>Heres a thing</button>
+        <button>Heres a thing</button>
+        <button>Heres a thing</button>
+        <form>
+          <textarea>
 
-    if (prevProps.games !== this.props.games) {
-      this.setState({ games: this.props.games })
-    }
-  }
-
-  getGames () {
-    return (this.state.games.length === 0) ?
-      (<div className="landing_games-box">
-        ...Loading Games
-      </div>) :
-      (<div className="landing_games-box">
-        {this.state.games.map(game =>
-          <GameBox key={game._id} game={game} />
-        )}
-      </div>)
-  }
-
-  render() {
-    return (
-      <div id="landing_games">
-        {this.getGames()}
+          </textarea>
+        </form>
       </div>
-    )
-  }
-}
-
-export default withRouter(Landing);
+      <div id="landing_games-box-container">
+        <div className="landing_games-box">
+          { !games.length && <h3>...loading games</h3> }
+          { games.map(game => <GameBox key={game._id} game={game} />) }
+        </div>
+      </div>
+    </div>
+  )
+})

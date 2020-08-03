@@ -17,7 +17,7 @@ const mSP = state => ({
 const mDP = dispatch => ({
   getActiveGame: (game_id, user_id) => dispatch(getActiveGame(game_id, user_id)),
   getPlayerState: (game_id, user_id) => dispatch(getPlayerState(game_id, user_id)),
-  connectSocket : () => dispatch(connectSocket()),
+  connectSocket : (opts=null) => dispatch(connectSocket(opts)),
   disconnectSocket: () => dispatch(disconnectSocket())
 })
 

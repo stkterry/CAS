@@ -1,0 +1,22 @@
+
+#game_show-player_cards {
+  @include game_show-feat;
+  position: absolute;
+  box-sizing: border-box;
+  min-height: 225px;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  padding-top: .75rem;
+  margin-bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(9, 9.1%);
+  background-color: $palette_blue_15o;
+
+  justify-content: center;
+  z-index: 1;
+}
+
+.game_show-player_cards {
+  grid-row-start: 1;
+}

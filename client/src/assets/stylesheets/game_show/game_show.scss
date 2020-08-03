@@ -1,6 +1,6 @@
 @import './game_show-header';
 @import './player_icon';
-
+@import './mixins';
 
 $maxWidth: 1050px;
 @mixin game_show-left_width {
@@ -50,20 +50,14 @@ $maxWidth: 1050px;
   border-right-style: none;
 }
 
-#game_show-left, #game_show-right, #game_show-player_cards {
-  @include shell-shadow;
-  @include box-radius;
-  background: $palette_med_light;
-  margin: 1rem auto;
-  min-height: 195.5px;
-  max-height: 470px;
+#game_show-left, 
+#game_show-right {
+  @include game_show-feat
 }
-
 
 #game_show-left {
   @include game_show-left_width;
 }
-
 
 #game_show-right {
   @include game_show-right_width;
@@ -75,7 +69,6 @@ $maxWidth: 1050px;
   box-sizing: content-box;
   margin: 1rem;
   padding: 1rem;
-
 }
 
 .game_show-played_card {
@@ -87,9 +80,6 @@ $maxWidth: 1050px;
 .game_show-card:hover {
   @include card-shadow-large;
 }
-.game_show-player_cards {
-  grid-row-start: 1;
-}
 
 #game_show-bottom_buffer {
   @include box-radius;
@@ -98,25 +88,6 @@ $maxWidth: 1050px;
   width: 100%;
   margin: 0;
   // background-color: rgba(255, 230, 0, 0.267);
-}
-
-#game_show-player_cards {
-  position: absolute;
-  box-sizing: border-box;
-  min-height: 225px;
-  width: 100%;
-  // box-sizing: border-box;
-  top: 0;
-  bottom: 0;
-  padding-top: .75rem;
-  margin-bottom: 0;
-  // padding: .75rem 0;
-  display: grid;
-  grid-template-columns: repeat(9, 9.1%);
-  background-color: $palette_blue_15o;
-
-  justify-content: center;
-  z-index: 1;
 }
 
 #game_show-black {
@@ -130,6 +101,8 @@ $maxWidth: 1050px;
     font-weight: bold;
   }
 }
+
+
 
 
 #game_show-features {

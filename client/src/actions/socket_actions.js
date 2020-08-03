@@ -19,10 +19,10 @@ export const DISCONNECT = "DISCONNECT";
 export const WATCH_MESSAGES = "WATCH_MESSAGES";
 
 // Dispatch Functions ===============================================
-export const connectSocket = () => ({
+export const connectSocket = opts => ({
   type: SOCKET,
   types: [CONNECT, CONNECT_SUCCESS, CONNECT_FAILURE],
-  promise: socket => socket.connect()
+  promise: socket => socket.connect(opts)
 });
 
 export const disconnectSocket = () => ({
@@ -34,11 +34,11 @@ export const disconnectSocket = () => ({
 export const sendMessage = message => ({
   type: SOCKET,
   types: [SEND_MESSAGE, SEND_SUCCESS, SEND_FAILURE],
-  promise: socket => socket.emit('sendMessage', message)
+  promise: socket => socket.emit('sendMessage', {message: message})
 });
 
 export const watchMessages = dispatch => ({
-  type: "SOCKET",
+  type: SOCKET,
   types: [WATCH_MESSAGES, null, null],
   promise: client => client.on("receiveMessage", message => dispatch(receiveMessage(message)))
 });

@@ -1,0 +1,31 @@
+
+
+#game_show-won_cards {
+  @include game_show-feat;
+  position: absolute;
+  box-sizing: border-box;
+  min-height: 225px;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  margin-bottom: 0;
+  background-color: $palette_semi_med_50o;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(135px, max-content));
+  grid-template-rows: repeat(auto-fit, minmax(198px, max-content));
+  z-index: 1;
+
+  overflow: auto;
+
+  // padding-bottom: 1rem;
+}
+
+.game_show-won_card {
+  z-index: 1000;
+  box-sizing: border-box;
+  margin: .75rem;
+  @include card-shadow;
+}
+.game_show-won_card:hover {
+  @include card-shadow-large;
+}

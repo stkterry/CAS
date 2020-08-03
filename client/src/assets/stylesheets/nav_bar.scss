@@ -10,7 +10,7 @@
 
   i {
     position: absolute;
-    left: 50%;
+    left: 48.5%;
     top: -.5rem;
     font-weight: bold;
     color: rgba(233, 233, 233, 0.5);
@@ -34,9 +34,6 @@
   width: 100%;
 }
 
-#nav_bar-left {
-
-}
 
 .title-text {
   @include font-luckiest;
@@ -53,13 +50,6 @@
   font-weight: bold;
   font-size: 1.2rem;
 }
-
-// .nav_bar-carats {
-//   i {
-//     color: white;
-//     font-size: 1.2rem;
-//   }
-// }
 
 
 .nav_bar-enter {

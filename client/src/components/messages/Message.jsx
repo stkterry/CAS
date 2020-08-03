@@ -3,14 +3,15 @@ import moment from "moment";
 
 export default function Message(props) {
 
-  const genStamp = () => {
-    return moment(props.message.date).calendar(null, {sameDay: 'LT'});
-  }
+  const genStamp = () => 
+    moment(props.message.date).calendar(null, {sameDay: 'LT'});
+  
 
   const containerClass = () => 
     (props.message.user._id === props.userId) ?
       "message-container-right" :
       "message-container-left"
+
 
   return (
     <li className={containerClass()}>
