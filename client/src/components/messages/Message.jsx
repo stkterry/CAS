@@ -1,14 +1,14 @@
 import React from "react";
 import moment from "moment";
 
-export default function Message(props) {
+export default function Message({message, userId}) {
 
   const genStamp = () => 
-    moment(props.message.date).calendar(null, {sameDay: 'LT'});
+    moment(message.date).calendar(null, {sameDay: 'LT'});
   
 
   const containerClass = () => 
-    (props.message.user._id === props.userId) ?
+    (message.user._id === userId) ?
       "message-container-right" :
       "message-container-left"
 
@@ -17,8 +17,8 @@ export default function Message(props) {
     <li className={containerClass()}>
       <div className="message_header">
       </div>
-      <h6>{props.message.user.handle}<span>{genStamp()}</span></h6>
-      <p>{props.message.content}</p>
+      <h6>{message.user.handle}<span>{genStamp()}</span></h6>
+      <p>{message.content}</p>
     </li>
   )
 

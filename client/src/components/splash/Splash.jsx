@@ -4,7 +4,6 @@ import { Link, withRouter } from "react-router-dom";
 import CardFlipHover from "../card_anims/CardFlipHover";
 import Phase from "../card_anims/Phase";
 
-const BLACK_125X188 = require("../../assets/images/125x188_black_4x.png");
 class Splash extends React.Component {
 
   constructor(props) {
@@ -58,7 +57,7 @@ class Splash extends React.Component {
     if (this.state.cards.length) {
       return this.state.cards.map((card, idx) => 
         <Phase 
-          key={card._id} 
+          key={idx} 
           className={"splash-grid_card fade-in"} 
           condStyle={{off:{zIndex:'auto'}, on:{zIndex:'100'}}}
           options={{scale: '1.2'}}

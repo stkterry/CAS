@@ -2,13 +2,12 @@ import React from "react";
 
 import CardLook from "../../card_anims/CardLook";
 
-const condStyle = {
-  off: { zIndex: 'auto' },
-  on: { zIndex: '100' }
-}
+// const condStyle = {
+//   off: { zIndex: 'auto' },
+//   on: { zIndex: '100' }
+// }
 
 export default function PlayerHand(props) {
-
 
   return (
     <div id="game_show-player_cards">

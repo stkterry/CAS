@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useCallback } from "react"
 import MessageContainer from "./message_container";
 
 
 export default function MessageIndex(props) {
   const [messages, setMessages] = useState([]);
-  const [gameId, setGameId] = useState(props.gameId);
 
-  useEffect(() => {
-    props.watchMessages();
-  }, [])
+  const watchMessages = useCallback(props.watchMessages, []);
+  useEffect(() => { watchMessages() }, [watchMessages]);
 
-  useEffect(() => {
-    if (props.gameId) props.getGameMessages(props.gameId);
-    // scrollToBottom();
-  }, [props.gameId])
+  const getGameMessages = useCallback(props.getGameMessages, []);
+  useEffect(() => { getGameMessages(props.gameId) }, [getGameMessages, props.gameId])
 
   useEffect(() => {
     setMessages(props.messages);
     if (props.new.user._id === props.userId || nearBottom()) scrollToBottom();
-  }, [props.messages, props.new]);
+  }, [props.messages, props.new, props.userId]);
 
   useEffect(() => {
     scrollToBottom();

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TextareaAutosize from "react-textarea-autosize";
 import { Picker, Emoji } from "emoji-mart";
 
 const textRef = React.createRef();
-const fontIconStyle = {
-  color: 'black',
-  transform: "grow-2.5"
-}
+// const fontIconStyle = {
+//   color: 'black',
+//   transform: "grow-2.5"
+// }
 const pickerStyle= {
   zIndex: 1,
   marginLeft: '1rem',
@@ -49,7 +49,7 @@ export default function MessageForm(props) {
     }
   }
   const onEnterPress = event => {
-    if (event.keyCode == 13 && event.shiftKey == false) {
+    if (event.keyCode === 13 && event.shiftKey === false) {
       handleSubmit(event);
     }
   }

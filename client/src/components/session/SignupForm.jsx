@@ -79,7 +79,6 @@ class SignupForm extends React.Component {
     () => {
       let checked = true;
       Object.values(this.state.errors).forEach(err => {if (!err) checked = false})
-      console.log(checked)
       this.setState({
         checks: Object.assign(this.state.checks, {[field]: checked })
       })
@@ -141,7 +140,6 @@ class SignupForm extends React.Component {
                   value={this.state.password2}
                   onChange={this.update('password2')}
                   className="inputEntry"
-                  placeholder="test"
                   type="password"
                   placeholder="Confirm Password"
                 />

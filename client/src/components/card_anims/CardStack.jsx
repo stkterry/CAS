@@ -41,7 +41,7 @@ export default function CardStack (props) {
       <div 
         key={idx}
         style={generatedStyle}
-        className={style.genClassName + " " + "card-abs"}
+        className={style.genClassName  + " card-abs"}
       />
     ))
   )

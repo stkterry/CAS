@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 function GameBox (props) {
 
-  const { name, players, host, rules, cardPacks } = props.game;
+  const { name, players, cardPacks } = props.game;
   const playerNames = players.map(player => player.handle).join(', ');
   const packNames = cardPacks.map(pack => pack.name).join(', ');
 

@@ -7,8 +7,7 @@ const mSP = state => ({
   messages: state.messages.active,
   new: state.messages.new,
   gameId: state.games.active._id,
-  userId: state.session.user.id,
-  new: state.messages.new
+  userId: state.session.user.id
 });
 
 

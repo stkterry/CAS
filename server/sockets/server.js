@@ -12,8 +12,11 @@ module.exports = socketServer = app => {
   const io = socketIo(server);
 
   io.on("connection", (socket) => {
-
-    socket.on('join', room => socket.join(room));
+    console.log('Client connected');
+    socket.on('join', room => {
+      socket.join(room);
+      console.log(`Connected client to room : ${room}`);
+    })
 
     socket.on("disconnect", () => {
       console.log("Client disconnected");

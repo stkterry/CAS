@@ -8,9 +8,7 @@ import MessageFormContainer from "./message_form_container";
 export default function MessageBox(props) {
 
   const [show, setShow] = useState(false);
-  useEffect(() => {
-    setShow(props.show);
-  }, [props.show]);
+  useEffect(() => { setShow(props.show) }, [props.show]);
 
   return (
     <div id="message_box" style={show ? {} : { visibility: 'hidden' }}>

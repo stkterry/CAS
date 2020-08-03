@@ -2,10 +2,10 @@ import React from "react";
 
 import CardLook from "../../card_anims/CardLook";
 
-const condStyle = {
-  off: { zIndex: 'auto' },
-  on: { zIndex: '100' }
-}
+// const condStyle = {
+//   off: { zIndex: 'auto' },
+//   on: { zIndex: '100' }
+// }
 
 export default function WonCards(props) {
 

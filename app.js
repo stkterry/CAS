@@ -33,15 +33,15 @@ const cards = require("./server/routes/api/cards");
 const messages = require("./server/routes/api/messages");
 
 mongoose
-.set('debug', function (collectionName, method, query, doc) {
-    console.log(
-      'Mongoose: '.cyan +
-      collectionName.blue +
-      '.' +
-      method.green +
-      ' (' +
-      JSON.stringify(query, null, 2) + ')');
-  })
+  // .set('debug', function (collectionName, method, query, doc) {
+  //   console.log(
+  //     'Mongoose: '.cyan +
+  //     collectionName.blue +
+  //     '.' +
+  //     method.green +
+  //     ' (' +
+  //     JSON.stringify(query, null, 2) + ')');
+  // })
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
@@ -65,6 +65,5 @@ app.use("/api/messages", messages);
 
 
 // Listeners =================================================================
-// server.listen(socketPort, () => console.log(`Socket listening on port ${socketPort}`));
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 //------------------------------------------------------------

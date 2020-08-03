@@ -1,8 +1,6 @@
 import React from "react";
 import Name from "../labels/Name";
 
-const BLACK_125X188 = require("../../assets/images/125x188_black_4x.png");
-
 export default function CardFlipHover (props) {
 
   return (

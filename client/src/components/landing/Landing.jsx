@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useCallback, } from "react"
 import { withRouter } from "react-router-dom";
 
 import GameBox from "./GameBox";
@@ -7,11 +7,13 @@ import GameBox from "./GameBox";
 export default withRouter(function Landing(props) {
 
   const [games, setGames] = useState([]);
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
-  useEffect(() => { props.getGames() }, [])
+  const getGames = useCallback(props.getGames, []);
+  useEffect(() => { getGames() }, [getGames])
+
   useEffect(() => setGames(props.games), [props.games])
-  useEffect(() => setErrors(props.errors), [props.errors])
+  // useEffect(() => setErrors(props.errors), [props.errors])
 
   return (
     <div id="landing_games">

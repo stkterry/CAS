@@ -38,7 +38,7 @@ export default function CardLook (props) {
         <h6>{draw}</h6>
         <h6>{pick}</h6>
       </div>
-        <img src={src} />
+        <img alt="Card Backing" src={src} />
     </Phase>
   )
 }

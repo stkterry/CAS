@@ -1,6 +1,5 @@
 import {
   SEND_MESSAGE,
-  SEND_FAILURE,
   SEND_SUCCESS,
 
 } from "../../actions/socket_actions";

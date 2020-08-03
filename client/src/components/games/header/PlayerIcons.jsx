@@ -1,7 +1,6 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { CSSTransition, TransitionGroup, Transition } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const DEF_ICON = require("../../../assets/images/user2.png");
 

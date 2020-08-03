@@ -1,23 +1,17 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
 import { FontAwesomeIcon as Fai } from '@fortawesome/react-fontawesome'
 
 const DEF_ICON = require("../../../assets/images/user2.png");
 
-const TEMP_RULES = {
-  roundsTotal: 8,
-
-}
-
 export default function PlayerIcons (props) {
   
-  const genIcon = () => 
-    (props.playerState.img) ? this.img() : this.ico();
+  // const genIcon = () => 
+  //   (props.playerState.img) ? this.img() : this.ico();
 
   const ico = () => 
-    <img src={DEF_ICON} className="player_icon-ico" />;
+    <img alt="PlayerIcon" src={DEF_ICON} className="player_icon-ico" />;
 
-  const img = () => {};
+  // const img = () => {};
 
   const checkCzar = () => {
     if (props.czar) return <Fai icon="crown" className="player_icon-czar" />

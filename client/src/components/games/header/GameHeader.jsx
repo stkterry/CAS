@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { CSSTransition} from "react-transition-group";
 import PlayerIcon from "./PlayerIcon";
-import PlayerIcons from "./PlayerIcons";
 
 export default function GameHeader (props) {
   const [playerStates, setPlayerStates] = useState({});
@@ -16,15 +15,7 @@ export default function GameHeader (props) {
     setPlayerStates(props.playerStates)
     setGameName(props.gameName)
     setTimeout(() => setAnimNow(false), 5000)
-  }, [props.playerStates, props.gameName]);
-
-  // useEffect(() => {
-  //   setGameState(props.gameState)
-  // }, [props.gameState]);
-
-
-  // useEffect(() => {
-  // }, [props.gameName])
+  }, [props.playerStates, props.gameName, props.currentTurn]);
 
   const renderPlayerIcons = () => (
     <div component="div" id="game_show-header-players">
