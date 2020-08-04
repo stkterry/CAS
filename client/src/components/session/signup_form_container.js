@@ -6,8 +6,8 @@ import SignupForm from "./SignupForm";
 const mSP = state => ({
   signedIn: state.session.isSignedIn,
   errors: state.errors.session,
-  cards: Object.values(state.cards),
-  handleExists: state.session.handleExists
+  cards: state.cards,
+  handleAvailable: state.session.handleAvailable,
 });
 
 const mDP = dispatch => ({

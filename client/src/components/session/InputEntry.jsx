@@ -1,78 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 
-class InputEntry extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeStyle: this.props.activeStyle || {
-        opacity: '1',
-        // left: '1.5rem'
-      },
-      defaultStyle: this.props.defaultStyle || {
-        opacity: '0',
-        // left: '10rem'
-      },
-      hStyle: this.props.hStyle || {
-        pointerEvents: 'none',
-        position: 'absolute',
-        top: '0rem',
-        lineHeight: 'normal',
-        fontSize: '1.2rem',
-        left: '1rem',
-        padding: "0rem .5rem",
-        opacity: '0',
-        transition: 'all 0.2s ease-in-out'
-      },
-
-      placeholder: this.props.placeholder
-    }
-
-
-
-  }
-
-  onFocus = () => {
-    this.setState(prevState => ({ 
-      hStyle: {
-        ...prevState.hStyle,
-        ...this.state.activeStyle
-      },
-      placeholder: ""
-    }));
-    if (this.props.onFocus) this.props.onFocus();
-  }
-  onDefocus = () => {
-    if (!this.props.value) {
-      this.setState(prevState => ({ 
-        hStyle: {
-          ...prevState.hStyle,
-          ...this.state.defaultStyle
-        },
-        placeholder: this.props.placeholder
-      }));
-
-    }
-    if (this.props.onBlur) this.props.onBlur();
-  }
-
-  render() {
-    return (
-      <div style={{position: "relative"}} className={this.props.className}>
-        <h4 style={this.state.hStyle} className="no-select">{this.props.placeholder}</h4>
-        <input
-          type={this.props.type}
-          value={this.props.value}
-          onChange={this.props.onChange}
-          placeholder={this.state.placeholder}
-          onFocus={this.onFocus}
-          onBlur={this.onDefocus}
-        />
-      </div>
-    )
-  }
-
+const ACTIVE = { opacity: '1' };
+const DEFAULT = { opacity: '0' };
+const STYLE = { 
+  pointerEvents: 'none',
+  position: 'absolute',
+  top: '0rem',
+  lineHeight: 'normal',
+  fontSize: '1.2rem',
+  left: '1rem',
+  padding: "0rem .5rem",
+  opacity: '0',
+  transition: 'all 0.2s ease-in-out'
 }
 
-export default InputEntry;
+export default function InputEntry (props) {
+
+  const activeStyle = (props.activeStyle || ACTIVE);
+  const defaultStyle = (props.defaultStyle || DEFAULT);
+  const [style, setStyle] = useState(props.hStyle || STYLE);
+  const [placeholder, setPlaceHolder] = useState(props.placeholder);
+
+  const onFocus = () => {
+    setStyle(Object.assign({}, style, activeStyle));
+    setPlaceHolder("");
+    if (props.onFocus) props.onFocus();
+  }
+  
+  const onDefocus = () => {
+    if (!props.value) {
+      setStyle(Object.assign({}, style, defaultStyle));
+      setPlaceHolder(props.placeholder);
+    }
+    if (props.onBlur) props.onBlur();
+  }
+
+  return (
+    <div style={{position: "relative"}} className={props.className}>
+      <h4 style={style} className="no-select">{props.placeholder}</h4>
+      <input
+        name={props.name}
+        type={props.type}
+        value={props.value}
+        onChange={props.onChange}
+        ref={props.refLink}
+        placeholder={placeholder}
+        onFocus={onFocus}
+        onBlur={onDefocus}
+      />
+    </div>
+  )
+
+}

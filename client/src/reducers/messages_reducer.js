@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_GAME_MESSAGES:
-      newState.active = action.messages.data;
+      newState.active = Object.values(action.messages.data);
       return newState;
     case RECEIVE_MESSAGE:
       newState.new = action.message || {user: {}};

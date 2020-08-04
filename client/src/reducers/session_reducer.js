@@ -7,10 +7,13 @@ import {
 
 const initialState = {
   isAuthenticated: false,
-  user: {}
+  user: {},
+  handleAvailable: true
 };
 
 export default (state = initialState, action) => {
+  Object.freeze(state);
+  const newState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       return {
@@ -29,10 +32,9 @@ export default (state = initialState, action) => {
         isSignedIn: true
       };
     case RECEIVE_USER_EXISTS:
-      return {
-        ...state,
-        handleExists: action.users.data.exists
-      }
+      console.log('reducer', !action.users.data.exists)
+      newState.handleAvailable = !action.users.data.exists;
+      return newState;
     default:
       return state;
   }

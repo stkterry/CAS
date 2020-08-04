@@ -58,4 +58,9 @@ UserSchema.statics.removeGame = function (userId, gameId) {
   return (uRemove, gRemove);
 };
 
+UserSchema.statics.exists = async function(options) {
+  const result = await this.findOne(options).select("_id").lean();
+  return result ? true : false;
+}
+
 module.exports = User = mongoose.model("User", UserSchema);
