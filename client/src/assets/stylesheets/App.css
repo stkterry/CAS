@@ -222,305 +222,6 @@ ul::-webkit-scrollbar-thumb {
   grid-column: 11/12;
   grid-row: 2/3; }
 
-.rise {
-  position: relative;
-  transition: all 300ms ease-out; }
-
-.rise:hover {
-  transition: all 300ms ease-in-out;
-  transform: scale(1.02, 1.02);
-  transform: translate(0, -2%);
-  box-shadow: 2px 10px 10px rgba(0, 0, 0, 0.5); }
-
-.card_flip-splash {
-  padding: 0 !important;
-  box-sizing: border-box; }
-
-.empty_card {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  background: none; }
-
-.card_front-container {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-  box-sizing: border-box;
-  background: none;
-  perspective: 1000px; }
-
-.card_front-front {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  box-sizing: border-box;
-  text-align: left;
-  position: absolute;
-  background: none;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  padding: 1.5rem;
-  color: white;
-  background-color: black; }
-  .card_front-front h3 {
-    font-size: 2rem;
-    font-family: "Luckiest Guy", cursive; }
-
-.card_back-container {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-  box-sizing: border-box;
-  background: none;
-  perspective: 1000px;
-  position: absolute;
-  right: 160px; }
-
-.card_back-back {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  box-sizing: border-box;
-  text-align: left;
-  position: absolute;
-  background: none;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 15;
-  /* number of lines to show */
-  -webkit-box-orient: vertical;
-  color: white;
-  background: none;
-  transform: rotateY(180deg);
-  background-color: black; }
-  .card_back-back h1, .card_back-back h2, .card_back-back h3, .card_back-back h4, .card_back-back h5, .card_back-back h6 {
-    padding: 1.35rem 1rem 1rem 1rem;
-    font-family: Aerial, sans-serif;
-    font-weight: bold;
-    font-size: 1.3rem; }
-
-.card_back-inner {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  box-sizing: border-box;
-  position: relative;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  background: none;
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
-  background-color: black;
-  transform: rotateY(-180deg); }
-
-.fade-in {
-  -webkit-animation: fadein 2s;
-  /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 2s;
-  /* Firefox < 16 */
-  -ms-animation: fadein 2s;
-  /* Internet Explorer */
-  -o-animation: fadein 2s;
-  /* Opera < 12.1 */
-  animation: fadein 2s; }
-
-@keyframes fadein {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-/* Internet Explorer */
-@-ms-keyframes fadein {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-/* Opera < 12.1 */
-@-o-keyframes fadein {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-.TEMP {
-  position: absolute; }
-
-.card_flip-static_card {
-  position: absolute;
-  right: 0; }
-
-.card_flip-container {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-  box-sizing: border-box;
-  background: none;
-  perspective: 1000px;
-  position: absolute;
-  right: 160px; }
-
-.card_flip-inner {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  box-sizing: border-box;
-  position: relative;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  background: none;
-  box-shadow: 0 0.4rem 0.8rem 0 rgba(0, 0, 0, 0.4);
-  background-color: black;
-  transform: rotateY(-180deg); }
-  .card_flip-inner img {
-    border-radius: 1rem;
-    width: 125px;
-    height: 188px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1; }
-
-.card_flip-front {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  box-sizing: border-box;
-  text-align: left;
-  position: absolute;
-  background: none;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  padding: 1.5rem;
-  color: white;
-  background-color: black; }
-  .card_flip-front h3 {
-    font-size: 2rem;
-    font-family: "Luckiest Guy", cursive; }
-
-.card_flip-back {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  box-sizing: border-box;
-  text-align: left;
-  position: absolute;
-  background: none;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 15;
-  /* number of lines to show */
-  -webkit-box-orient: vertical;
-  color: white;
-  background: none;
-  transform: rotateY(180deg);
-  background-color: black; }
-  .card_flip-back h1, .card_flip-back h2, .card_flip-back h3, .card_flip-back h4, .card_flip-back h5, .card_flip-back h6 {
-    padding: 1.35rem 1rem 1rem 1rem;
-    font-family: Aerial, sans-serif;
-    font-weight: bold;
-    font-size: 1.3rem; }
-
-.card_flip-anim {
-  animation: ease card_flipTransformLeft 1s forwards; }
-
-.card_flip-anim .card_flip-inner {
-  animation: ease card_flipRotateNeg180 1s forwards; }
-
-@keyframes shadow_grow {
-  0% {
-    box-shadow: 0 0.4rem 0.8rem 0 rgba(136, 131, 131, 0.2); }
-  100% {
-    box-shadow: 0 1.6rem 4rem rgba(0, 0, 0, 0.4), 0 4.5rem 10rem rgba(0, 0, 0, 0.4); } }
-@keyframes card_flipTransformRight {
-  0% {
-    left: 0px; }
-  100% {
-    left: 160px; } }
-@keyframes card_flipRotate180 {
-  0% {
-    transform: rotateY(0deg); }
-  100% {
-    transform: rotateY(180deg); } }
-@keyframes card_flipTransformLeft {
-  0% {
-    right: 0px; }
-  100% {
-    right: 160px; } }
-@keyframes card_flipRotateNeg180 {
-  0% {
-    transform: rotateY(0deg); }
-  100% {
-    transform: rotateY(-180deg); } }
-@keyframes card_flipRotTransLR {
-  0% {
-    right: 0px;
-    transform: rotateY(0deg) scale3d(1, 1, 1); }
-  50% {
-    transform: rotateY(-90deg) scale3d(1.2, 1.2, 1.2); }
-  100% {
-    right: 160px;
-    transform: rotateY(-180deg) scale3d(1, 1, 1); } }
-.card_flip-transition-enter {
-  right: 0px; }
-
-.card_flip-transition-enter-active .card-inner-black, .card_flip-transition-enter-active .card-inner-white {
-  animation: ease-in-out card_flipRotTransLR 1000ms forwards; }
-
 #nav_bar-container {
   z-index: 2;
   width: 100%;
@@ -999,59 +700,6 @@ ul::-webkit-scrollbar-thumb {
 .error_list-exit h5 {
   animation: ease error_list_effectsB 1s forwards; }
 
-.card_static-container {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-  box-sizing: border-box;
-  background: none;
-  perspective: 1000px; }
-
-.card_static-front {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  box-sizing: border-box;
-  text-align: left;
-  position: absolute;
-  background: none;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  padding: 1.5rem;
-  color: white; }
-  .card_static-front h3 {
-    font-size: 2rem;
-    font-family: "Luckiest Guy", cursive; }
-
-.card_static-white {
-  background-color: #fafafa; }
-
-.card_static-black {
-  background-color: #111111; }
-
-.card_static-stack-container {
-  position: absolute; }
-
-.card_static-stack {
-  border-radius: 1rem;
-  width: 125px;
-  height: 188px;
-  background-color: black;
-  border: 0.1rem solid #424242;
-  position: absolute; }
-
 #message_box {
   position: absolute;
   border-radius: 1.6rem;
@@ -1193,6 +841,46 @@ ul::-webkit-scrollbar-thumb {
   display: flex;
   flex-direction: row; }
 
+.fade-in {
+  -webkit-animation: fadein 2s;
+  /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 2s;
+  /* Firefox < 16 */
+  -ms-animation: fadein 2s;
+  /* Internet Explorer */
+  -o-animation: fadein 2s;
+  /* Opera < 12.1 */
+  animation: fadein 2s; }
+
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 .card-face {
   border-radius: 1rem;
   width: 125px;
@@ -1527,6 +1215,10 @@ ul::-webkit-scrollbar-thumb {
   .card_fh-back-black h1, .card_fh-back-black h2, .card_fh-back-black h3, .card_fh-back-black h4, .card_fh-back-black h5, .card_fh-back-black h6 {
     color: #ececec; }
 
+.card_flip-static_card {
+  position: absolute;
+  right: 0; }
+
 .card_look-white, .card_look-black {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -1598,6 +1290,12 @@ ul::-webkit-scrollbar-thumb {
     right: 80px; }
   100% {
     right: 0px; } }
+.empty_card {
+  border-radius: 1rem;
+  width: 125px;
+  height: 188px;
+  background: none; }
+
 .btn-black-red {
   background: #0d0f13 !important;
   border-color: #0d0f13 !important; }
