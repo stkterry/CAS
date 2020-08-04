@@ -17,24 +17,23 @@ const oneChar = password => {
   return (upper === true && number === true)
 }
 
-const softCheckHandle = (handle, exists) => {
+const handle = ({handle, available}) => {
   handle = toValidText(handle);
-
   return {
     "Handle is between 4 and 30 characters: ": Validator.isLength(handle, { min: 4, max: 30 }),
-    "Handle is available: ": !exists
+    "Handle is available: ": available
   }
 
 }
 
-const softCheckEmail = email => {
+const email = ({email}) => {
   email = toValidText(email);
   return {
     "Valid email: ": Validator.isEmail(email)
   }
 }
 
-const softCheckPassword = (password, password2) => {
+const password = ({password, password2}) => {
   let match = (password === password2 && password && password2)
   return {
     "Passwords match: ": match,
@@ -46,7 +45,7 @@ const softCheckPassword = (password, password2) => {
 module.exports = {
   isValidText,
   toValidText,
-  softCheckHandle,
-  softCheckEmail,
-  softCheckPassword
+  handle,
+  email,
+  password
 }

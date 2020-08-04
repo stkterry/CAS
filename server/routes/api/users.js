@@ -100,13 +100,17 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 
 // /checkhandle/:handle (Check if the handle is in use)
 router.get('/checkhandle/:handle', (req, res) => {
-  User.findOne({handle: req.params.handle})
-    .then(user => (
-      (user && user.handle === req.params.handle) ? 
-        res.json({ exists: true }) : 
-        res.json({ exists: false }))
-      )
+  User.exists({ handle: req.params.handle })
+    .then(exists => res.json({exists: exists}))
     .catch(err => console.log(err));
+
+
+  // User.findOne({handle: req.params.handle})
+  //   .then(user => (
+  //     (user && user.handle === req.params.handle) ? 
+  //       res.json({ exists: true }) : 
+  //       res.json({ exists: false }))
+  //     )
 });
 
 module.exports = router;

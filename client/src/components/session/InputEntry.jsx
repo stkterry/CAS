@@ -39,9 +39,11 @@ export default function InputEntry (props) {
     <div style={{position: "relative"}} className={props.className}>
       <h4 style={style} className="no-select">{props.placeholder}</h4>
       <input
+        name={props.name}
         type={props.type}
         value={props.value}
         onChange={props.onChange}
+        ref={props.refLink}
         placeholder={placeholder}
         onFocus={onFocus}
         onBlur={onDefocus}

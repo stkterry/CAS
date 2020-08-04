@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 
 const mSP = state => ({
   errors: state.errors.session,
-  cards: Object.values(state.cards)
+  cards: state.cards
 });
 
 const mDP = dispatch => ({
