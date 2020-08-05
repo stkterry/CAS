@@ -1,7 +1,7 @@
 {
-  "name": "@stkterry/cah",
+  "name": "@stkterry/cas",
   "version": "0.1.0",
-  "description": "A CAH clone",
+  "description": "An online Cards Against Humanity game.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -9,8 +9,7 @@
     "server:debug": "nodemon --inspect app.js",
     "client-install": "npm install --prefix client",
     "client": "npm start --prefix client",
-    "sass": "sass --watch client/src/assets/stylesheets/input.scss:client/src/assets/stylesheets/App.css",
-    "dev": "concurrently \"npm run server:debug\" \"npm run client\" \"npm run sass\"",
+    "dev": "concurrently \"npm run server:debug\" \"npm run client\" \"npm run sass --prefix client\"",
     "dropDBC": "node -e 'require(\"./server/seed/seeder.js\").dropDBC()'",
     "seedDB": "node -e 'require(\"./server/seed/seeder.js\").seedDB()'",
     "seedCards": "node -e 'require(\"./server/seed/seedCards.js\").seedCards()'",
@@ -27,7 +26,6 @@
     "lodash": "^4.17.19",
     "moment": "^2.27.0",
     "mongoose": "^5.9.26",
-    "node-sass": "^4.14.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react-transition-group": "^4.4.1",
