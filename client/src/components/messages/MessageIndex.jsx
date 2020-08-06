@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useCallback } from "react"
+import React, { useState, useEffect } from "react"
 import MessageContainer from "./message_container";
 
 
 export default function MessageIndex(props) {
   const [messages, setMessages] = useState([]);
 
-  const watchMessages = useCallback(props.watchMessages, []);
+  const watchMessages = props.watchMessages;
   useEffect(() => { watchMessages() }, [watchMessages]);
 
-  const getGameMessages = useCallback(props.getGameMessages, []);
-  useEffect(() => { getGameMessages(props.gameId) }, [getGameMessages, props.gameId])
+  const getGameMessages = props.getGameMessages;
+  useEffect(() => { if (props.gameId) getGameMessages(props.gameId) }, [getGameMessages, props.gameId])
 
   useEffect(() => {
     setMessages(props.messages);

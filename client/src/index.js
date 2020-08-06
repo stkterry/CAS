@@ -14,6 +14,7 @@ import "./assets/fontawesome_lib/fontawesome";
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
+  const socketClient = new SocketAPI();
 
   // Check if user has a login token already
   if (localStorage.jwtToken) {
@@ -21,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const decodeUser = jwt_decode(localStorage.jwtToken)
     const preloadedState = { session: { isAuthenticated: true, user: decodeUser } };
-    const socketClient = new SocketAPI();
 
     store = configureStore(preloadedState, socketClient);
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       store.dispatch(logout());
       window.location.href = "/login";
     }
-  } else store = configureStore({})
+  } else store = configureStore({}, socketClient);
 
   const root = document.getElementById('root');
 
