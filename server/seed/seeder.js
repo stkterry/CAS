@@ -82,27 +82,19 @@ const seedGames = async (amount) => {
     max: cardPacks.length ? cardPacks.length : 0
   };
 
-
   for (let i = 0; i < amount; i++) {
-    let host_player = chance.pickone(users);
-    let players = [host_player];
 
-    if (String(host_player._id) != String(tina._id)) players.push(tina);
-
-    let numPlayers = chance.integer({ min: 4, max: 7 });
-    while (players.length < numPlayers) {
-      let tempPlayer = chance.pickone(users);
-      if (String(tempPlayer._id) != String(host_player._id)) {
-        players.push(tempPlayer);
-      }
+    let players = chance.shuffle([...users]);
+    let numPlayers = chance.integer({ min: 3, max: 7 });
+    players.splice(numPlayers);
+    if (!players.filter(player => String(player._id) == String(tina._id)).length) {
+      players.push(tina);
     }
-    
-    // I really can't figure out why this is necessary... maybe it's just that I'm really tired...
-    players = [... new Set(players)];
+    let host_player = chance.pickone(players);
 
     // Lets setup player states...
     let playerStates = players.map(player => ({
-      _id: player._id,
+      playerId: player._id,
       white: [],
       black: [],
       score:0
@@ -142,15 +134,19 @@ const seedGames = async (amount) => {
 
         // Now lets fill up the cards in play...
         // First the white cards... we'll take from the player states' cards
-        const numCardsInPlay = chance.integer({min: 3, max: game.players.length - 1}) // Exclude whoever is current player...
+        const numCardsInPlay = chance.integer({min: 2, max: game.players.length - 1}) // Exclude whoever is current player...
         game.cardsInPlay.white = Array.from(
-          {length: numCardsInPlay}, 
-          (_, idx) => game.playerStates[idx].white.pop()
+          { length: numCardsInPlay },
+          (_, idx) => {
+            let card = game.playerStates[idx].white.pop();
+            let playerId = game.playerStates[idx]['playerId'];
+            return { playerId: playerId, card: card };
+          }
         )
-
+ 
         // Now lets get a random black card to be the one in play, also assign a person to currentTurn
         game.cardsInPlay.black = game.black.pop();
-        game.currentTurn = game.playerStates[numCardsInPlay]['_id'];
+        game.currentTurn = game.playerStates[numCardsInPlay]['playerId'];
 
         // Lastly, lets look at the total number of rounds played, and discard the appropriate number of cards
         game.rounds = game.playerStates

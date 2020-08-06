@@ -1,4 +1,3 @@
-import merge from "lodash/merge";
 
 import {
   RECEIVE_CARDS

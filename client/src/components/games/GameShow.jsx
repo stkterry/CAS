@@ -32,10 +32,11 @@ class GameShow extends React.Component {
 
 
   componentDidMount() {
-    this.props.getActiveGame(this.props.match.params.game_id);
-    this.props.getPlayerState(this.props.match.params.game_id, this.props.user.id);
+    const gameId = this.props.match.params.game_id;
+    this.props.getActiveGame(gameId);
+    this.props.getPlayerState(gameId, this.props.user.id);
 
-    this.props.connectSocket({room: this.props.match.params.game_id});
+    this.props.connectSocket({room: gameId});
   }
 
   componentWillUnmount() {
@@ -51,7 +52,7 @@ class GameShow extends React.Component {
       // Reconfigure playerStates
       let playerStates = {};
       for (let playerState of this.props.game.playerStates) {
-        playerStates[playerState._id] = playerState;
+        playerStates[playerState.playerId] = playerState;
       }
       // Merge player data into playerStates!!!
       for (let player of this.props.game.players) {
@@ -61,8 +62,6 @@ class GameShow extends React.Component {
       this.setState({
         game: this.props.game,
         currentTurn: this.props.game.currentTurn,
-        white: this.props.game.white,
-        black: this.props.game.black,
         cardsInPlay: this.props.game.cardsInPlay,
         gameName: this.props.game.name,
         players: this.props.game.players,
@@ -70,15 +69,11 @@ class GameShow extends React.Component {
       })
     }
 
-    if (prevProps.playerState !== this.props.playerState) {
-      this.setState({ playerState: this.props.playerState });
-    }
-
   }
 
   renderWhiteCardsInPlay = () => {
     const cards = this.state.cardsInPlay.white;
-    return cards.map(card => 
+    return cards.map(({card}) => 
       <li key={card._id}>
         <CardLook className={"game_show-played_card game_show-card"} card={card} />
       </li>

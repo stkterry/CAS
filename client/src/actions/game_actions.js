@@ -9,7 +9,7 @@ export const APICalls = {
   getUserGames: id => axios.get(`/api/games/user/${id}`),
   createGame: gameDat => axios.post("/api/games/", gameDat),
   getGame: game_id => axios.get(`/api/games/${game_id}`),
-  getActiveGame: (game_id, user_id=null) => axios.get(`/api/games/active/${game_id}/${user_id}`),
+  getActiveGame: game_id => axios.get(`/api/games/active/${game_id}`),
   getPlayerState: (game_id, user_id) => axios.get(`/api/games/playerState/${game_id}/${user_id}`)
 }
 

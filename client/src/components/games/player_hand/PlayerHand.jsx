@@ -8,7 +8,6 @@ import CardLook from "../../card_anims/CardLook";
 // }
 
 export default function PlayerHand(props) {
-
   return (
     <div id="game_show-player_cards">
       {props.cards.map(card => (
