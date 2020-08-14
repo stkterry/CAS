@@ -2,6 +2,7 @@ import React from "react";
 import useFitText from "use-fit-text";
 
 import Phase from "./Phase";
+import useClickPrevention from "../../util/useClickPrevention";
 
 const WHITE = require("../../assets/images/125x188_white_4x.png");
 const BLACK = require("../../assets/images/125x188_black_4x.png");
@@ -29,8 +30,19 @@ export default function CardLook (props) {
     }
   }
 
+  const [onClick, onDoubleClick] = useClickPrevention(
+    props.onClick || (() => {}),
+    props.onDoubleClick || props.onClick || (() => {}),
+    200
+  )
+
   return (
-    <Phase className={className} condStyle={condStyle} anim={props.anim || null}>
+    <Phase 
+      onClick={onClick}
+      onDoubleClick={onDoubleClick}
+      className={className} 
+      condStyle={condStyle}
+    >
       <h5 ref={ref} style={{ fontSize }}>
         {props.card.content}
       </h5>
