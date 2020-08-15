@@ -2,7 +2,13 @@ import {
   receiveMessage
 } from "./message_actions";
 
+import {
+  receiveCardInPlay
+} from "./game_actions";
+
 // Dispatch Labels =================================================
+export const SET_USERID = "SET_USERID";
+
 export const SOCKET = "SOCKET";
 export const SUCCESS = "SUCCESS"
 
@@ -18,9 +24,17 @@ export const DISCONNECT = "DISCONNECT";
 
 export const WATCH_MESSAGES = "WATCH_MESSAGES";
 
-// export const ADD_TO_CARDS_IN_PLAY = "ADD_TO_CARDS_IN_PLAY";
+export const WATCH_CARDS_IN_PLAY = "WATCH_CARDS_IN_PLAY";
+export const UPDATE_CARDS_IN_PLAY = "UPDATE_CARDS_IN_PLAY";
+
 
 // Dispatch Functions ===============================================
+export const setUserId = userId => ({
+  type: SOCKET,
+  types: [SET_USERID, null, null],
+  promise: socket => socket.setUserId(userId)
+})
+
 export const connectSocket = opts => ({
   type: SOCKET,
   types: [CONNECT, CONNECT_SUCCESS, CONNECT_FAILURE],
@@ -45,8 +59,14 @@ export const watchMessages = dispatch => ({
   promise: client => client.on("receiveMessage", message => dispatch(receiveMessage(message)))
 });
 
-// export const addToCardsInPlay = dispatch => ({
-//   type: SOCKET,
-//   types: [ADD_TO_CARDS_IN_PLAY, null, null],
-//   promise: client => client.on("addToCardsInPlay", card => dispatch(addToCardsInPlay(card)))
-// })
+export const updateCardsInPlay = card => ({
+  type: SOCKET,
+  types: [UPDATE_CARDS_IN_PLAY, null, null],
+  promise: socket => socket.emit("updateCardsInPlay", {card: card})
+})
+
+export const watchCardsInPlay = dispatch => ({
+  type: SOCKET,
+  types: [WATCH_CARDS_IN_PLAY, null, null],
+  promise: client => client.on("receiveCardInPlay", card => dispatch(receiveCardInPlay(card)))
+})

@@ -10,7 +10,7 @@ export const APICalls = {
   createGame: gameDat => axios.post("/api/games/", gameDat),
   getGame: gameId => axios.get(`/api/games/${gameId}`),
   getActiveGame: gameId => axios.get(`/api/games/active/${gameId}`),
-  getPlayerState: (gameId, user_id) => axios.get(`/api/games/playerState/${gameId}/${user_id}`)
+  getPlayerState: (gameId, user_id) => axios.get(`/api/games/playerState/${gameId}/${user_id}`),
 }
 
 // Dispatch Labels ===========================================================
@@ -22,8 +22,8 @@ export const RECEIVE_ACTIVE_GAME = "RECEIVE_ACTIVE_GAME";
 export const RECEIVE_PLAYER_STATE = "RECEIVE_PLAYER_STATE";
 
 // cards in play...
-export const RECEIVE_NEW_CARD_IN_PLAY = "RECEIVE_NEW_CARD_IN_PLAY";
-
+export const RECEIVE_CARD_IN_PLAY = "RECEIVE_CARD_IN_PLAY";
+export const REMOVE_CARD_FROM_HAND = 'REMOVE_CARD_FROM_HAND';
 
 // Dispatches ================================================================
 export const receiveGames = games => ({
@@ -57,8 +57,13 @@ export const receivePlayerState = playerState => ({
 })
 
 // cards in play
-export const receiveNewCardInPlay = card => ({
-  type: RECEIVE_NEW_CARD_IN_PLAY,
+export const receiveCardInPlay = card => ({
+  type: RECEIVE_CARD_IN_PLAY,
+  card: card
+})
+
+export const removeCardFromHand = card => ({
+  type: REMOVE_CARD_FROM_HAND,
   card: card
 })
 
@@ -88,7 +93,6 @@ export const createGame = gameDat => dispatch => APICalls.createGame(gameDat)
   .catch(err => console.log(err));
 
 
-// cards in play
-export const updateCardsInPlay = (gameId, card) => dispatch => APICalls.updateCardsInPlay(gameId, card)
-  .then(card => dispatch(receiveNewCardInPlay(card)))
-  .catch(err => console.log(err));
+export const updateCardsInPlay = card => ({
+
+})

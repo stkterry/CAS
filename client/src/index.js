@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const decodeUser = jwt_decode(localStorage.jwtToken)
     const preloadedState = { session: { isAuthenticated: true, user: decodeUser } };
-
+    socketClient.setUserId(decodeUser.id);
     store = configureStore(preloadedState, socketClient);
 
     // Check if existing user token is expired

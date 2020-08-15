@@ -1,15 +1,17 @@
 import { connect } from "react-redux";
 import PlayerHand from "./PlayerHand";
 
-import { updateCardsInPlay } from "../../../actions/game_actions";
+// import { updateCardsInPlay } from "../../../actions/game_actions";
+
+import { watchCardsInPlay, updateCardsInPlay } from "../../../actions/socket_actions";
 
 const mSP = state => ({
   cards: state.games.playerState.white,
-  gameId: state.games.active._id
 });
 
 const mDP = dispatch => ({
-  updateCardsInPlay: (gameId, card) => dispatch(updateCardsInPlay(gameId, card))
+  watchCardsInPlay: () => dispatch(watchCardsInPlay(dispatch)),
+  updateCardsInPlay: card => dispatch(updateCardsInPlay(card))
 })
 
 export default connect(mSP, mDP)(PlayerHand);
