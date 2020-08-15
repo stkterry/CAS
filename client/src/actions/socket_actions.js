@@ -18,6 +18,8 @@ export const DISCONNECT = "DISCONNECT";
 
 export const WATCH_MESSAGES = "WATCH_MESSAGES";
 
+// export const ADD_TO_CARDS_IN_PLAY = "ADD_TO_CARDS_IN_PLAY";
+
 // Dispatch Functions ===============================================
 export const connectSocket = opts => ({
   type: SOCKET,
@@ -42,3 +44,9 @@ export const watchMessages = dispatch => ({
   types: [WATCH_MESSAGES, null, null],
   promise: client => client.on("receiveMessage", message => dispatch(receiveMessage(message)))
 });
+
+// export const addToCardsInPlay = dispatch => ({
+//   type: SOCKET,
+//   types: [ADD_TO_CARDS_IN_PLAY, null, null],
+//   promise: client => client.on("addToCardsInPlay", card => dispatch(addToCardsInPlay(card)))
+// })

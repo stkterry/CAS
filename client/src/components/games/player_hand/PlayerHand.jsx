@@ -7,6 +7,12 @@ export default function PlayerHand(props) {
   const onClick = () => console.log("I'm a click")
   const onDoubleClick = () => console.log("I'm a double click")
 
+  const onDC = () => {
+    // take selected card out of player hand and assign it to cards in play...
+    // afterwards update the database...
+    // then notify users via sockets ...
+  }
+
   return (
     <div id="game_show-player_cards">
       {props.cards.map(card =>
