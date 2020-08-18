@@ -229,3 +229,8 @@ A letter of all the naughty things they've said will be sent to their mothers.
 * Spectator chat
 * Landing Page styling
 * Credits, license notifications, age restriction notifications
+
+
+### Some Bugs
+* CSSTransition animations aren't unsubscribed when loading a game and then immediately returning to the games landing page
+* Phase doesn't always unscribe it's current animation frame when unloading card components
