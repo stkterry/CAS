@@ -15,7 +15,7 @@ export default function WonCards(props) {
           <div key={card._id}> 
             <CardLook
               className={"game_show-won_card"}
-              card={card}
+              {...card}
             />
           </div>
         ))}

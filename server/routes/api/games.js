@@ -61,8 +61,6 @@ router.get("/playerState/:game_id/:user_id", (req, res) => {
   Game.getPlayerState(game_id, user_id)
     .then(playerState => res.json(playerState))
     .catch(err => console.log(err))
-    // .catch(err => eRes(res, 404, ERRORS.noPlayerState))
-    
 })
 
 // Games POST ================================================================

@@ -30,13 +30,13 @@ class GameShow extends React.Component {
     }
   }
 
-
   componentDidMount() {
     const gameId = this.props.match.params.game_id;
     this.props.getActiveGame(gameId);
     this.props.getPlayerState(gameId, this.props.user.id);
 
     this.props.connectSocket({room: gameId});
+    this.props.watchCardsInPlay();
   }
 
   componentWillUnmount() {
@@ -60,7 +60,6 @@ class GameShow extends React.Component {
       }
 
       this.setState({
-        game: this.props.game,
         currentTurn: this.props.game.currentTurn,
         cardsInPlay: this.props.game.cardsInPlay,
         gameName: this.props.game.name,
@@ -68,14 +67,13 @@ class GameShow extends React.Component {
         playerStates: playerStates,
       })
     }
-
   }
 
   renderWhiteCardsInPlay = () => {
     const cards = this.state.cardsInPlay.white;
     return cards.map(({card}) => 
       <li key={card._id}>
-        <CardLook className={"game_show-played_card game_show-card"} card={card} />
+        <CardLook className={"game_show-played_card game_show-card"} {...card} />
       </li>
     )
   }
@@ -83,7 +81,7 @@ class GameShow extends React.Component {
   renderBlackCardInPlay = () => {
     const card = this.state.cardsInPlay.black;
     return (
-      <CardLook className="game_show-player_cards game_show-card" key={card._id} card={card} />
+      <CardLook className="game_show-player_cards game_show-card" key={card._id} {...card} />
     )
   }
 

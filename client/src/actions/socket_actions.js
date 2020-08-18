@@ -59,10 +59,10 @@ export const watchMessages = dispatch => ({
   promise: client => client.on("receiveMessage", message => dispatch(receiveMessage(message)))
 });
 
-export const updateCardsInPlay = card => ({
+export const addToCardsInPlay = card => ({
   type: SOCKET,
   types: [UPDATE_CARDS_IN_PLAY, null, null],
-  promise: socket => socket.emit("updateCardsInPlay", {card: card})
+  promise: socket => socket.emit("addToCardsInPlay", {card: card})
 })
 
 export const watchCardsInPlay = dispatch => ({

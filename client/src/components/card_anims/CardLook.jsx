@@ -11,46 +11,43 @@ const condStyle = {
   off: { zIndex: 'auto' },
   on: { zIndex: '100' }
 }
-
-export default function CardLook (props) {
-
+export default function CardLook({className, draw, pick, color, content, onClick, onDoubleClick}) {
   const { fontSize, ref } = useFitText();
 
-  let src, className, draw, pick;
-  if (props.card.color === 'white') {
+  let src;
+  if (color === 'white') {
     src = WHITE;
-    className = "card_look-white " + (props.className || "")
+    className = "card_look-white " + (className || "");
   } else {
     src = BLACK;
-    className = "card_look-black " + (props.className || "")
+    className = "card_look-black " + (className || "");
 
-    if (props.card.draw > 1 || props.card.pick > 1) {
-      draw = 'Draw ' + props.card.draw;
-      pick = 'Pick ' + props.card.pick;
-    }
+    [draw, pick] = (draw > 1 || pick > 1) ? 
+      ['Draw ' + draw, 'Pick ' + pick] : 
+      ["", ""];
   }
 
-  const [onClick, onDoubleClick] = useClickPrevention(
-    props.onClick || (() => {}),
-    props.onDoubleClick || props.onClick || (() => {}),
+  const [onClickP, onDoubleClickP] = useClickPrevention(
+    onClick || (() => { }),
+    onDoubleClick || onClick || (() => { }),
     200
   )
 
   return (
-    <Phase 
-      onClick={onClick}
-      onDoubleClick={onDoubleClick}
-      className={className} 
+    <Phase
+      onClick={onClickP}
+      onDoubleClick={onDoubleClickP}
+      className={className}
       condStyle={condStyle}
     >
       <h5 ref={ref} style={{ fontSize }}>
-        {props.card.content}
+        {content}
       </h5>
       <div>
         <h6>{draw}</h6>
         <h6>{pick}</h6>
       </div>
-        <img alt="Card Backing" src={src} />
+      <img alt="Card Backing" src={src} />
     </Phase>
   )
 }

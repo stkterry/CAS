@@ -31,6 +31,9 @@ module.exports = socketServer = app => {
       cb('received');
     });
 
+    socket.on("addToCardsInPlay", ({card, room, userId}, cb) => {
+      socket.to(room).emit("receiveCardInPlay", {playerId: userId, card: card})
+    })
   });
 
   server.listen(socketPort, () => console.log(`Socket listening on port ${socketPort}`)); 

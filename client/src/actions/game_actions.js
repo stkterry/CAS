@@ -57,14 +57,14 @@ export const receivePlayerState = playerState => ({
 })
 
 // cards in play
-export const receiveCardInPlay = card => ({
+export const receiveCardInPlay = cardDat => ({
   type: RECEIVE_CARD_IN_PLAY,
-  card: card
+  cardDat: cardDat
 })
 
-export const removeCardFromHand = card => ({
+export const removeCardFromHand = cardId => ({
   type: REMOVE_CARD_FROM_HAND,
-  card: card
+  cardId: cardId
 })
 
 // Dispatch Functions ========================================================
@@ -91,8 +91,3 @@ export const getUserGames = id => dispatch => APICalls.getUserGames(id)
 export const createGame = gameDat => dispatch => APICalls.createGame(gameDat)
   .then(game => dispatch(receiveNewGame(game)))
   .catch(err => console.log(err));
-
-
-export const updateCardsInPlay = card => ({
-
-})

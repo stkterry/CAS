@@ -44,7 +44,7 @@ export default class SocketAPI {
       if (!this.socket) return reject("No socket connection");
       return this.socket.emit(
         event, 
-        { ...data, room: this.room}, 
+        { ...data, room: this.room, userId: this.userId}, 
         callback || (res => res.error ? reject(res.error) : resolve(res))
       )
     })
