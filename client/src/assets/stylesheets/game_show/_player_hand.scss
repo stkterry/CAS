@@ -1,3 +1,4 @@
+@import "../card.scss";
 
 #game_show-player_cards {
   @include game_show-feat;
@@ -19,4 +20,11 @@
 
 .game_show-player_cards {
   grid-row-start: 1;
+}
+
+.player_hand-highlight_card {
+  @include card-shadow-highlight
+}
+.player_hand-highlight_card:hover {
+  @include card-shadow-large-highlight;
 }

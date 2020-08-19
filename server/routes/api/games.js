@@ -48,8 +48,8 @@ router.get("/:game_id", (req, res) => {
 })
 
 // /active/:game_id
-router.get("/active/:game_id/:user_id", (req, res) => {
-    Game.getActive(req.params.game_id, req.params.user_id)
+router.get("/active/:game_id", (req, res) => {
+    Game.getActive(req.params.game_id)
     .then(game => res.json(game))
     .catch(err => eRes(res, 404, ERRORS.noIDgames))
 })
@@ -58,11 +58,9 @@ router.get("/active/:game_id/:user_id", (req, res) => {
 router.get("/playerState/:game_id/:user_id", (req, res) => {
   const {game_id, user_id} = req.params;
 
-  Game.getPlayerState(game_id, user_id, res)
+  Game.getPlayerState(game_id, user_id)
     .then(playerState => res.json(playerState))
     .catch(err => console.log(err))
-    // .catch(err => eRes(res, 404, ERRORS.noPlayerState))
-    
 })
 
 // Games POST ================================================================

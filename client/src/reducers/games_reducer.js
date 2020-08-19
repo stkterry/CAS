@@ -4,14 +4,15 @@ import {
   RECEIVE_NEW_GAME,
   RECEIVE_GAME,
   RECEIVE_ACTIVE_GAME,
-  RECEIVE_PLAYER_STATE
+  RECEIVE_PLAYER_STATE,
+  RECEIVE_CARD_IN_PLAY
 } from "../actions/game_actions";
 
 const initialState = { 
   all: {}, 
   user: {}, 
   new: undefined, 
-  active: {},
+  active: { cardsInPlay: { white: [], black: null }},
   playerState: { white: [], black: [], score: null }
 }
 
@@ -36,6 +37,9 @@ const GamesReducer = (state = initialState, action) => {
       return newState;
     case RECEIVE_NEW_GAME:
       newState.new = action.game.data;
+      return newState;
+    case RECEIVE_CARD_IN_PLAY:
+      newState.active.cardsInPlay.white.push(action.cardDat)
       return newState;
     default:
       return state;

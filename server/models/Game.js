@@ -44,14 +44,19 @@ const GameSchema = new Schema({
   },
 
   playerStates: [{
-    _id: {type: Schema.Types.ObjectId, ref: "User"},
+    playerId: {type: Schema.Types.ObjectId, ref: "User"},
     white: [{ type: Schema.Types.ObjectId, ref: "Card" }],
     black: [{ type: Schema.Types.ObjectId, ref: "Card" }],
-    score: { type: Number } 
-  }, {_id: false}],
+    score: { type: Number },
+    _id: false
+  }, {_id: false }],
   currentTurn: { type: Schema.Types.ObjectId, ref: "User" },
   cardsInPlay: {
-    white: [{ type: Schema.Types.ObjectId, ref: "Card" }],
+    white: [{
+      playerId: { type: Schema.Types.ObjectId, ref: "User" },
+      card: { type: Schema.Types.ObjectId, ref: "Card" },
+      _id: false
+    }, { _id: false }],
     black: { type: Schema.Types.ObjectId, ref: "Card" }
   },
   rounds: { type: Number },
@@ -82,8 +87,12 @@ const playerStatesPop = {
   path: 'playerStates', select: '-white -black'
 }
 
-const cardsInPlayPop = {
-  path: 'cardsInPlay.white cardsInPlay.black', select: '-date -__v'
+const cardsInPlayBlackPop = {
+  path: 'cardsInPlay.black', select: '-date -__v'
+}
+
+const cardsInPlayWhitePop = {
+  path: 'cardsInPlay.white.card', model: 'Card', select: '-date -__v'
 }
 
 const activeGameSelect = 'players rules cardPacks name messages _id host cardsInPlay rounds currentTurn'
@@ -136,25 +145,40 @@ GameSchema.statics.getGame = function(game_id) {
 
 GameSchema.statics.getPlayerState = function(game_id, user_id) {
 
-  return this.findById(game_id, 'playerStates')
-    .populate({
-      path: 'playerStates.white playerStates.black', select: '-date -__v'
-    }).then(game => game.playerStates.id(user_id))
-
-    
+  return this.findById(game_id, 
+    { 'playerStates': { $elemMatch: { 'playerId': user_id }}}
+  )
+  .populate({
+    path: 'playerStates.white playerStates.black', select: '-date -__v'
+  })
+  .then(game => game.playerStates[0]);
 }
 
-GameSchema.statics.getActive = function(game_id, user_id) {
+
+GameSchema.statics.getActive = function(game_id) {
 
   return this.findById(game_id, activeGameSelect)
     .populate(playerPop)
     .populate(packPop)
-    .populate(cardsInPlayPop)
+    .populate(cardsInPlayWhitePop)
+    .populate(cardsInPlayBlackPop)
     .populate({
-      path: 'playerStates', select: '-_id -score'
+      path: 'playerStates', select: '-playerId -score'
     })
 }
 
+GameSchema.statics.updateCardsInPlay = function(game_id, cardDat) {
+  return this.findOneAndUpdate(
+    { 
+      _id: game_id, 
+      playerStates: { $elemMatch: { playerId: cardDat.playerId } } 
+    }, 
+    {
+      $push: { 'cardsInPlay.white': cardDat },
+      $pull: { 'playerStates.$.white': cardDat.card }
+    }
+  )
+}
 
 GameSchema.statics.dropMessages = function (game_id = null) {
 

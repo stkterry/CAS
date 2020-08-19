@@ -2,7 +2,7 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 import { setAuthToken } from "../util/session_api_util";
-
+import { setUserId } from "../actions/socket_actions";
 
 export const receiveUserExists = exists => ({
   type: RECEIVE_USER_EXISTS,
@@ -66,6 +66,7 @@ export const login = user => dispatch => APICalls.login(user)
       localStorage.setItem('jwtToken', token);
       setAuthToken(token);
       const decoded = jwt_decode(token);
+      dispatch(setUserId(decoded.id));
       dispatch(receiveCurrentUser(decoded));
     }
   )

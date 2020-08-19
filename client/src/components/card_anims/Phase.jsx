@@ -151,6 +151,8 @@ class Phase extends React.Component {
     return (
       <div
         ref={this.phaseRef}
+        onClick={this.props.onClick}
+        onDoubleClick={this.props.onDoubleClick}
         className={this.props.className}
         style={style}
         onMouseEnter={this.mouseEnter}

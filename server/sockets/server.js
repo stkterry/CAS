@@ -1,5 +1,6 @@
 const http = require("http");
 const socketIo = require('socket.io');
+const Game = require("../models/Game");
 
 // const socketIndex = require("./server/routes/sockets/index");
 // app.use(socketIndex);
@@ -31,6 +32,15 @@ module.exports = socketServer = app => {
       cb('received');
     });
 
+    socket.on("addToCardsInPlay", ({card, room, userId}, cb) => {
+      const newCardDat = {
+        playerId: userId,
+        card: card._id
+      }
+      Game.updateCardsInPlay(room, newCardDat)
+        .then(dat => console.log(dat))
+      socket.to(room).emit("receiveCardInPlay", { playerId: userId, card: card })
+    })
   });
 
   server.listen(socketPort, () => console.log(`Socket listening on port ${socketPort}`)); 

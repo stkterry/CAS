@@ -1,10 +1,21 @@
 import socketIOClient from "socket.io-client";
+import { reject } from "lodash";
 
 const ENDPOINT = 'http://127.0.0.1:5002';
 
 export default class SocketAPI {
+
   socket;
   room;
+  userId;
+
+  setUserId(userId) {
+    return new Promise((resolve, reject) => {
+      if (!userId) return reject("Where is the userId?");
+      this.userId = userId;
+      resolve();
+    })
+  }
 
   connect(opts) {
     this.socket = socketIOClient(ENDPOINT);
@@ -33,7 +44,7 @@ export default class SocketAPI {
       if (!this.socket) return reject("No socket connection");
       return this.socket.emit(
         event, 
-        { ...data, room: this.room}, 
+        { ...data, room: this.room, userId: this.userId}, 
         callback || (res => res.error ? reject(res.error) : resolve(res))
       )
     })
