@@ -152,10 +152,8 @@ GameSchema.statics.getPlayerState = function(game_id, user_id) {
     path: 'playerStates.white playerStates.black', select: '-date -__v'
   })
   .then(game => game.playerStates[0]);
-
-
-    
 }
+
 
 GameSchema.statics.getActive = function(game_id) {
 
@@ -169,6 +167,18 @@ GameSchema.statics.getActive = function(game_id) {
     })
 }
 
+GameSchema.statics.updateCardsInPlay = function(game_id, cardDat) {
+  return this.findOneAndUpdate(
+    { 
+      _id: game_id, 
+      playerStates: { $elemMatch: { playerId: cardDat.playerId } } 
+    }, 
+    {
+      $push: { 'cardsInPlay.white': cardDat },
+      $pull: { 'playerStates.$.white': cardDat.card }
+    }
+  )
+}
 
 GameSchema.statics.dropMessages = function (game_id = null) {
 
