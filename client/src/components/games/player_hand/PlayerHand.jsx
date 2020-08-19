@@ -5,10 +5,48 @@ import CardLook from "../../card_anims/CardLook";
 export default function PlayerHand(props) {
 
   const [canPlayCard, setCanPlayCard] = useState(true);
-  const [cards, setCards] = useState(props.cards);
+  const [hand, setHand] = useState(props.cards);
+  const [black, setBlack] = useState(props.cardsInPlay.black);
+  const [pickCount, setPickCount] = useState(1);
+  const [drawCound, setDrawCount] = useState(1);
+  const [selected, setSelected] = useState([]);
+
+  const defClassName = "game_show-player_cards game_show-card";
+  const highlight = "player_hand-highlight_card";
+
   useEffect(() => {
-    setCards(props.cards);
-  }, [props.cards])
+    const { draw, pick } = props.cardsInPlay.black || 1;
+    setPickCount(pick);
+    setDrawCount(draw);
+  }, [props.cardsInPlay.black])
+
+  useEffect(() => {
+    // Map a className attribute to each card in the hand to keep track of which are highlighted?
+    const hand = {};
+    for (let i = 0; i < props.cards.length; i++) {
+      let card = props.cards[i];
+      card.className = defClassName;
+      hand[card._id] = card; 
+    }
+    setHand(hand);
+  }, [props.cards]);
+
+  const onClick = card => {
+    console.log(selected);
+    if (selected.includes(card._id)) {
+      setSelected(selected.filter(cardId => cardId !== card._id));
+      setHand(prevHand => ({
+        ...prevHand,
+        [card._id]: { ...prevHand[card._id], className: defClassName }
+      }))
+    } else if (selected.length < pickCount) {
+      setHand(prevHand => ({
+        ...prevHand,
+        [card._id]: { ...prevHand[card._id], className: `${defClassName} ${highlight}` }
+      }))
+      setSelected(prevSelected => [...prevSelected, card._id]);
+    }
+  }
 
   const canPlay = () => {
     if (canPlayCard) {
@@ -19,21 +57,24 @@ export default function PlayerHand(props) {
     return true;
   }
 
-  const onDC = card => {
+  const onDoubleClick = card => {
     if (!canPlay()) return;
     props.addToCardsInPlay(card);
-    setCards(prev => prev.filter(cardItem => card !== cardItem));
+    setHand(prevHand => {
+      const newHand = Object.assign({}, prevHand);
+      delete newHand[card._id];
+      return newHand;
+    });
     props.receiveCardInPlay({card: card, playerId: props.userId});
   }
 
   return (
     <div id="game_show-player_cards">
-      {cards.map(card =>
+      {Object.values(hand).map(card =>
         <CardLook 
-          // onClick={onClick}
-          onDoubleClick={() => onDC(card)}
+          onClick={() => onClick(card)}
+          onDoubleClick={() => onDoubleClick(card)}
           key={card._id}
-          className={"game_show-player_cards game_show-card"}
           {...card}
         />
       )}

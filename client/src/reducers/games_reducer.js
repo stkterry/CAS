@@ -12,7 +12,7 @@ const initialState = {
   all: {}, 
   user: {}, 
   new: undefined, 
-  active: {},
+  active: { cardsInPlay: { white: [], black: null }},
   playerState: { white: [], black: [], score: null }
 }
 
