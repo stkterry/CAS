@@ -38,7 +38,6 @@ module.exports = socketServer = app => {
         card: card._id
       }
       Game.updateCardsInPlay(room, newCardDat)
-        .then(dat => console.log(dat))
       socket.to(room).emit("receiveCardInPlay", { playerId: userId, card: card })
     })
   });

@@ -21,7 +21,6 @@ export default function PlayerHand(props) {
   }, [props.cardsInPlay.black])
 
   useEffect(() => {
-    // Map a className attribute to each card in the hand to keep track of which are highlighted?
     const hand = {};
     for (let i = 0; i < props.cards.length; i++) {
       let card = props.cards[i];
